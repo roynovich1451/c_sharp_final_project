@@ -15,18 +15,18 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Name="lbWelcom" Content="4 in a row" FontSize="30" FontWeight="Bold" FontStyle="Italic" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Label Name="lbuser" Grid.Row="1" Grid.Column="0" Content="User name:" FontSize="20" VerticalAlignment="Center"/>
-        <TextBox Name="tbUser" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,40"/>
-        <Label Name="lbpass" Grid.Row="2" Grid.Column="0" Content="Password:" FontSize="20" 
+        <Label Name="lbuser" Grid.Row="1" Grid.Column="0" Content="User name:" VerticalAlignment="Center"/>
+        <TextBox Name="tbUser" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,17"/>
+        <Label Name="lbpass" Grid.Row="2" Grid.Column="0" Content="Password:" 
                VerticalAlignment="Center"/>
-        <TextBox Name="tbpass" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,40"/>
+        <PasswordBox Name="tbpass" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,17"/>
         <Button Name="btnSignIn" Grid.Column="1" Grid.Row="3" Margin="10,20">
             <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
                Sign in

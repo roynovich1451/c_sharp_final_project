@@ -40,7 +40,7 @@ namespace FourInARowClient
             }
             else
             {
-                tbMessages.Text = "You are connected.\nWait for other player to connect";
+                //tbMessages.Text = "You are connected.\nWait for other player to connect";
                 callback.startGame += StartGame;
                 (sender as Button).IsEnabled = false;
             }
