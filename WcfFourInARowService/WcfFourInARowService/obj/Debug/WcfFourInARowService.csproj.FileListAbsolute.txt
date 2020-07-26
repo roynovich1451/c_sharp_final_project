@@ -1,0 +1,7 @@
+C:\Users\royno\source\repos\WcfFourInARowService\WcfFourInARowService\bin\Debug\WcfFourInARowService.dll.config
+C:\Users\royno\source\repos\WcfFourInARowService\WcfFourInARowService\bin\Debug\WcfFourInARowService.dll
+C:\Users\royno\source\repos\WcfFourInARowService\WcfFourInARowService\bin\Debug\WcfFourInARowService.pdb
+C:\Users\royno\source\repos\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.csprojAssemblyReference.cache
+C:\Users\royno\source\repos\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.csproj.CoreCompileInputs.cache
+C:\Users\royno\source\repos\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.dll
+C:\Users\royno\source\repos\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.pdb
