@@ -55,7 +55,6 @@ namespace WcfFourInARowService
                 games.Remove((player - 1) / 2);
             }
             int other_player = player % 2 == 1 ? player + 1 : player - 1;
-
             if (!clients.ContainsKey(other_player))
             {
                 OpponentDisconnectedFault fault = new OpponentDisconnectedFault();

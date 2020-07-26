@@ -1,0 +1,17 @@
+﻿<Window x:Class="FourInARowHost.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FourInARowHost"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="Host four in a row" Height="273.913" Width="522.174">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Name="lbStatus" Grid.ColumnSpan="2"/>
+    </Grid>
+</Window>
