@@ -11,25 +11,34 @@ namespace WcfFourInARowService
     public interface IFourInARowService
     {
         [OperationContract]
-        int Register();
+        [FaultContract(typeof(UserNameInUse))]
+        [FaultContract(typeof(WeakPassword))]
+        int Register(); //new client sign-up
+
+        [OperationContract]
+        [FaultContract(typeof(UserConnectdFault))]
+        [FaultContract(typeof(UserNotRegisteredFault))]
+        void ClientConnect(string userName, string hashedPassword); //client signed in
 
         [OperationContract]
         [FaultContract(typeof(OpponentDisconnectedFault))]
         MoveResult ReportMove(int location, int player);
-
         [OperationContract]
-        void Disconnect(int player);
-
+        void DisconnectDuringGame(string userName);
         [OperationContract]
-        void DisconnectBeforeGame(int player);
+        void Disconnect(string userName);
     }
 
     public interface IFourInARowCallback
     {
         [OperationContract(IsOneWay = true)]
+        void sendGameInvitation(); //sent invitation for available client in connected list
+        [OperationContract(IsOneWay = true)]
+        void AcceptGameInvitation(); //accept other user invitation for game and start game
+        [OperationContract(IsOneWay = true)]
         void OtherPlayerConnected();
 
         [OperationContract(IsOneWay = true)]
-        void OtherPlayerMoved(MoveResult moveResult, int location);
+        void OtherPlayerMoved(MoveResult moveResult, int location); //update board according rival movment
     }
 }

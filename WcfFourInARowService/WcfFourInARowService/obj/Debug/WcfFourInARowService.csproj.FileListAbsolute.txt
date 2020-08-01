@@ -12,3 +12,8 @@ C:\Users\royno\Desktop\c_sharp_final_project\WcfFourInARowService\WcfFourInARowS
 C:\Users\royno\Desktop\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.csproj.CoreCompileInputs.cache
 C:\Users\royno\Desktop\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.dll
 C:\Users\royno\Desktop\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.pdb
+C:\Users\royno\Desktop\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\EntityFramework.dll
+C:\Users\royno\Desktop\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\royno\Desktop\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\EntityFramework.xml
+C:\Users\royno\Desktop\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\royno\Desktop\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.csproj.CopyComplete

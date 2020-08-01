@@ -8,6 +8,7 @@
         Closed="Window_Closed"
         ResizeMode="NoResize"
         Title="Login" Height="600" Width="400">
+
     <Grid Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -26,8 +27,8 @@
         <TextBox Name="tbUser" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,17"/>
         <Label Name="lbpass" Grid.Row="2" Grid.Column="0" Content="Password:" 
                VerticalAlignment="Center"/>
-        <PasswordBox Name="tbpass" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,17"/>
-        <Button Name="btnSignIn" Grid.Column="1" Grid.Row="3" Margin="10,20">
+        <PasswordBox Name="tbPassword" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,17"/>
+        <Button Name="btnSignIn" Grid.Column="1" Grid.Row="3" Margin="10,20" Click="btnSignIn_Click">
             <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
                Sign in
             </TextBlock>

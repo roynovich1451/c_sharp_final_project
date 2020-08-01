@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="fourinrowDB_roy_novich_oren_orModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Game">
+    <Key>
+      <PropertyRef Name="GameId" />
+    </Key>
+    <Property Name="GameId" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Winner" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="WinnerPoint" Type="Int32" Nullable="false" />
+    <Property Name="Player1" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Player2" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Player1AsUser" Relationship="fourinrowDB_roy_novich_oren_orModel.FK_dbo_Games_dbo_Users_Player1_UserName" FromRole="Games" ToRole="Users" />
+    <NavigationProperty Name="Player2AsUser" Relationship="fourinrowDB_roy_novich_oren_orModel.FK_dbo_Games_dbo_Users_Player2_UserName" FromRole="Games" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HassedPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Points" Type="Int32" Nullable="false" />
+    <Property Name="Wins" Type="Int32" Nullable="false" />
+    <Property Name="Loosess" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="GamesAsP1" Relationship="Self.FK_dbo_Games_dbo_Users_Player1_UserName" FromRole="Users" ToRole="Games" />
+    <NavigationProperty Name="GamesAsP2" Relationship="Self.FK_dbo_Games_dbo_Users_Player2_UserName" FromRole="Users" ToRole="Games" />
+  </EntityType>
+  <Association Name="FK_dbo_Games_dbo_Users_Player1_UserName">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Games" Type="Self.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserName" />
+      </Principal>
+      <Dependent Role="Games">
+        <PropertyRef Name="Player1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Games_dbo_Users_Player2_UserName">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Games" Type="Self.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserName" />
+      </Principal>
+      <Dependent Role="Games">
+        <PropertyRef Name="Player2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="fourinrowDB_roy_novich_oren_orEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Games" EntityType="Self.Game" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_dbo_Games_dbo_Users_Player1_UserName" Association="Self.FK_dbo_Games_dbo_Users_Player1_UserName">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Games" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Games_dbo_Users_Player2_UserName" Association="Self.FK_dbo_Games_dbo_Users_Player2_UserName">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Games" EntitySet="Games" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

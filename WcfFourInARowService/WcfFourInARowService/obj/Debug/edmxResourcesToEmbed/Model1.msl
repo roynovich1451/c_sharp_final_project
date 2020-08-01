@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="fourinrowDB_roy_novich_oren_orModelStoreContainer" CdmEntityContainer="fourinrowDB_roy_novich_oren_orEntities">
+    <EntitySetMapping Name="Games">
+      <EntityTypeMapping TypeName="fourinrowDB_roy_novich_oren_orModel.Game">
+        <MappingFragment StoreEntitySet="Games">
+          <ScalarProperty Name="GameId" ColumnName="GameId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Winner" ColumnName="Winner" />
+          <ScalarProperty Name="WinnerPoint" ColumnName="WinnerPoint" />
+          <ScalarProperty Name="Player1" ColumnName="Player1_UserName" />
+          <ScalarProperty Name="Player2" ColumnName="Player2_UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="fourinrowDB_roy_novich_oren_orModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="HassedPassword" ColumnName="HassedPassword" />
+          <ScalarProperty Name="Points" ColumnName="Points" />
+          <ScalarProperty Name="Wins" ColumnName="Wins" />
+          <ScalarProperty Name="Loosess" ColumnName="Loosess" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

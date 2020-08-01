@@ -1,0 +1,12 @@
+C:\Users\royno\Desktop\c_sharp_final_project\createFourInARowDB\createFourInARowDB\bin\Debug\createFourInARowDB.exe.config
+C:\Users\royno\Desktop\c_sharp_final_project\createFourInARowDB\createFourInARowDB\bin\Debug\createFourInARowDB.exe
+C:\Users\royno\Desktop\c_sharp_final_project\createFourInARowDB\createFourInARowDB\bin\Debug\createFourInARowDB.pdb
+C:\Users\royno\Desktop\c_sharp_final_project\createFourInARowDB\createFourInARowDB\obj\Debug\createFourInARowDB.csprojAssemblyReference.cache
+C:\Users\royno\Desktop\c_sharp_final_project\createFourInARowDB\createFourInARowDB\obj\Debug\createFourInARowDB.csproj.CoreCompileInputs.cache
+C:\Users\royno\Desktop\c_sharp_final_project\createFourInARowDB\createFourInARowDB\obj\Debug\createFourInARowDB.exe
+C:\Users\royno\Desktop\c_sharp_final_project\createFourInARowDB\createFourInARowDB\obj\Debug\createFourInARowDB.pdb
+C:\Users\royno\Desktop\c_sharp_final_project\createFourInARowDB\createFourInARowDB\bin\Debug\EntityFramework.dll
+C:\Users\royno\Desktop\c_sharp_final_project\createFourInARowDB\createFourInARowDB\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\royno\Desktop\c_sharp_final_project\createFourInARowDB\createFourInARowDB\bin\Debug\EntityFramework.xml
+C:\Users\royno\Desktop\c_sharp_final_project\createFourInARowDB\createFourInARowDB\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\royno\Desktop\c_sharp_final_project\createFourInARowDB\createFourInARowDB\obj\Debug\createFourInARowDB.csproj.CopyComplete

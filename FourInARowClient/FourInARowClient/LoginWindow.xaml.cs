@@ -1,4 +1,4 @@
-﻿using FourInARowClient.FourInARowServiceReference;
+﻿using FourInARowClient.FourInARowReference;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +63,21 @@ namespace FourInARowClient
         {
             if (!gameStarted)
                 client.DisconnectBeforeGame(numUser);
+        }
+
+        private void btnSignIn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(tbUser.Text) &&
+                !string.IsNullOrEmpty(tbPassword.Password))
+            {
+                FourInARowServiceClient client = new FourInARowServiceClient(new InstanceContext(callback));
+                string userName = tbUser.Text.Trim();
+                try
+                {
+                    client.
+                }
+            }
+
         }
     }
 }
