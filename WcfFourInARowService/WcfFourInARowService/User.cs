@@ -26,6 +26,7 @@ namespace WcfFourInARowService
         public int Points { get; set; }
         public int Wins { get; set; }
         public int Loosess { get; set; }
+        public int CareerGames { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Game> GamesAsP1 { get; set; }

@@ -3,19 +3,34 @@
   <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService" />
   <xs:element name="Register">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="hashedPassword" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RegisterResponse">
     <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClientConnect">
+    <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="RegisterResult" type="xs:int" />
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="hashedPassword" nillable="true" type="xs:string" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClientConnectResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="ReportMove">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
         <xs:element minOccurs="0" name="location" type="xs:int" />
         <xs:element minOccurs="0" name="player" type="xs:int" />
       </xs:sequence>
@@ -28,10 +43,23 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="StartNewGame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="player1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="player2" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartNewGameResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="Disconnect">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="player" type="xs:int" />
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -40,14 +68,12 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="DisconnectBeforeGame">
+  <xs:element name="sendGameInvitation">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="player" type="xs:int" />
-      </xs:sequence>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="DisconnectBeforeGameResponse">
+  <xs:element name="AcceptGameInvitation">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

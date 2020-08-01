@@ -61,7 +61,7 @@ namespace FourInARowClient
         {
             if (serverOn)
             {
-                Client.Disconnect(NumUser);
+                //Client.Disconnect(NumUser);
             }
             Environment.Exit(Environment.ExitCode);
         }
@@ -72,7 +72,7 @@ namespace FourInARowClient
             {
                 Button clickedButton = (Button)sender;
                 int location = Convert.ToInt32(clickedButton.Name.Substring(6, 1)) - 1;
-                var moveResult = Client.ReportMove(location, NumUser);
+                var moveResult = Client.ReportMove(1,location, 1);
                 if (moveResult == MoveResult.NotYourTurn)
                 {
                     MessageBox.Show("Not your turn");
@@ -94,7 +94,7 @@ namespace FourInARowClient
             {
                 DisableBoard();
                 MessageBox.Show(ex.Detail.Details);
-                Client.Disconnect(NumUser);
+               // Client.Disconnect(NumUser);
             }
             catch (TimeoutException)
             {
@@ -114,7 +114,7 @@ namespace FourInARowClient
         private void EndGame(string message)
         {
             MessageBox.Show(message);
-            Thread connectionThread = new Thread(() => { Client.Disconnect(NumUser); });
+            Thread connectionThread = new Thread(() => { Client.Disconnect(NumUser.ToString()); });
             connectionThread.Start();
             DisableBoard();
         }

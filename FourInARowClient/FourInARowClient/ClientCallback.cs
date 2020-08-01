@@ -13,11 +13,16 @@ namespace FourInARowClient
         internal Action<string> endGame;
         internal Action<int> updateGame;
         internal Action startGame;
+
+        public void AcceptGameInvitation()
+        {
+            startGame();
+        }
         #endregion
 
         public void OtherPlayerConnected()
         {
-            startGame();
+            
         }
 
         public void OtherPlayerMoved(MoveResult moveResult, int location)
@@ -31,6 +36,11 @@ namespace FourInARowClient
             {
                 endGame("You lost...");
             }
+        }
+
+        public void sendGameInvitation()
+        {
+            throw new NotImplementedException();
         }
     }
 }

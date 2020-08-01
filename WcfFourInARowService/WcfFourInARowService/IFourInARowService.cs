@@ -12,19 +12,19 @@ namespace WcfFourInARowService
     {
         [OperationContract]
         [FaultContract(typeof(UserNameInUse))]
-        [FaultContract(typeof(WeakPassword))]
-        int Register(); //new client sign-up
+        void Register(string userName, string hashedPassword); //new client sign-up
 
         [OperationContract]
         [FaultContract(typeof(UserConnectdFault))]
         [FaultContract(typeof(UserNotRegisteredFault))]
-        void ClientConnect(string userName, string hashedPassword); //client signed in
+        [FaultContract(typeof(IncorectPasswordFault))]
+        void ClientConnect(string userName, string hashedPassword); //old client sign-in
 
         [OperationContract]
         [FaultContract(typeof(OpponentDisconnectedFault))]
-        MoveResult ReportMove(int location, int player);
+        MoveResult ReportMove(int gameId, int location, int player);
         [OperationContract]
-        void DisconnectDuringGame(string userName);
+        void StartNewGame(string player1, string player2);
         [OperationContract]
         void Disconnect(string userName);
     }

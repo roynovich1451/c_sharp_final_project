@@ -2,7 +2,7 @@
 
 namespace WcfFourInARowService
 {
-    internal class UserNameInUse
+    public class UserNameInUse
     {
         [DataMember]
         public string Details { get; set; }

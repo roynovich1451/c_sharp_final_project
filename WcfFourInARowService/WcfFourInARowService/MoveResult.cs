@@ -17,6 +17,8 @@ namespace WcfFourInARowService
         [EnumMember]
         NotYourTurn,
         [EnumMember]
-        GameOn
+        GameOn,
+        [EnumMember]
+        InvalidMove
     }
 }

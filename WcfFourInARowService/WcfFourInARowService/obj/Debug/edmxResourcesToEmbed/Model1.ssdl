@@ -20,6 +20,7 @@
     <Property Name="Points" Type="int" Nullable="false" />
     <Property Name="Wins" Type="int" Nullable="false" />
     <Property Name="Loosess" Type="int" Nullable="false" />
+    <Property Name="CareerGames" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_dbo_Games_dbo_Users_Player1_UserName">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />

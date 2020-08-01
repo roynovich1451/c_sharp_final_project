@@ -62,9 +62,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ClientCallback.cs" />
+    <Compile Include="SignUpWindow.xaml.cs">
+      <DependentUpon>SignUpWindow.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\FourInARowReference\Reference.cs">
+    <Compile Include="Connected Services\FourInARowServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -95,17 +98,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Connected Services\FourInARowReference\FourInARowClient.FourInARowReference.MoveResult.datasource">
+    <None Include="Connected Services\FourInARowServiceReference\FourInARowClient.FourInARowServiceReference.MoveResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\FourInARowReference\FourInARowService.wsdl" />
-    <None Include="Connected Services\FourInARowReference\item.xsd">
+    <None Include="Connected Services\FourInARowServiceReference\FourInARowService.wsdl" />
+    <None Include="Connected Services\FourInARowServiceReference\item.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\FourInARowReference\item1.xsd">
+    <None Include="Connected Services\FourInARowServiceReference\item1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\FourInARowReference\item2.xsd">
+    <None Include="Connected Services\FourInARowServiceReference\item2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -132,21 +135,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SignUpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\FourInARowReference\" />
+    <WCFMetadataStorage Include="Connected Services\FourInARowServiceReference\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\FourInARowReference\item.disco" />
+    <None Include="Connected Services\FourInARowServiceReference\item.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\FourInARowReference\configuration91.svcinfo" />
+    <None Include="Connected Services\FourInARowServiceReference\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\FourInARowReference\configuration.svcinfo" />
+    <None Include="Connected Services\FourInARowServiceReference\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\FourInARowReference\Reference.svcmap">
+    <None Include="Connected Services\FourInARowServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

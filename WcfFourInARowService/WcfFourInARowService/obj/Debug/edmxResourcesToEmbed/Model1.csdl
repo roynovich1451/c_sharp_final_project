@@ -10,8 +10,8 @@
     <Property Name="WinnerPoint" Type="Int32" Nullable="false" />
     <Property Name="Player1" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="Player2" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Player1AsUser" Relationship="fourinrowDB_roy_novich_oren_orModel.FK_dbo_Games_dbo_Users_Player1_UserName" FromRole="Games" ToRole="Users" />
-    <NavigationProperty Name="Player2AsUser" Relationship="fourinrowDB_roy_novich_oren_orModel.FK_dbo_Games_dbo_Users_Player2_UserName" FromRole="Games" ToRole="Users" />
+    <NavigationProperty Name="Player1AsUSer" Relationship="Self.FK_dbo_Games_dbo_Users_Player1_UserName" FromRole="Games" ToRole="Users" />
+    <NavigationProperty Name="Player2AsUSer" Relationship="Self.FK_dbo_Games_dbo_Users_Player2_UserName" FromRole="Games" ToRole="Users" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -22,6 +22,7 @@
     <Property Name="Points" Type="Int32" Nullable="false" />
     <Property Name="Wins" Type="Int32" Nullable="false" />
     <Property Name="Loosess" Type="Int32" Nullable="false" />
+    <Property Name="CareerGames" Type="Int32" Nullable="false" />
     <NavigationProperty Name="GamesAsP1" Relationship="Self.FK_dbo_Games_dbo_Users_Player1_UserName" FromRole="Users" ToRole="Games" />
     <NavigationProperty Name="GamesAsP2" Relationship="Self.FK_dbo_Games_dbo_Users_Player2_UserName" FromRole="Users" ToRole="Games" />
   </EntityType>

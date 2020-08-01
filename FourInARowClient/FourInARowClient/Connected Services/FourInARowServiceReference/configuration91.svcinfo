@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="ausxyRRTc3dgaqkz0p0e/MPNUHdr3uK0+gLwpex6wW4=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="WnYG5hx5aZ6veN7ailmXA21ir8xvqcbS9NUKS4ysq7c=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="wsDualHttpBinding" name="WSDualHttpBinding_IFourInARowService">
       <properties>
@@ -97,7 +97,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WSDualHttpBinding_IFourInARowService" contract="FourInARowReference.IFourInARowService" bindingType="wsDualHttpBinding" address="http://localhost:8733/Design_Time_Addresses/WcfFourInARowService/Service1/" bindingConfiguration="WSDualHttpBinding_IFourInARowService">
+    <endpoint name="WSDualHttpBinding_IFourInARowService" contract="FourInARowServiceReference.IFourInARowService" bindingType="wsDualHttpBinding" address="http://localhost:8733/Design_Time_Addresses/WcfFourInARowService/Service1/" bindingConfiguration="WSDualHttpBinding_IFourInARowService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://localhost:8733/Design_Time_Addresses/WcfFourInARowService/Service1/</serializedValue>
@@ -112,7 +112,7 @@
           <serializedValue>WSDualHttpBinding_IFourInARowService</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>FourInARowReference.IFourInARowService</serializedValue>
+          <serializedValue>FourInARowServiceReference.IFourInARowService</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>

@@ -21,6 +21,7 @@
           <ScalarProperty Name="Points" ColumnName="Points" />
           <ScalarProperty Name="Wins" ColumnName="Wins" />
           <ScalarProperty Name="Loosess" ColumnName="Loosess" />
+          <ScalarProperty Name="CareerGames" ColumnName="CareerGames" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FourInARowClient"
         mc:Ignorable="d"
-        Closed="Window_Closed"
         ResizeMode="NoResize"
         Title="Login" Height="600" Width="400">
 
@@ -36,7 +35,8 @@
         <StackPanel Name="spSignUp" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3">
             <Label Name="lbSignUp" Grid.Row="2" Grid.Column="0" Content="Still don't have user?" FontSize="16" 
                VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
-            <Button Name="btnSigUp" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4" Margin="80,10" Padding="18">
+            <Button Name="btnSigUp" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4" Margin="80,10" Padding="18"
+                    Click="btnSigUp_Click">
                 <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
                Sign Up
                 </TextBlock>

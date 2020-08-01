@@ -60,7 +60,7 @@
     </Compile>
     <Compile Include="GameManager.cs" />
     <Compile Include="IFourInARowService.cs" />
-    <Compile Include="InccorectPasswordFault.cs" />
+    <Compile Include="IncorectPasswordFault.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -85,8 +85,8 @@
     </Compile>
     <Compile Include="UserConnectdFault.cs" />
     <Compile Include="UserNameInUse.cs" />
+    <Compile Include="UserNameTakenFault.cs" />
     <Compile Include="UserNotRegisteredFault.cs" />
-    <Compile Include="WeakPassword.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

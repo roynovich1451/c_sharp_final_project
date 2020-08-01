@@ -13,7 +13,6 @@ namespace WcfFourInARowService
     public class FourInARowService : IFourInARowService
     {
         int gameID = 0; //count games
-        int numClients = 0;
         Dictionary<string, IFourInARowCallback> connetedClients = new Dictionary<string, IFourInARowCallback>();
         Dictionary<int, GameManager> games = new Dictionary<int, GameManager>();
 
@@ -47,11 +46,11 @@ namespace WcfFourInARowService
                 }
                 else if (hashedPassword != user.HassedPassword)
                 {
-                    InccorectPasswordFault userIncorrectPass = new InccorectPasswordFault
+                    IncorectPasswordFault userIncorrectPass = new IncorectPasswordFault
                     {
                         Details = $"Wrong password entered, please try again."
                     };
-                    throw new FaultException<InccorectPasswordFault>(userIncorrectPass);
+                    throw new FaultException<IncorectPasswordFault>(userIncorrectPass);
                 }
                 else
                 {
@@ -62,12 +61,22 @@ namespace WcfFourInARowService
             }
         }
 
-        IFourInARowCallback waitingCallback;
-        public int Register(string userName, string hashedPassword)
+        public void Register(string userName, string hashedPassword)
         {
             using (var ctx = new fourinrowDBContext())
             {
-                if()
+                var IsExists = (from u in ctx.Users
+                                where u.UserName == userName
+                                select u).FirstOrDefault();
+                if (IsExists != null)
+                {
+                    UserNameTakenFault userNameTaken = new UserNameTakenFault
+                    {
+                        Details = $"{userName} is taken, please pick another."
+                    };
+                    throw new FaultException<UserNameTakenFault>(userNameTaken);
+                }
+                //TODO: check 'password weakness' over client
                 User newUser = new User
                 {
                     UserName = userName,
@@ -78,56 +87,112 @@ namespace WcfFourInARowService
                 };
                 ctx.Users.Add(newUser);
                 ctx.SaveChanges();
-            }
-                IFourInARowCallback callback = OperationContext.Current.GetCallbackChannel<IFourInARowCallback>();
-            if (numClients % 2 == 1)
-            {
-                waitingCallback = callback;
-                return numClients;
-            }
-            else
-            {
-                /*  clients.Add(numClients - 1, waitingCallback);
-                  waitingCallback.OtherPlayerConnected();
-                  clients.Add(numClients, callback);
-                  games.Add((numClients - 1) / 2, new Game());
-                  return numClients;
-                */
-                return 0;
+                IFourInARowCallback regCallback = OperationContext.Current.GetCallbackChannel<IFourInARowCallback>();
+                connetedClients.Add(newUser.UserName, regCallback);
+                //TODO: user exists and entered correct password need to open LobbyWindow
             }
         }
 
-        public MoveResult ReportMove(int location, int player)
+        public MoveResult ReportMove(int gameId, int location, int player)
         { 
-            char sign = player % 2 == 1 ? 'X' : 'O';
-            //MoveResult result = games[(player - 1) / 2].VerifyMove(location, sign);
-            MoveResult result = MoveResult.GameOn;
+            char sign = player == 1 ? 'b' : 'r';
+            MoveResult result = games[gameId].VerifyMove(location, sign);
             if (result == MoveResult.Draw || result == MoveResult.YouWon)
             {
-                games.Remove((player - 1) / 2);
+                games.Remove(gameId);
+                int p1Score = 0;
+                int p2Score = 0;
+                using (var ctx = new fourinrowDBContext())
+                {
+                    var updateGame = (from g in ctx.Games
+                                      where g.GameId == gameId
+                                      select g).First();
+                    var updateP1 = (from u in ctx.Users
+                                     where u.UserName == games[gameId].p1
+                                     select u).First();
+                    var updateP2 = (from u in ctx.Users
+                                    where u.UserName == games[gameId].p2
+                                    select u).First();
+                    if (result == MoveResult.Draw) //game end with draw
+                    {
+                        updateGame.Winner = "Draw";
+                        p1Score = games[gameId].CalculateScore('b', 'd');
+                        p2Score = games[gameId].CalculateScore('r', 'd');
+                        updateGame.WinnerPoint = Math.Max(p1Score, p2Score);
+                        updateP1.CareerGames += 1;
+                        updateP1.Points += p1Score;
+                        updateP2.CareerGames += 1;
+                        updateP2.Points += p2Score;
+                    }
+                    if (result == MoveResult.YouWon) //other player won
+                    {
+                        char charWinner = sign == 'b' ? 'r' : 'b'; //swap char
+                        p1Score = games[gameId].CalculateScore('b', charWinner);
+                        p2Score = games[gameId].CalculateScore('r', charWinner);
+                        if (charWinner == 'b') //P1 win
+                        {
+                            updateGame.WinnerPoint = p1Score;
+                            updateP1.CareerGames += 1;
+                            updateP1.Points += p1Score;
+                            updateP1.Wins += 1;
+                            updateP2.CareerGames += 1;
+                            updateP2.Points += p2Score;
+                            updateP2.Loosess += 1;
+                        }
+                        if (charWinner == 'r') //P2 win
+                        {
+                            updateGame.WinnerPoint = p2Score;
+                            updateP2.CareerGames += 1;
+                            updateP2.Points += p2Score;
+                            updateP2.Wins += 1;
+                            updateP1.CareerGames += 1;
+                            updateP1.Points += p1Score;
+                            updateP1.Loosess += 1;
+                        }
+                    }
+                    ctx.SaveChanges();
+                }
             }
-            int other_player = player % 2 == 1 ? player + 1 : player - 1;
-            /*if (!clients.ContainsKey(other_player))
+            string other_player = player == 1 ? games[gameId].p1 : games[gameId].p2;
+            if (!connetedClients.ContainsKey(other_player))
             {
-                OpponentDisconnectedFault fault = new OpponentDisconnectedFault();
-                fault.Details = "The other player quit";
+                OpponentDisconnectedFault fault = new OpponentDisconnectedFault
+                {
+                    Details = "The other player quit"
+                };
                 throw new FaultException<OpponentDisconnectedFault>(fault);
             }
-            if (result != MoveResult.NotYourTurn)
+            if (result !=MoveResult.NotYourTurn && result != MoveResult.InvalidMove)
             {
-                Thread updateOtherPlayerThread = new Thread(() =>
+                Thread updateOtherThread = new Thread(() =>
                 {
-                    clients[other_player].OtherPlayerMoved(result, location);
-                }
-                );
-                updateOtherPlayerThread.Start();
-            }*/
+                    connetedClients[other_player].OtherPlayerMoved(result, location);
+                });
+                updateOtherThread.Start();
+            }
             return result;
         }
 
-        public void DisconnectDuringGame(string userName)
+        public void StartNewGame(string player1, string player2)
         {
-            throw new NotImplementedException();
+            using (var ctx = new fourinrowDBContext())
+            {
+                ++gameID;
+                DateTime localTime = DateTime.Now;
+                Game newGame = new Game
+                {
+                    GameId = ++gameID,
+                    Date = localTime,
+                    Player1 = player1,
+                    Player2 = player2,
+                    WinnerPoint = 0,
+                    Winner = "Live" //means game still running, will change in the end of game
+                    
+                };
+                ctx.Games.Add(newGame);
+                ctx.SaveChanges();
+                games.Add(gameID, new GameManager(player1, player2));
+            }
         }
     }
 }

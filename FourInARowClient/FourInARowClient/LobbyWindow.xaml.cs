@@ -19,9 +19,15 @@ namespace FourInARowClient
     /// </summary>
     public partial class LobbyWindow : Window
     {
-        public LobbyWindow()
+        public LobbyWindow(string userName)
         {
             InitializeComponent();
+
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            
         }
     }
 }

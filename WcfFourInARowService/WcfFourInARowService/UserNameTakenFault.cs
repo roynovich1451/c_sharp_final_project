@@ -2,7 +2,7 @@
 
 namespace WcfFourInARowService
 {
-    public class InccorectPasswordFault
+    public class UserNameTakenFault
     {
         [DataMember]
         public string Details { get; set; }

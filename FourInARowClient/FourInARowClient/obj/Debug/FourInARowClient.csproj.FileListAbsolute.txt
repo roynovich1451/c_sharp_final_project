@@ -17,3 +17,5 @@ C:\Users\royno\Desktop\c_sharp_final_project\FourInARowClient\FourInARowClient\o
 C:\Users\royno\Desktop\c_sharp_final_project\FourInARowClient\FourInARowClient\obj\Debug\GameWindow.baml
 C:\Users\royno\Desktop\c_sharp_final_project\FourInARowClient\FourInARowClient\obj\Debug\LobbyWindow.baml
 C:\Users\royno\Desktop\c_sharp_final_project\FourInARowClient\FourInARowClient\obj\Debug\LoginWindow.baml
+C:\Users\royno\Desktop\c_sharp_final_project\FourInARowClient\FourInARowClient\obj\Debug\SignUpWindow.g.cs
+C:\Users\royno\Desktop\c_sharp_final_project\FourInARowClient\FourInARowClient\obj\Debug\SignUpWindow.baml
