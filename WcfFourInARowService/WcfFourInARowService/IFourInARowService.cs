@@ -27,6 +27,8 @@ namespace WcfFourInARowService
         void StartNewGame(string player1, string player2);
         [OperationContract]
         void Disconnect(string userName);
+        [OperationContract]
+        Dictionary<string, IFourInARowCallback> GetConnectedClients();
     }
 
     public interface IFourInARowCallback

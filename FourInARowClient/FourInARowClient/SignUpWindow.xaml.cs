@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -79,10 +80,22 @@ namespace FourInARowClient
                     "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            clientToServer.Register(tbUser.Text.Trim(), ConvertPass(tbPassword.Password.Trim()));
-            LobbyWindow lw = new LobbyWindow(tbUser.Text.Trim());
-            lw.Show();
-            this.Hide();
+            try
+            {
+                clientToServer.Register(tbUser.Text.Trim(), ConvertPass(tbPassword.Password.Trim()));
+                var list = clientToServer.GetConnectedClients();
+                LobbyWindow lw = new LobbyWindow(tbUser.Text.Trim(), callback, clientToServer);
+                lw.Show();
+                this.Hide();
+            }
+            catch (FaultException<UserNameInUse> fault)
+            {
+                MessageBox.Show(fault.Detail.Details, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\n" + "Type:" + ex.GetType() + "\n" + ex.InnerException, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

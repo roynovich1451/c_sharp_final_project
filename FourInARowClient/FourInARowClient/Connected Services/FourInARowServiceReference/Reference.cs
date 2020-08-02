@@ -296,6 +296,12 @@ namespace FourInARowClient.FourInARowServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/Disconnect", ReplyAction="http://tempuri.org/IFourInARowService/DisconnectResponse")]
         System.Threading.Tasks.Task DisconnectAsync(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/GetConnectedClients", ReplyAction="http://tempuri.org/IFourInARowService/GetConnectedClientsResponse")]
+        System.Collections.Generic.Dictionary<string, object> GetConnectedClients();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/GetConnectedClients", ReplyAction="http://tempuri.org/IFourInARowService/GetConnectedClientsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetConnectedClientsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -380,6 +386,14 @@ namespace FourInARowClient.FourInARowServiceReference {
         
         public System.Threading.Tasks.Task DisconnectAsync(string userName) {
             return base.Channel.DisconnectAsync(userName);
+        }
+        
+        public System.Collections.Generic.Dictionary<string, object> GetConnectedClients() {
+            return base.Channel.GetConnectedClients();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetConnectedClientsAsync() {
+            return base.Channel.GetConnectedClientsAsync();
         }
     }
 }

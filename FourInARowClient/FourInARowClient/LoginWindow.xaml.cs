@@ -53,6 +53,9 @@ namespace FourInARowClient
                 try
                 {
                     clientToServer.ClientConnect(tbUser.Text.Trim(), ConvertPass(tbPassword.Password.Trim()));
+                    LobbyWindow lw = new LobbyWindow(tbUser.Text.Trim(), callback, clientToServer);
+                    lw.Show();
+                    this.Hide();
                 }
                 catch (FaultException<UserConnectdFault> fault)
                 {
@@ -66,13 +69,14 @@ namespace FourInARowClient
                 {
                     MessageBox.Show(fault.Detail.Details, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+                catch (FaultException<ExceptionDetail> fault)
+                {
+                    MessageBox.Show(fault.Detail.InnerException.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message+"\n"+"Type:"+ex.GetType()+"\n"+ex.InnerException, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                LobbyWindow lw = new LobbyWindow(tbUser.Text.Trim());
-                lw.Show();
-                this.Hide();
             }
             else
             {

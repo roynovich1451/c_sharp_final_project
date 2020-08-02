@@ -13,7 +13,7 @@ namespace WcfFourInARowService
     public class FourInARowService : IFourInARowService
     {
         int gameID = 0; //count games
-        Dictionary<string, IFourInARowCallback> connetedClients = new Dictionary<string, IFourInARowCallback>();
+        public Dictionary<string, IFourInARowCallback> connetedClients = new Dictionary<string, IFourInARowCallback>();
         Dictionary<int, GameManager> games = new Dictionary<int, GameManager>();
 
         public void Disconnect(string player)
@@ -33,6 +33,7 @@ namespace WcfFourInARowService
             }
             using (var ctx = new fourinrowDBContext())
             {
+                /*
                 var user = (from u in ctx.Users
                             where u.UserName == userName
                             select u).FirstOrDefault();
@@ -53,16 +54,15 @@ namespace WcfFourInARowService
                     throw new FaultException<IncorectPasswordFault>(userIncorrectPass);
                 }
                 else
-                {
+                {*/
                     IFourInARowCallback callback = OperationContext.Current.GetCallbackChannel<IFourInARowCallback>();
-                    connetedClients.Add(user.UserName, callback);
-                    //TODO: user exists and entered correct password need to open LobbyWindow
-                }
+                    connetedClients.Add(userName, callback);
+                //}
             }
         }
 
         public void Register(string userName, string hashedPassword)
-        {
+        {/*
             using (var ctx = new fourinrowDBContext())
             {
                 var IsExists = (from u in ctx.Users
@@ -76,21 +76,21 @@ namespace WcfFourInARowService
                     };
                     throw new FaultException<UserNameTakenFault>(userNameTaken);
                 }
-                //TODO: check 'password weakness' over client
                 User newUser = new User
                 {
                     UserName = userName,
                     HassedPassword = hashedPassword,
                     Wins = 0,
                     Loosess = 0,
-                    Points = 0
+                    Points = 0,
+                    CareerGames = 0
                 };
                 ctx.Users.Add(newUser);
                 ctx.SaveChanges();
+                */
                 IFourInARowCallback regCallback = OperationContext.Current.GetCallbackChannel<IFourInARowCallback>();
-                connetedClients.Add(newUser.UserName, regCallback);
-                //TODO: user exists and entered correct password need to open LobbyWindow
-            }
+                connetedClients.Add(userName, regCallback);
+            //}
         }
 
         public MoveResult ReportMove(int gameId, int location, int player)
@@ -102,7 +102,7 @@ namespace WcfFourInARowService
                 games.Remove(gameId);
                 int p1Score = 0;
                 int p2Score = 0;
-                using (var ctx = new fourinrowDBContext())
+                /*using (var ctx = new fourinrowDBContext())
                 {
                     var updateGame = (from g in ctx.Games
                                       where g.GameId == gameId
@@ -113,6 +113,10 @@ namespace WcfFourInARowService
                     var updateP2 = (from u in ctx.Users
                                     where u.UserName == games[gameId].p2
                                     select u).First();
+                */
+                Game updateGame = new Game();
+                User updateP1 = new User();
+                User updateP2 = new User();
                     if (result == MoveResult.Draw) //game end with draw
                     {
                         updateGame.Winner = "Draw";
@@ -150,8 +154,8 @@ namespace WcfFourInARowService
                             updateP1.Loosess += 1;
                         }
                     }
-                    ctx.SaveChanges();
-                }
+                    //ctx.SaveChanges();
+                //}
             }
             string other_player = player == 1 ? games[gameId].p1 : games[gameId].p2;
             if (!connetedClients.ContainsKey(other_player))
@@ -179,6 +183,7 @@ namespace WcfFourInARowService
             {
                 ++gameID;
                 DateTime localTime = DateTime.Now;
+                /*
                 Game newGame = new Game
                 {
                     GameId = ++gameID,
@@ -191,8 +196,14 @@ namespace WcfFourInARowService
                 };
                 ctx.Games.Add(newGame);
                 ctx.SaveChanges();
+                */
                 games.Add(gameID, new GameManager(player1, player2));
             }
+        }
+
+        public Dictionary<string, IFourInARowCallback> GetConnectedClients()
+        {
+            return connetedClients;
         }
     }
 }
