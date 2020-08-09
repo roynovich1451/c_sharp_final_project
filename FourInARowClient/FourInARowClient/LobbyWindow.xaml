@@ -33,17 +33,18 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Button Name="btnStartGame" Grid.Column="0" Grid.Row="0" Margin="80,10">
+                <Label Name="lbUser" Grid.Row="0" Grid.Column="0" FontSize="20" Content="Hello, " HorizontalAlignment="Center"/>
+                <Button Name="btnStartGame" Grid.Column="0" Grid.Row="1" Margin="80,10" Click="btnStartGame_Click">
                     <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
                         Play 4 in a row
                     </TextBlock>
                 </Button>
-                <Button Name="btnStatsCenter" Grid.Column="0" Grid.Row="1" Margin="80,10">
+                <Button Name="btnStatsCenter" Grid.Column="0" Grid.Row="2" Margin="80,10">
                     <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
                         Stats center
                     </TextBlock>
                 </Button>
-                <Button Name="btnLiveGames" Grid.Column="0" Grid.Row="2" Margin="80,10">
+                <Button Name="btnLiveGames" Grid.Column="0" Grid.Row="3" Margin="80,10">
                     <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
                         Live Games
                     </TextBlock>

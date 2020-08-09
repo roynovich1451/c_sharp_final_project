@@ -26,9 +26,10 @@ namespace FourInARowClient
         public LobbyWindow(string userName, ClientCallback cc, FourInARowServiceClient fc)
         {
             InitializeComponent();
+            lbUser.Content += userName;
             clientToServer = fc;
             callback = cc;
-            lbRivals.ItemsSource = clientToServer.GetConnectedClients().Keys.ToList();
+            refresh_rivals_list();
             myUser = userName;
             InitTimer();
             timer1.Start();
@@ -60,7 +61,14 @@ namespace FourInARowClient
 
         private void btnRefreshRivals_Click(object sender, RoutedEventArgs e)
         {
-            lbRivals.ItemsSource = clientToServer.GetConnectedClients().Keys.ToList();
+            refresh_rivals_list();
+        }
+
+        private void refresh_rivals_list()
+        {
+            var list = clientToServer.GetConnectedClients().Keys.ToList();
+            list.Remove(myUser);
+            lbRivals.ItemsSource = list;
         }
 
         private void btnStartGame_Click(object sender, RoutedEventArgs e)

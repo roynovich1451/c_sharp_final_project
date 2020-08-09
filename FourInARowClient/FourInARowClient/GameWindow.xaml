@@ -5,16 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FourInARowClient"
         mc:Ignorable="d"
-        Title="GameWindow" Height="600" Width="600">
-    <UniformGrid Rows="3" Columns="3" Margin="20" Background="Red" Name="mainGrid">
-        <Button Name="button1" Background="White" Click="button1_Click" FontSize="60" Margin="3"/>
-        <Button Name="button2" Background="White" Click="button1_Click" FontSize="60" Margin="3"/>
-        <Button Name="button3" Background="White" Click="button1_Click" FontSize="60" Margin="3"/>
-        <Button Name="button4" Background="White" Click="button1_Click" FontSize="60" Margin="3"/>
-        <Button Name="button5" Background="White" Click="button1_Click" FontSize="60" Margin="3"/>
-        <Button Name="button6" Background="White" Click="button1_Click" FontSize="60" Margin="3"/>
-        <Button Name="button7" Background="White" Click="button1_Click" FontSize="60" Margin="3"/>
-        <Button Name="button8" Background="White" Click="button1_Click" FontSize="60" Margin="3"/>
-        <Button Name="button9" Background="White" Click="button1_Click" FontSize="60" Margin="3"/>
-    </UniformGrid>
+        Title="Connect Four" Height="625" Width="625" Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Canvas Name="myCanvas" MouseDown="MyCanvas_MouseDown">
+            <Canvas.Background>
+                <ImageBrush ImageSource="board_image.jpg"/>
+            </Canvas.Background>
+        </Canvas>
+        <WrapPanel Grid.Row="1">
+            <Label Margin="5,0,0,0" >Number of Discs:</Label>
+            <TextBlock Margin="5,5,0,0" Name="tbNumDiscs" />
+        </WrapPanel>
+    </Grid>
 </Window>

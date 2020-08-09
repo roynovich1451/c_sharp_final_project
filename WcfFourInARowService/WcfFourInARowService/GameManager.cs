@@ -201,7 +201,7 @@ namespace WcfFourInARowService
 
         #endregion winChecks
 
-        internal int CalculateScore(char player, char winner)
+        public int CalculateScore(char player, char winner)
         {
             int score = 1;
             if (player == 'b')
