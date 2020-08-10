@@ -1,20 +1,8 @@
 ﻿using FourInARowClient.FourInARowServiceReference;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Timers;
-using Timer = System.Threading.Timer;
 
 namespace FourInARowClient
 {
@@ -44,7 +32,7 @@ namespace FourInARowClient
             clientToServer.Disconnect(myUser);
         }
         
-        private void updateRivals(Object source, ElapsedEventArgs e)
+        private void UpdateRivals(Object source, ElapsedEventArgs e)
         {
             lbRivals.ItemsSource = clientToServer.GetConnectedClients().Keys.ToList();
         }
@@ -53,17 +41,17 @@ namespace FourInARowClient
         public void InitTimer()
         {
             timer1 = new System.Timers.Timer(5000);
-            timer1.Elapsed += updateRivals;
+            timer1.Elapsed += UpdateRivals;
             timer1.AutoReset = true;
             timer1.Enabled = true;
         }
 
-        private void btnRefreshRivals_Click(object sender, RoutedEventArgs e)
+        private void BtnRefreshRivals_Click(object sender, RoutedEventArgs e)
         {
             lbRivals.ItemsSource = clientToServer.GetConnectedClients().Keys.ToList();
         }
 
-        private void btnStartGame_Click(object sender, RoutedEventArgs e)
+        private void BtnStartGame_Click(object sender, RoutedEventArgs e)
         {
             if (lbRivals.SelectedItem == null)
             {

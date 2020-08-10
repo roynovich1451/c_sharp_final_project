@@ -30,7 +30,7 @@
                VerticalAlignment="Center"/>
         <PasswordBox Name="tbRePassword" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,40"/>
         <Button Name="btnSigUp" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4" Margin="80,20" Padding="18"
-                    Click="btnSigUp_Click">
+                    Click="BtnSigUp_Click">
                 <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
                Sign Up
                 </TextBlock>

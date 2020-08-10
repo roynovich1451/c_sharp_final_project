@@ -1,19 +1,9 @@
 ﻿using FourInARowClient.FourInARowServiceReference;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.ServiceModel;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FourInARowClient
 {
@@ -46,7 +36,7 @@ namespace FourInARowClient
                 return builder.ToString();
             }
         }
-        private bool checkPassWeaknnes(string pass)
+        private bool CheckPassWeaknnes(string pass)
         {
             if (pass.Length < 8)
             {
@@ -60,7 +50,7 @@ namespace FourInARowClient
         }
         #endregion
   
-        private void btnSigUp_Click(object sender, RoutedEventArgs e)
+        private void BtnSigUp_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(tbUser.Text) ||
                string.IsNullOrEmpty(tbPassword.Password) ||
@@ -74,7 +64,7 @@ namespace FourInARowClient
                 MessageBox.Show("Passwords not equal", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (!checkPassWeaknnes(tbPassword.Password.Trim()))
+            if (!CheckPassWeaknnes(tbPassword.Password.Trim()))
             {
                 MessageBox.Show("*Minimum password length 8 characters\n*Password must have one or more capital letter", 
                     "Error", MessageBoxButton.OK, MessageBoxImage.Error);

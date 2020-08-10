@@ -1,19 +1,9 @@
 ﻿using FourInARowClient.FourInARowServiceReference;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.ServiceModel;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FourInARowClient
 {
@@ -37,15 +27,17 @@ namespace FourInARowClient
         private void StartGame()
         {
             gameStarted = true;
-            GameWindow game = new GameWindow();
-            game.NumUser = numUser;
-            game.Client = clientToServer;
-            game.Callback = callback;
+            GameWindow game = new GameWindow
+            {
+                NumUser = numUser,
+                Client = clientToServer,
+                Callback = callback
+            };
             game.Show();
             this.Hide();
         }
 
-        private void btnSignIn_Click(object sender, RoutedEventArgs e)
+        private void BtnSignIn_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(tbUser.Text) &&
                 !string.IsNullOrEmpty(tbPassword.Password))
@@ -84,7 +76,7 @@ namespace FourInARowClient
             }
         }
 
-        private void btnSigUp_Click(object sender, RoutedEventArgs e)
+        private void BtnSigUp_Click(object sender, RoutedEventArgs e)
         {
             SignUpWindow suw = new SignUpWindow(callback, clientToServer);
             suw.Show();

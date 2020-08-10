@@ -157,7 +157,7 @@ namespace FourInARowClient {
             this.button1 = ((System.Windows.Controls.Button)(target));
             
             #line 10 "..\..\GameWindow.xaml"
-            this.button1.Click += new System.Windows.RoutedEventHandler(this.button1_Click);
+            this.button1.Click += new System.Windows.RoutedEventHandler(this.Button1_Click);
             
             #line default
             #line hidden
@@ -166,7 +166,7 @@ namespace FourInARowClient {
             this.button2 = ((System.Windows.Controls.Button)(target));
             
             #line 11 "..\..\GameWindow.xaml"
-            this.button2.Click += new System.Windows.RoutedEventHandler(this.button1_Click);
+            this.button2.Click += new System.Windows.RoutedEventHandler(this.Button1_Click);
             
             #line default
             #line hidden
@@ -175,7 +175,7 @@ namespace FourInARowClient {
             this.button3 = ((System.Windows.Controls.Button)(target));
             
             #line 12 "..\..\GameWindow.xaml"
-            this.button3.Click += new System.Windows.RoutedEventHandler(this.button1_Click);
+            this.button3.Click += new System.Windows.RoutedEventHandler(this.Button1_Click);
             
             #line default
             #line hidden
@@ -184,7 +184,7 @@ namespace FourInARowClient {
             this.button4 = ((System.Windows.Controls.Button)(target));
             
             #line 13 "..\..\GameWindow.xaml"
-            this.button4.Click += new System.Windows.RoutedEventHandler(this.button1_Click);
+            this.button4.Click += new System.Windows.RoutedEventHandler(this.Button1_Click);
             
             #line default
             #line hidden
@@ -193,7 +193,7 @@ namespace FourInARowClient {
             this.button5 = ((System.Windows.Controls.Button)(target));
             
             #line 14 "..\..\GameWindow.xaml"
-            this.button5.Click += new System.Windows.RoutedEventHandler(this.button1_Click);
+            this.button5.Click += new System.Windows.RoutedEventHandler(this.Button1_Click);
             
             #line default
             #line hidden
@@ -202,7 +202,7 @@ namespace FourInARowClient {
             this.button6 = ((System.Windows.Controls.Button)(target));
             
             #line 15 "..\..\GameWindow.xaml"
-            this.button6.Click += new System.Windows.RoutedEventHandler(this.button1_Click);
+            this.button6.Click += new System.Windows.RoutedEventHandler(this.Button1_Click);
             
             #line default
             #line hidden
@@ -211,7 +211,7 @@ namespace FourInARowClient {
             this.button7 = ((System.Windows.Controls.Button)(target));
             
             #line 16 "..\..\GameWindow.xaml"
-            this.button7.Click += new System.Windows.RoutedEventHandler(this.button1_Click);
+            this.button7.Click += new System.Windows.RoutedEventHandler(this.Button1_Click);
             
             #line default
             #line hidden
@@ -220,7 +220,7 @@ namespace FourInARowClient {
             this.button8 = ((System.Windows.Controls.Button)(target));
             
             #line 17 "..\..\GameWindow.xaml"
-            this.button8.Click += new System.Windows.RoutedEventHandler(this.button1_Click);
+            this.button8.Click += new System.Windows.RoutedEventHandler(this.Button1_Click);
             
             #line default
             #line hidden
@@ -229,7 +229,7 @@ namespace FourInARowClient {
             this.button9 = ((System.Windows.Controls.Button)(target));
             
             #line 18 "..\..\GameWindow.xaml"
-            this.button9.Click += new System.Windows.RoutedEventHandler(this.button1_Click);
+            this.button9.Click += new System.Windows.RoutedEventHandler(this.Button1_Click);
             
             #line default
             #line hidden

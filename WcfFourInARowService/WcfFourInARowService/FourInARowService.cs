@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
 using System.Threading;
 
 namespace WcfFourInARowService
@@ -14,7 +11,7 @@ namespace WcfFourInARowService
     {
         int gameID = 0; //count games
         public Dictionary<string, IFourInARowCallback> connetedClients = new Dictionary<string, IFourInARowCallback>();
-        Dictionary<int, GameManager> games = new Dictionary<int, GameManager>();
+        readonly Dictionary<int, GameManager> games = new Dictionary<int, GameManager>();
 
         public void Disconnect(string player)
         {
