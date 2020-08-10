@@ -172,7 +172,7 @@ namespace FourInARowClient {
             this.btnSignIn = ((System.Windows.Controls.Button)(target));
             
             #line 30 "..\..\LoginWindow.xaml"
-            this.btnSignIn.Click += new System.Windows.RoutedEventHandler(this.BtnSignIn_Click);
+            this.btnSignIn.Click += new System.Windows.RoutedEventHandler(this.btnSignIn_Click);
             
             #line default
             #line hidden
@@ -187,7 +187,7 @@ namespace FourInARowClient {
             this.btnSigUp = ((System.Windows.Controls.Button)(target));
             
             #line 39 "..\..\LoginWindow.xaml"
-            this.btnSigUp.Click += new System.Windows.RoutedEventHandler(this.BtnSigUp_Click);
+            this.btnSigUp.Click += new System.Windows.RoutedEventHandler(this.btnSigUp_Click);
             
             #line default
             #line hidden

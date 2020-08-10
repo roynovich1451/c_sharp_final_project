@@ -11,7 +11,7 @@ namespace WcfFourInARowService
         private char current_player;
         private int blue_circles;
         private int red_circles;
-        private readonly char[,] board_state;
+        private char[,] board_state;
 
         public GameManager(string p1user, string p2user)
         {
@@ -153,7 +153,6 @@ namespace WcfFourInARowService
                 }
                 else break;
             }
-
             for (int i = 1; i < 4; i++)
             {
                 if (row + i < SIZE && col + i < SIZE)

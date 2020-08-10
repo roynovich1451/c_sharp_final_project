@@ -189,7 +189,7 @@ namespace FourInARowClient {
             this.btnRefreshRivals = ((System.Windows.Controls.Button)(target));
             
             #line 64 "..\..\LobbyWindow.xaml"
-            this.btnRefreshRivals.Click += new System.Windows.RoutedEventHandler(this.BtnRefreshRivals_Click);
+            this.btnRefreshRivals.Click += new System.Windows.RoutedEventHandler(this.btnRefreshRivals_Click);
             
             #line default
             #line hidden

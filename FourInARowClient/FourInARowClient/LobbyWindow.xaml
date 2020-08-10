@@ -61,7 +61,7 @@
                       Grid.Column="1" Grid.RowSpan="4" Margin="5" FontWeight="Bold">
             <ListBox Name="lbRivals"/>
         </GroupBox>
-        <Button Name="btnRefreshRivals" Grid.Column="1" Grid.Row="6" Margin="40,20" Click="BtnRefreshRivals_Click">
+        <Button Name="btnRefreshRivals" Grid.Column="1" Grid.Row="6" Margin="40,20" Click="btnRefreshRivals_Click">
             <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
                         Refresh rivals list
             </TextBlock>

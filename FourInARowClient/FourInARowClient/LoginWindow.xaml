@@ -27,7 +27,7 @@
         <Label Name="lbpass" Grid.Row="2" Grid.Column="0" Content="Password:" 
                VerticalAlignment="Center"/>
         <PasswordBox Name="tbPassword" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,17"/>
-        <Button Name="btnSignIn" Grid.Column="1" Grid.Row="3" Margin="10,20" Click="BtnSignIn_Click">
+        <Button Name="btnSignIn" Grid.Column="1" Grid.Row="3" Margin="10,20" Click="btnSignIn_Click">
             <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
                Sign in
             </TextBlock>
@@ -36,7 +36,7 @@
             <Label Name="lbSignUp" Grid.Row="2" Grid.Column="0" Content="Still don't have user?" FontSize="16" 
                VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
             <Button Name="btnSigUp" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4" Margin="80,10" Padding="18"
-                    Click="BtnSigUp_Click">
+                    Click="btnSigUp_Click">
                 <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
                Sign Up
                 </TextBlock>

@@ -34,7 +34,7 @@ namespace WcfFourInARowService
     public interface IFourInARowCallback
     {
         [OperationContract(IsOneWay = true)]
-        void SendGameInvitation(); //sent invitation for available client in connected list
+        void sendGameInvitation(); //sent invitation for available client in connected list
         [OperationContract(IsOneWay = true)]
         void AcceptGameInvitation(); //accept other user invitation for game and start game
         [OperationContract(IsOneWay = true)]
