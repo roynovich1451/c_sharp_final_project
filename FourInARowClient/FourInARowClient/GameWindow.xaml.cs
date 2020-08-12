@@ -66,7 +66,6 @@ namespace FourInARowClient
             Disc newDisc = new Disc
             {
                 Circle = el,
-                Y = p.Y - el.Height / 2,
                 Column = col,
                 X = (col + WIDTH_MARGIN) / BOARD_SIZE * myCanvas.ActualWidth
             };
