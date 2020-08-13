@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="WnYG5hx5aZ6veN7ailmXA21ir8xvqcbS9NUKS4ysq7c=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="0e+eGZPWSz90coYW+cfXZq9a0bJeBS+a99s0MYhPuts=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="wsDualHttpBinding" name="WSDualHttpBinding_IFourInARowService">
       <properties>
@@ -97,10 +97,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WSDualHttpBinding_IFourInARowService" contract="FourInARowServiceReference.IFourInARowService" bindingType="wsDualHttpBinding" address="http://localhost:8733/Design_Time_Addresses/WcfFourInARowService/Service1/" bindingConfiguration="WSDualHttpBinding_IFourInARowService">
+    <endpoint name="WSDualHttpBinding_IFourInARowService" contract="FourInARowServiceReference.IFourInARowService" bindingType="wsDualHttpBinding" address="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/" bindingConfiguration="WSDualHttpBinding_IFourInARowService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8733/Design_Time_Addresses/WcfFourInARowService/Service1/</serializedValue>
+          <serializedValue>http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

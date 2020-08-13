@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService" />
-  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService" />
+  <xs:import schemaLocation="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="Register">
     <xs:complexType>
       <xs:sequence>
@@ -57,6 +57,21 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="ChalangeRival">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="rival" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="chalanger" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChalangeRivalResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ChalangeRivalResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="Disconnect">
     <xs:complexType>
       <xs:sequence>
@@ -71,7 +86,9 @@
   </xs:element>
   <xs:element name="GetConnectedClients">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="myUser" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetConnectedClientsResponse">
@@ -81,19 +98,41 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="sendGameInvitation">
+  <xs:element name="SendGameInvitation">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="rival" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="chalanger" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AcceptGameInvitation">
+  <xs:element name="SendGameInvitationResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SendGameInvitationResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="OtherPlayerConnected">
+  <xs:element name="StartGameAgainstRival">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="chalanger" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OtherPlayerDisconnected">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="user" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RivalStartGame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="p1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="p2" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="OtherPlayerMoved">
@@ -101,6 +140,20 @@
       <xs:sequence>
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WcfFourInARowService" minOccurs="0" name="moveResult" type="q3:MoveResult" />
         <xs:element minOccurs="0" name="location" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewPlayerConnected">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="user" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NotifyNewGameId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -82,9 +82,11 @@ namespace FourInARowClient
             }
             try
             {
-                clientToServer.Register(tbUser.Text.Trim(), ConvertPass(tbPassword.Password.Trim()));
-                var list = clientToServer.GetConnectedClients();
-                LobbyWindow lw = new LobbyWindow(tbUser.Text.Trim(), callback, clientToServer);
+                string userName = tbUser.Text.Trim();
+                string pass = ConvertPass(tbPassword.Password.Trim());
+                clientToServer.Register(userName, pass);
+                var list = clientToServer.GetConnectedClients(tbUser.Text.Trim());
+                LobbyWindow lw = new LobbyWindow(userName, callback, clientToServer);
                 lw.Show();
                 this.Hide();
             }

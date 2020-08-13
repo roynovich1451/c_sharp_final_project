@@ -291,6 +291,14 @@ namespace FourInARowClient.FourInARowServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/StartNewGame", ReplyAction="http://tempuri.org/IFourInARowService/StartNewGameResponse")]
         System.Threading.Tasks.Task StartNewGameAsync(string player1, string player2);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/ChalangeRival", ReplyAction="http://tempuri.org/IFourInARowService/ChalangeRivalResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FourInARowClient.FourInARowServiceReference.OpponentDisconnectedFault), Action="http://tempuri.org/IFourInARowService/ChalangeRivalOpponentDisconnectedFaultFault" +
+            "", Name="OpponentDisconnectedFault", Namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService")]
+        bool ChalangeRival(string rival, string chalanger);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/ChalangeRival", ReplyAction="http://tempuri.org/IFourInARowService/ChalangeRivalResponse")]
+        System.Threading.Tasks.Task<bool> ChalangeRivalAsync(string rival, string chalanger);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/Disconnect", ReplyAction="http://tempuri.org/IFourInARowService/DisconnectResponse")]
         void Disconnect(string userName);
         
@@ -298,26 +306,35 @@ namespace FourInARowClient.FourInARowServiceReference {
         System.Threading.Tasks.Task DisconnectAsync(string userName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/GetConnectedClients", ReplyAction="http://tempuri.org/IFourInARowService/GetConnectedClientsResponse")]
-        System.Collections.Generic.Dictionary<string, object> GetConnectedClients();
+        System.Collections.Generic.Dictionary<string, object> GetConnectedClients(string myUser);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/GetConnectedClients", ReplyAction="http://tempuri.org/IFourInARowService/GetConnectedClientsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetConnectedClientsAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetConnectedClientsAsync(string myUser);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IFourInARowServiceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/sendGameInvitation")]
-        void sendGameInvitation();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/SendGameInvitation", ReplyAction="http://tempuri.org/IFourInARowService/SendGameInvitationResponse")]
+        bool SendGameInvitation(string rival, string chalanger);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/AcceptGameInvitation")]
-        void AcceptGameInvitation();
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/StartGameAgainstRival")]
+        void StartGameAgainstRival(string chalanger);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/OtherPlayerConnected")]
-        void OtherPlayerConnected();
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/OtherPlayerDisconnected")]
+        void OtherPlayerDisconnected(string user);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/RivalStartGame")]
+        void RivalStartGame(string p1, string p2);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/OtherPlayerMoved")]
         void OtherPlayerMoved(FourInARowClient.FourInARowServiceReference.MoveResult moveResult, int location);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/NewPlayerConnected")]
+        void NewPlayerConnected(string user);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/NotifyNewGameId")]
+        void NotifyNewGameId(int gameId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -380,6 +397,14 @@ namespace FourInARowClient.FourInARowServiceReference {
             return base.Channel.StartNewGameAsync(player1, player2);
         }
         
+        public bool ChalangeRival(string rival, string chalanger) {
+            return base.Channel.ChalangeRival(rival, chalanger);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ChalangeRivalAsync(string rival, string chalanger) {
+            return base.Channel.ChalangeRivalAsync(rival, chalanger);
+        }
+        
         public void Disconnect(string userName) {
             base.Channel.Disconnect(userName);
         }
@@ -388,12 +413,12 @@ namespace FourInARowClient.FourInARowServiceReference {
             return base.Channel.DisconnectAsync(userName);
         }
         
-        public System.Collections.Generic.Dictionary<string, object> GetConnectedClients() {
-            return base.Channel.GetConnectedClients();
+        public System.Collections.Generic.Dictionary<string, object> GetConnectedClients(string myUser) {
+            return base.Channel.GetConnectedClients(myUser);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetConnectedClientsAsync() {
-            return base.Channel.GetConnectedClientsAsync();
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetConnectedClientsAsync(string myUser) {
+            return base.Channel.GetConnectedClientsAsync(myUser);
         }
     }
 }

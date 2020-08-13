@@ -12,8 +12,10 @@ namespace WcfFourInARowService
         private int blue_circles;
         private int red_circles;
         private char[,] board_state;
+        private IFourInARowCallback p1Callback;
+        private IFourInARowCallback p2Callback;
 
-        public GameManager(string p1user, string p2user)
+        public GameManager(string p1user, string p2user, IFourInARowCallback p1Callback, IFourInARowCallback p2Callback)
         {
             board_state = new char[SIZE, SIZE];
             current_player = 'b';
@@ -21,6 +23,8 @@ namespace WcfFourInARowService
             red_circles = 0;
             p1 = p1user;
             p2 = p2user;
+            this.p1Callback = p1Callback;
+            this.p2Callback = p2Callback;
         }
 
         internal MoveResult VerifyMove(int col, char player)

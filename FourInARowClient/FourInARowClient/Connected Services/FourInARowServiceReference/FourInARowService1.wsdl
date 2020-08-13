@@ -402,6 +402,75 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_ChalangeRival_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_ChalangeRival_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_ChalangeRival_OpponentDisconnectedFaultFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_Disconnect_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -494,7 +563,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_sendGameInvitation_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_SendGameInvitation_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -517,7 +586,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_AcceptGameInvitation_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_SendGameInvitation_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -540,7 +609,53 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_OtherPlayerConnected_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_StartGameAgainstRival_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_OtherPlayerDisconnected_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_RivalStartGame_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -586,12 +701,58 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_NewPlayerConnected_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_NotifyNewGameId_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService" />
-      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService" />
+      <xsd:import schemaLocation="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IFourInARowService_Register_InputMessage">
@@ -633,6 +794,15 @@
   <wsdl:message name="IFourInARowService_StartNewGame_OutputMessage">
     <wsdl:part name="parameters" element="tns:StartNewGameResponse" />
   </wsdl:message>
+  <wsdl:message name="IFourInARowService_ChalangeRival_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChalangeRival" />
+  </wsdl:message>
+  <wsdl:message name="IFourInARowService_ChalangeRival_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChalangeRivalResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFourInARowService_ChalangeRival_OpponentDisconnectedFaultFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/WcfFourInARowService" name="detail" element="q6:OpponentDisconnectedFault" />
+  </wsdl:message>
   <wsdl:message name="IFourInARowService_Disconnect_InputMessage">
     <wsdl:part name="parameters" element="tns:Disconnect" />
   </wsdl:message>
@@ -645,17 +815,29 @@
   <wsdl:message name="IFourInARowService_GetConnectedClients_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetConnectedClientsResponse" />
   </wsdl:message>
-  <wsdl:message name="IFourInARowService_sendGameInvitation_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:sendGameInvitation" />
+  <wsdl:message name="IFourInARowService_SendGameInvitation_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SendGameInvitation" />
   </wsdl:message>
-  <wsdl:message name="IFourInARowService_AcceptGameInvitation_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:AcceptGameInvitation" />
+  <wsdl:message name="IFourInARowService_SendGameInvitation_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SendGameInvitationResponse" />
   </wsdl:message>
-  <wsdl:message name="IFourInARowService_OtherPlayerConnected_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:OtherPlayerConnected" />
+  <wsdl:message name="IFourInARowService_StartGameAgainstRival_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:StartGameAgainstRival" />
+  </wsdl:message>
+  <wsdl:message name="IFourInARowService_OtherPlayerDisconnected_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OtherPlayerDisconnected" />
+  </wsdl:message>
+  <wsdl:message name="IFourInARowService_RivalStartGame_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:RivalStartGame" />
   </wsdl:message>
   <wsdl:message name="IFourInARowService_OtherPlayerMoved_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:OtherPlayerMoved" />
+  </wsdl:message>
+  <wsdl:message name="IFourInARowService_NewPlayerConnected_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NewPlayerConnected" />
+  </wsdl:message>
+  <wsdl:message name="IFourInARowService_NotifyNewGameId_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NotifyNewGameId" />
   </wsdl:message>
   <wsdl:portType name="IFourInARowService">
     <wsdl:operation name="Register">
@@ -679,6 +861,11 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IFourInARowService/StartNewGame" message="tns:IFourInARowService_StartNewGame_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/StartNewGameResponse" message="tns:IFourInARowService_StartNewGame_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ChalangeRival">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFourInARowService/ChalangeRival" message="tns:IFourInARowService_ChalangeRival_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/ChalangeRivalResponse" message="tns:IFourInARowService_ChalangeRival_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFourInARowService/ChalangeRivalOpponentDisconnectedFaultFault" name="OpponentDisconnectedFaultFault" message="tns:IFourInARowService_ChalangeRival_OpponentDisconnectedFaultFault_FaultMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Disconnect">
       <wsdl:input wsaw:Action="http://tempuri.org/IFourInARowService/Disconnect" message="tns:IFourInARowService_Disconnect_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/DisconnectResponse" message="tns:IFourInARowService_Disconnect_OutputMessage" />
@@ -687,17 +874,27 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IFourInARowService/GetConnectedClients" message="tns:IFourInARowService_GetConnectedClients_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/GetConnectedClientsResponse" message="tns:IFourInARowService_GetConnectedClients_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="sendGameInvitation">
-      <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/sendGameInvitation" message="tns:IFourInARowService_sendGameInvitation_OutputCallbackMessage" />
+    <wsdl:operation name="SendGameInvitation">
+      <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/SendGameInvitation" message="tns:IFourInARowService_SendGameInvitation_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IFourInARowService/SendGameInvitationResponse" message="tns:IFourInARowService_SendGameInvitation_InputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="AcceptGameInvitation">
-      <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/AcceptGameInvitation" message="tns:IFourInARowService_AcceptGameInvitation_OutputCallbackMessage" />
+    <wsdl:operation name="StartGameAgainstRival">
+      <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/StartGameAgainstRival" message="tns:IFourInARowService_StartGameAgainstRival_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="OtherPlayerConnected">
-      <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/OtherPlayerConnected" message="tns:IFourInARowService_OtherPlayerConnected_OutputCallbackMessage" />
+    <wsdl:operation name="OtherPlayerDisconnected">
+      <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/OtherPlayerDisconnected" message="tns:IFourInARowService_OtherPlayerDisconnected_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RivalStartGame">
+      <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/RivalStartGame" message="tns:IFourInARowService_RivalStartGame_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="OtherPlayerMoved">
       <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/OtherPlayerMoved" message="tns:IFourInARowService_OtherPlayerMoved_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewPlayerConnected">
+      <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/NewPlayerConnected" message="tns:IFourInARowService_NewPlayerConnected_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NotifyNewGameId">
+      <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/NotifyNewGameId" message="tns:IFourInARowService_NotifyNewGameId_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSDualHttpBinding_IFourInARowService" type="tns:IFourInARowService">
@@ -767,6 +964,21 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ChalangeRival">
+      <soap12:operation soapAction="http://tempuri.org/IFourInARowService/ChalangeRival" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_ChalangeRival_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_ChalangeRival_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OpponentDisconnectedFaultFault">
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_ChalangeRival_OpponentDisconnectedFaultFault_Fault" />
+        <soap12:fault use="literal" name="OpponentDisconnectedFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="Disconnect">
       <soap12:operation soapAction="http://tempuri.org/IFourInARowService/Disconnect" style="document" />
       <wsdl:input>
@@ -789,24 +1001,35 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="sendGameInvitation">
-      <soap12:operation soapAction="http://tempuri.org/IFourInARowService/sendGameInvitation" style="document" />
+    <wsdl:operation name="SendGameInvitation">
+      <soap12:operation soapAction="http://tempuri.org/IFourInARowService/SendGameInvitation" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_SendGameInvitation_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_sendGameInvitation_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_SendGameInvitation_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="AcceptGameInvitation">
-      <soap12:operation soapAction="http://tempuri.org/IFourInARowService/AcceptGameInvitation" style="document" />
+    <wsdl:operation name="StartGameAgainstRival">
+      <soap12:operation soapAction="http://tempuri.org/IFourInARowService/StartGameAgainstRival" style="document" />
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_AcceptGameInvitation_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_StartGameAgainstRival_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="OtherPlayerConnected">
-      <soap12:operation soapAction="http://tempuri.org/IFourInARowService/OtherPlayerConnected" style="document" />
+    <wsdl:operation name="OtherPlayerDisconnected">
+      <soap12:operation soapAction="http://tempuri.org/IFourInARowService/OtherPlayerDisconnected" style="document" />
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_OtherPlayerConnected_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_OtherPlayerDisconnected_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RivalStartGame">
+      <soap12:operation soapAction="http://tempuri.org/IFourInARowService/RivalStartGame" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_RivalStartGame_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -817,12 +1040,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="NewPlayerConnected">
+      <soap12:operation soapAction="http://tempuri.org/IFourInARowService/NewPlayerConnected" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_NewPlayerConnected_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyNewGameId">
+      <soap12:operation soapAction="http://tempuri.org/IFourInARowService/NotifyNewGameId" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_NotifyNewGameId_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="FourInARowService">
     <wsdl:port name="WSDualHttpBinding_IFourInARowService" binding="tns:WSDualHttpBinding_IFourInARowService">
-      <soap12:address location="http://localhost:8733/Design_Time_Addresses/WcfFourInARowService/Service1/" />
+      <soap12:address location="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/" />
       <wsa10:EndpointReference>
-        <wsa10:Address>http://localhost:8733/Design_Time_Addresses/WcfFourInARowService/Service1/</wsa10:Address>
+        <wsa10:Address>http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
           <Dns>localhost</Dns>
         </Identity>

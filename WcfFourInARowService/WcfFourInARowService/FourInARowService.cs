@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.Threading;
+using System.Windows;
 
 namespace WcfFourInARowService
 {
@@ -54,6 +55,7 @@ namespace WcfFourInARowService
                 {*/
                     IFourInARowCallback callback = OperationContext.Current.GetCallbackChannel<IFourInARowCallback>();
                     connetedClients.Add(userName, callback);
+                    NeedToUpdateRivalList(userName);
                 //}
             }
         }
@@ -87,6 +89,7 @@ namespace WcfFourInARowService
                 */
                 IFourInARowCallback regCallback = OperationContext.Current.GetCallbackChannel<IFourInARowCallback>();
                 connetedClients.Add(userName, regCallback);
+                NeedToUpdateRivalList(userName);
             //}
         }
 
@@ -194,13 +197,41 @@ namespace WcfFourInARowService
                 ctx.Games.Add(newGame);
                 ctx.SaveChanges();
                 */
-                games.Add(gameID, new GameManager(player1, player2));
+                connetedClients[player2].StartGameAgainstRival(player1);
+                GameManager gm = new GameManager(player1, player2, connetedClients[player1], connetedClients[player2]);
+                games.Add(gameID, gm);
+                connetedClients[player1].NotifyNewGameId(gameID);
+                connetedClients[player2].NotifyNewGameId(gameID);
             }
         }
 
-        public Dictionary<string, IFourInARowCallback> GetConnectedClients()
+        public Dictionary<string, IFourInARowCallback> GetConnectedClients(string myUser)
         {
-            return connetedClients;
+            var ret = connetedClients;
+            ret.Remove(myUser);
+            return ret;
+        }
+
+        public bool ChalangeRival(string rival, string chalanger)
+        {
+            if (!connetedClients.ContainsKey(rival))
+            {
+                OpponentDisconnectedFault fault = new OpponentDisconnectedFault
+                {
+                    Details = $"{rival} no longer connected"
+                };
+                throw new FaultException<OpponentDisconnectedFault>(fault);
+            }
+            bool res = connetedClients[rival].SendGameInvitation(rival, chalanger);
+            return res;
+        }
+
+        private void NeedToUpdateRivalList(string player)
+        {
+            foreach (var coll in connetedClients.Values)
+            {
+                coll.NewPlayerConnected(player);
+            } 
         }
     }
 }
