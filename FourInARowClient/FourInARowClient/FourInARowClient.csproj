@@ -71,6 +71,9 @@
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StatsWindow.xaml.cs">
+      <DependentUpon>StatsWindow.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameWindow.xaml.cs">
@@ -140,6 +143,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SignUpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

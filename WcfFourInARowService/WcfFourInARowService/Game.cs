@@ -21,7 +21,7 @@ namespace WcfFourInARowService
         public string Player1 { get; set; }
         public string Player2 { get; set; }
     
-        public virtual User Player1AsUSer { get; set; }
-        public virtual User Player2AsUSer { get; set; }
+        public virtual User p1AsUser { get; set; }
+        public virtual User p2AsUser { get; set; }
     }
 }

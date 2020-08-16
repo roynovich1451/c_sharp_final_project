@@ -78,8 +78,8 @@
           <Property Name="WinnerPoint" Type="Int32" Nullable="false" />
           <Property Name="Player1" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Player2" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Player1AsUSer" Relationship="Self.FK_dbo_Games_dbo_Users_Player1_UserName" FromRole="Games" ToRole="Users" />
-          <NavigationProperty Name="Player2AsUSer" Relationship="Self.FK_dbo_Games_dbo_Users_Player2_UserName" FromRole="Games" ToRole="Users" />
+          <NavigationProperty Name="p1AsUser" Relationship="Self.FK_dbo_Games_dbo_Users_Player1_UserName" FromRole="Games" ToRole="Users" />
+          <NavigationProperty Name="p2AsUser" Relationship="Self.FK_dbo_Games_dbo_Users_Player2_UserName" FromRole="Games" ToRole="Users" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -118,7 +118,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="fourinrowDB_roy_novich_oren_orEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="fourinrowDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Games" EntityType="Self.Game" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_dbo_Games_dbo_Users_Player1_UserName" Association="Self.FK_dbo_Games_dbo_Users_Player1_UserName">
@@ -135,7 +135,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="fourinrowDB_roy_novich_oren_orModelStoreContainer" CdmEntityContainer="fourinrowDB_roy_novich_oren_orEntities">
+        <EntityContainerMapping StorageEntityContainer="fourinrowDB_roy_novich_oren_orModelStoreContainer" CdmEntityContainer="fourinrowDBEntities">
           <EntitySetMapping Name="Games">
             <EntityTypeMapping TypeName="fourinrowDB_roy_novich_oren_orModel.Game">
               <MappingFragment StoreEntitySet="Games">

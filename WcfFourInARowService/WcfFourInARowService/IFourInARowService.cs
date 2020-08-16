@@ -28,7 +28,14 @@ namespace WcfFourInARowService
         void Disconnect(string userName,int gameID);
         [OperationContract]
         Dictionary<string, IFourInARowCallback> GetConnectedClients(string myUser);
-
+        [OperationContract]
+        List<string> createSortedList(string by);
+        [OperationContract]
+        List<string> createRivaryData(string p1, string p2);
+        [OperationContract]
+        List<string> getGamesHistory();
+        [OperationContract]
+        List<string> getAllUserNames();
     }
 
     public interface IFourInARowCallback

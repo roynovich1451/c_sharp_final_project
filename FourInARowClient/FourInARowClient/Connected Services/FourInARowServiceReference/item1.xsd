@@ -99,6 +99,59 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="createSortedList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="by" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="createSortedListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="createSortedListResult" nillable="true" type="q3:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="createRivaryData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="p1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="p2" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="createRivaryDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="createRivaryDataResult" nillable="true" type="q4:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getGamesHistory">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getGamesHistoryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getGamesHistoryResult" nillable="true" type="q5:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllUserNames">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllUserNamesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getAllUserNamesResult" nillable="true" type="q6:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SendGameInvitation">
     <xs:complexType>
       <xs:sequence>
@@ -139,7 +192,7 @@
   <xs:element name="OtherPlayerMoved">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WcfFourInARowService" minOccurs="0" name="moveResult" type="q3:MoveResult" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WcfFourInARowService" minOccurs="0" name="moveResult" type="q7:MoveResult" />
         <xs:element minOccurs="0" name="col" type="xs:int" />
       </xs:sequence>
     </xs:complexType>

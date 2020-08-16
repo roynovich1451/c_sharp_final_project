@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\OneDrive\c_sharp_final_project\FourInARowClient\FourInARowClient\obj\Debug\
+D:\royno\Desktop\c_sharp_final_project\FourInARowClient\FourInARowClient\obj\Debug\
 FourInARowClient
 none
 false
 DEBUG;TRACE
-D:\OneDrive\c_sharp_final_project\FourInARowClient\FourInARowClient\App.xaml
-4-230508432
+D:\royno\Desktop\c_sharp_final_project\FourInARowClient\FourInARowClient\App.xaml
+5756428516
 
-11863944764
+121768800883
 151842682125
-GameWindow.xaml;LobbyWindow.xaml;LoginWindow.xaml;SignUpWindow.xaml;
+GameWindow.xaml;LobbyWindow.xaml;LoginWindow.xaml;SignUpWindow.xaml;StatsWindow.xaml;
 
 False
 

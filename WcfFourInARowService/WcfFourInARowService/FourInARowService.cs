@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.Threading;
+using System.Linq;
 
 namespace WcfFourInARowService
 {
@@ -33,15 +34,14 @@ namespace WcfFourInARowService
         {
             if (connetedClients.ContainsKey(userName))
             {
-                UserConnectedFault userExists = new UserConnectedFault
+                UserConnectedFault userExsists = new UserConnectedFault
                 {
-                    Details = $"{userName} is already connected"
+                    Details = $"{userName} alrady connected..."
                 };
-                throw new FaultException<UserConnectedFault>(userExists);
+                throw new FaultException<UserConnectedFault>(userExsists);
             }
-            using (var ctx = new fourinrowDBContext())
+            using (var ctx = new fourinrowDBEntities())
             {
-                /*
                 var user = (from u in ctx.Users
                             where u.UserName == userName
                             select u).FirstOrDefault();
@@ -55,24 +55,24 @@ namespace WcfFourInARowService
                 }
                 else if (hashedPassword != user.HassedPassword)
                 {
-                    IncorectPasswordFault userIncorrectPass = new IncorectPasswordFault
+                    IncorrectPasswordFault userIncorrectPass = new IncorrectPasswordFault
                     {
                         Details = $"Wrong password entered, please try again."
                     };
-                    throw new FaultException<IncorectPasswordFault>(userIncorrectPass);
+                    throw new FaultException<IncorrectPasswordFault>(userIncorrectPass);
                 }
                 else
-                {*/
-                IFourInARowCallback callback = OperationContext.Current.GetCallbackChannel<IFourInARowCallback>();
-                connetedClients.Add(userName, callback);
-                //NeedToUpdateRivalList(userName); TODO
-                //}
+                {
+                    IFourInARowCallback callback = OperationContext.Current.GetCallbackChannel<IFourInARowCallback>();
+                    connetedClients.Add(userName, callback);
+                    //NeedToUpdateRivalList(userName);
+                }
             }
         }
 
         public void Register(string userName, string hashedPassword)
-        {/*
-            using (var ctx = new fourinrowDBContext())
+        {
+            using (var ctx = new fourinrowDBEntities())
             {
                 var IsExists = (from u in ctx.Users
                                 where u.UserName == userName
@@ -96,34 +96,11 @@ namespace WcfFourInARowService
                 };
                 ctx.Users.Add(newUser);
                 ctx.SaveChanges();
-                */
-            if (!UserExists(userName))
-            {
-                UserNotRegisteredFault userExists = new UserNotRegisteredFault
-                {
-                    Details = $"No user registered with: {userName}"
-                };
-                throw new FaultException<UserNotRegisteredFault>(userExists);
+
+                IFourInARowCallback regCallback = OperationContext.Current.GetCallbackChannel<IFourInARowCallback>();
+                connetedClients.Add(userName, regCallback);
+                //NeedToUpdateRivalList(userName);
             }
-            if (string.IsNullOrEmpty(userName))
-            {
-                EmptyFieldFault noInput = new EmptyFieldFault{
-                    Details= $"Must enter a username"
-                };
-                throw new FaultException<EmptyFieldFault>(noInput);
-            }
-            if (string.IsNullOrEmpty(hashedPassword))
-            {
-                EmptyFieldFault noInput = new EmptyFieldFault
-                {
-                    Details = $"Must enter a password"
-                };
-                throw new FaultException<EmptyFieldFault>(noInput);
-            }
-            //TODO: add more errors
-            IFourInARowCallback regCallback = OperationContext.Current.GetCallbackChannel<IFourInARowCallback>();
-            connetedClients.Add(userName, regCallback);
-            NeedToUpdateRivalList(userName);
         }
 
         private bool UserExists(string name)
@@ -141,7 +118,7 @@ namespace WcfFourInARowService
                 games.Remove(gameId);
                 int p1Score = 0;
                 int p2Score = 0;
-                /*using (var ctx = new fourinrowDBContext())
+                /*using (var ctx = new fourinrowDBEntities())
                 {
                     var updateGame = (from g in ctx.Games
                                       where g.GameId == gameId
@@ -214,7 +191,7 @@ namespace WcfFourInARowService
 
         public void StartNewGame(string player1, string player2)
         {
-            using (var ctx = new fourinrowDBContext())
+            using (var ctx = new fourinrowDBEntities())
             {
                 ++gameID;
                 DateTime localTime = DateTime.Now;
@@ -261,6 +238,112 @@ namespace WcfFourInARowService
             foreach (var client in connetedClients.Values)
             {
                 client.NewPlayerConnected(player);
+            }
+        }
+
+        public List<string> createSortedList(string by)
+        {
+            using (var ctx = new fourinrowDBEntities())
+            {
+                switch (by)
+                {
+                    case "Name":
+                        var byName = (from u in ctx.Users
+                                      orderby u.UserName
+                                      select u.UserName).ToList();
+                        return byName;
+                    case "Games":
+                        var byGames = (from u in ctx.Users
+                                       orderby u.CareerGames
+                                       select u.UserName).ToList();
+                        return byGames;
+                    case "Wins":
+                        var byWins = (from u in ctx.Users
+                                      orderby u.Wins
+                                      select u.UserName).ToList();
+                        return byWins;
+                    case "Looses":
+                        var byLooses = (from u in ctx.Users
+                                        orderby u.Loosess
+                                        select u.UserName).ToList();
+                        return byLooses;
+                    case "Points":
+                        var byPoints = (from u in ctx.Users
+                                        orderby u.Points
+                                        select u.UserName).ToList();
+                        return byPoints;
+                    default:
+                        return null;
+                }
+            }
+        }
+
+        public List<string> createRivaryData(string p1, string p2)
+        {
+            using (var ctx = new fourinrowDBEntities())
+            {
+                var gamesBetween = (from g in ctx.Games
+                                    where (g.Player1 == p1 && g.Player2 == p2)
+                                            || (g.Player1 == p2 && g.Player2 == p1)
+                                    select g).ToList();
+                if (gamesBetween == null) return null;
+                List<string> rivaryData = new List<string>();
+                rivaryData.Add(winPercentage(gamesBetween, p1).ToString());
+                rivaryData.Add(winPercentage(gamesBetween, p2).ToString());
+                foreach (var game in gamesBetween)
+                {
+                    rivaryData.Add(
+                        $"Game number: {game.GameId.ToString()}\n" +
+                        $"Date: {game.Date.ToString()}" +
+                        $"Participants: {game.Player1}, {game.Player2}\n" +
+                        $"Winner: {game.Winner}\n" +
+                        $"Winner Points: {game.WinnerPoint.ToString()}"
+                    );
+                }
+                return rivaryData;
+            }
+        }
+
+        private double winPercentage(List<Game> list, string player)
+        {
+            int wins = 0;
+            foreach (var game in list)
+            {
+                if (game.Winner == player) wins++;
+            }
+            return (double)wins / list.Count();
+        }
+
+        public List<string> getGamesHistory()
+        {
+            if (gameID == 0) return null; //no games yet
+            using (var ctx = new fourinrowDBEntities())
+            {
+                var allGames = (from g in ctx.Games
+                                select g).ToList();
+                List<string> allGamesData = new List<string>();
+                foreach (var game in allGames)
+                {
+                    allGamesData.Add(
+                        $"Game number: {game.GameId.ToString()}\n" +
+                        $"Date: {game.Date.ToString()}" +
+                        $"Participants: {game.Player1}, {game.Player2}\n" +
+                        $"Winner: {game.Winner}\n" +
+                        $"Winner Points: {game.WinnerPoint.ToString()}"
+                        );
+                }
+                return allGamesData;
+            }
+
+        }
+
+        public List<string> getAllUserNames()
+        {
+            using (var ctx = new fourinrowDBEntities())
+            {
+                var allUsers = (from u in ctx.Users
+                                select u.UserName).ToList();
+                return allUsers;
             }
         }
     }

@@ -39,7 +39,7 @@
                         Play 4 in a row
                     </TextBlock>
                 </Button>
-                <Button Name="btnStatsCenter" Grid.Column="0" Grid.Row="2" Margin="80,10">
+                <Button Name="btnStatsCenter" Grid.Column="0" Grid.Row="2" Margin="80,10" Click="btnStatsCenter_Click">
                     <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
                         Stats center
                     </TextBlock>

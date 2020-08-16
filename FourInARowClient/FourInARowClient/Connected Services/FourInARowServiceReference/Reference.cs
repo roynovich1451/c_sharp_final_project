@@ -310,6 +310,30 @@ namespace FourInARowClient.FourInARowServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/GetConnectedClients", ReplyAction="http://tempuri.org/IFourInARowService/GetConnectedClientsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetConnectedClientsAsync(string myUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/createSortedList", ReplyAction="http://tempuri.org/IFourInARowService/createSortedListResponse")]
+        string[] createSortedList(string by);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/createSortedList", ReplyAction="http://tempuri.org/IFourInARowService/createSortedListResponse")]
+        System.Threading.Tasks.Task<string[]> createSortedListAsync(string by);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/createRivaryData", ReplyAction="http://tempuri.org/IFourInARowService/createRivaryDataResponse")]
+        string[] createRivaryData(string p1, string p2);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/createRivaryData", ReplyAction="http://tempuri.org/IFourInARowService/createRivaryDataResponse")]
+        System.Threading.Tasks.Task<string[]> createRivaryDataAsync(string p1, string p2);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/getGamesHistory", ReplyAction="http://tempuri.org/IFourInARowService/getGamesHistoryResponse")]
+        string[] getGamesHistory();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/getGamesHistory", ReplyAction="http://tempuri.org/IFourInARowService/getGamesHistoryResponse")]
+        System.Threading.Tasks.Task<string[]> getGamesHistoryAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/getAllUserNames", ReplyAction="http://tempuri.org/IFourInARowService/getAllUserNamesResponse")]
+        string[] getAllUserNames();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/getAllUserNames", ReplyAction="http://tempuri.org/IFourInARowService/getAllUserNamesResponse")]
+        System.Threading.Tasks.Task<string[]> getAllUserNamesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -419,6 +443,38 @@ namespace FourInARowClient.FourInARowServiceReference {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetConnectedClientsAsync(string myUser) {
             return base.Channel.GetConnectedClientsAsync(myUser);
+        }
+        
+        public string[] createSortedList(string by) {
+            return base.Channel.createSortedList(by);
+        }
+        
+        public System.Threading.Tasks.Task<string[]> createSortedListAsync(string by) {
+            return base.Channel.createSortedListAsync(by);
+        }
+        
+        public string[] createRivaryData(string p1, string p2) {
+            return base.Channel.createRivaryData(p1, p2);
+        }
+        
+        public System.Threading.Tasks.Task<string[]> createRivaryDataAsync(string p1, string p2) {
+            return base.Channel.createRivaryDataAsync(p1, p2);
+        }
+        
+        public string[] getGamesHistory() {
+            return base.Channel.getGamesHistory();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> getGamesHistoryAsync() {
+            return base.Channel.getGamesHistoryAsync();
+        }
+        
+        public string[] getAllUserNames() {
+            return base.Channel.getAllUserNames();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> getAllUserNamesAsync() {
+            return base.Channel.getAllUserNamesAsync();
         }
     }
 }

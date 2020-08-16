@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="fourinrowDB_roy_novich_oren_orModelStoreContainer" CdmEntityContainer="fourinrowDB_roy_novich_oren_orEntities">
+  <EntityContainerMapping StorageEntityContainer="fourinrowDB_roy_novich_oren_orModelStoreContainer" CdmEntityContainer="fourinrowDBEntities">
     <EntitySetMapping Name="Games">
       <EntityTypeMapping TypeName="fourinrowDB_roy_novich_oren_orModel.Game">
         <MappingFragment StoreEntitySet="Games">

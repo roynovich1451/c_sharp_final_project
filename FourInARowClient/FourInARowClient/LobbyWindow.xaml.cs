@@ -93,5 +93,11 @@ namespace FourInARowClient
             if (res == MessageBoxResult.Yes) return true;
             return false;
         }
+
+        private void btnStatsCenter_Click(object sender, RoutedEventArgs e)
+        {
+            StatsWindow stats = new StatsWindow(clientToServer, callback);
+            stats.ShowDialog();
+        }
     }
 }
