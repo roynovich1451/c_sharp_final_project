@@ -11,22 +11,16 @@ namespace FourInARowClient
     public class ClientCallback : IFourInARowServiceCallback
     {
         #region Delegates
+        internal Func<string, bool> popUpGameInvitation;
+        internal Action<MoveResult, int> updateGame;
+        internal Action<string> startGame;
+        internal Action<string,bool> updateRivalList;
         internal Action<string> endGame;
-        internal Action<int> updateGame;
-        internal Action startGame;
         internal Action<int> updateLiveGameId;
-        internal Action<string> popUpGameInvitation;
-        internal Action<string> updateRivalList;
         internal string myUser;
-
-        public void AcceptGameInvitation()
-        {
-            startGame();
-        }
-
         #endregion
 
-        public void OtherPlayerConnected()
+        public void OtherPlayerConnected(string myUser)
         {
             updateRivalList(myUser);
         }
@@ -54,12 +48,12 @@ namespace FourInARowClient
 
         public void StartGameAgainstRival(string chalanger)
         {
-            throw new NotImplementedException();
+            startGame(chalanger);
         }
 
         public void OtherPlayerDisconnected(string user)
         {
-            throw new NotImplementedException();
+            updateRivalList(user);
         }
 
         public void RivalStartGame(string p1, string p2)
@@ -69,7 +63,7 @@ namespace FourInARowClient
 
         public void NewPlayerConnected(string user)
         {
-            throw new NotImplementedException();
+            updateRivalList(user);
         }
 
         public void NotifyNewGameId(int gameId)

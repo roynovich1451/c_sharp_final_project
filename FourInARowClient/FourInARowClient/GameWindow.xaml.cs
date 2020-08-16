@@ -16,10 +16,11 @@ namespace FourInARowClient
     /// </summary>
     public partial class GameWindow : Window
     {
-        #region Properties
-        public int NumUser { get; internal set; }
-        public FourInARowServiceClient Client { get; internal set; }
-        public ClientCallback Callback { get; internal set; }
+        #region DATA
+        private FourInARowServiceClient clientToServer;
+        private ClientCallback callback;
+        private string myRival;
+        private string myUser;
         #endregion
 
         #region Private fields       
@@ -35,8 +36,13 @@ namespace FourInARowClient
         private int discCounter = 0;
         private readonly int[] board_state = new int[BOARD_SIZE];
         #endregion
-        public GameWindow()
+        public GameWindow(string myUser, string rival, FourInARowServiceClient clientToServer, ClientCallback clientCallback)
         {
+            callback = clientCallback;
+            this.clientToServer = clientToServer;
+            myRival = rival;
+            this.myUser = myUser;
+
             InitializeComponent();
         }
 
@@ -162,14 +168,9 @@ namespace FourInARowClient
         private void EndGame(string message)
         {
             MessageBox.Show(message);
-            Thread connectionThread = new Thread(() => { Client.Disconnect(NumUser.ToString()); });
-            connectionThread.Start();
-            DisableBoard();
+            this.Close();
         }
 
-        private void DisableBoard()
-        {
-        }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Environment.Exit(Environment.ExitCode);

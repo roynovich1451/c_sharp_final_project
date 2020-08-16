@@ -21,6 +21,12 @@ namespace FourInARowClient
     /// </summary>
     public partial class LobbyWindow : Window
     {
+        private string myUser;
+        private ClientCallback callback;
+        private FourInARowServiceClient clientToServer;
+
+        private List<string> availableRivals;
+
         public LobbyWindow(string userName, ClientCallback cc, FourInARowServiceClient fc)
         {
             InitializeComponent();
@@ -28,37 +34,41 @@ namespace FourInARowClient
             clientToServer = fc;
             callback = cc;
             myUser = userName;
-            updateRivalList(myUser);
+            initRivalList(myUser);
 
-            cc.myUser = myUser;
-            cc.updateLiveGameId += updateLiveGameId;
-            cc.updateRivalList += updateRivalList;
-            
+            callback.myUser = myUser;
+            callback.startGame += chalangeAccepted;
+            callback.popUpGameInvitation += popInvitation;
+            callback.updateRivalList += updateRivalList;
         }
 
-        ClientCallback callback;
-        FourInARowServiceClient clientToServer;
-        string myUser;
-        int LiveGameId;
+        
 
-        private void updateRivalList(string user)
+        private void initRivalList(string user)
         {
-            lbRivals.ItemsSource = clientToServer.GetConnectedClients(myUser);
+            lbRivals.ItemsSource = clientToServer.GetConnectedClients(myUser).Keys.ToList();
+        }
+        private void updateRivalList(string user, bool add)
+        {
+            if (user == myUser) return;
+            if(add == true)
+            {
+                availableRivals.Add(user);
+                lbRivals.ItemsSource = null;
+                lbRivals.ItemsSource = availableRivals;
+                lbRivals.Items.Refresh();
+            }
+            else //remove
+            {
+                availableRivals.Remove(user);
+                lbRivals.ItemsSource = null;
+                lbRivals.ItemsSource = availableRivals;
+                lbRivals.Items.Refresh();
+            }
         }
         private void Window_Closed(object sender, EventArgs e)
         {
             clientToServer.Disconnect(myUser);
-        }
-
-        private void btnRefreshRivals_Click(object sender, RoutedEventArgs e)
-        {
-            refresh_rivals_list();
-        }
-
-        private void refresh_rivals_list()
-        {
-            var list = clientToServer.GetConnectedClients(myUser).Keys.ToList();
-            lbRivals.ItemsSource = list;
         }
 
         private void btnStartGame_Click(object sender, RoutedEventArgs e)
@@ -77,16 +87,16 @@ namespace FourInARowClient
             }
             else
             {
+                chalangeAccepted(rival);
                 clientToServer.StartNewGame(myUser, rival);
-                GameWindow gw = new GameWindow();
-                gw.Show();
-                this.Hide();
             }
         }
         
-        internal void updateLiveGameId(int id)
+        private void chalangeAccepted(string rival)
         {
-            LiveGameId = id;
+            GameWindow liveGame = new GameWindow(myUser, rival, clientToServer, callback);
+            updateRivalList(rival, false);
+            liveGame.ShowDialog();
         }
 
         internal bool popInvitation(string chalanger)
@@ -95,5 +105,7 @@ namespace FourInARowClient
             if (res == MessageBoxResult.Yes) return true;
             return false;
         }
+
+        private
     }
 }
