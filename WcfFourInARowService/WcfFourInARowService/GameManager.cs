@@ -11,9 +11,9 @@ namespace WcfFourInARowService
         private char current_player;
         private int blue_circles;
         private int red_circles;
-        private char[,] board_state;
-        private IFourInARowCallback p1Callback;
-        private IFourInARowCallback p2Callback;
+        private readonly char[,] board_state;
+        private  IFourInARowCallback p1Callback;
+        private  IFourInARowCallback p2Callback;
 
         public GameManager(string p1user, string p2user, IFourInARowCallback p1Callback, IFourInARowCallback p2Callback)
         {

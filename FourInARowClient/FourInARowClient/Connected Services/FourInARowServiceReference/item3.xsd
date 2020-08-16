@@ -6,24 +6,24 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="UserNameInUse" nillable="true" type="tns:UserNameInUse" />
-  <xs:complexType name="UserConnectdFault">
+  <xs:complexType name="UserConnectedFault">
     <xs:sequence>
       <xs:element minOccurs="0" name="Details" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="UserConnectdFault" nillable="true" type="tns:UserConnectdFault" />
+  <xs:element name="UserConnectedFault" nillable="true" type="tns:UserConnectedFault" />
   <xs:complexType name="UserNotRegisteredFault">
     <xs:sequence>
       <xs:element minOccurs="0" name="Details" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="UserNotRegisteredFault" nillable="true" type="tns:UserNotRegisteredFault" />
-  <xs:complexType name="IncorectPasswordFault">
+  <xs:complexType name="IncorrectPasswordFault">
     <xs:sequence>
       <xs:element minOccurs="0" name="Details" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="IncorectPasswordFault" nillable="true" type="tns:IncorectPasswordFault" />
+  <xs:element name="IncorrectPasswordFault" nillable="true" type="tns:IncorrectPasswordFault" />
   <xs:simpleType name="MoveResult">
     <xs:restriction base="xs:string">
       <xs:enumeration value="YouWon" />

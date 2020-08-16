@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
-using System.Windows;
 
 namespace WcfFourInARowService
 {
@@ -16,21 +11,21 @@ namespace WcfFourInARowService
         void Register(string userName, string hashedPassword); //new client sign-up
 
         [OperationContract]
-        [FaultContract(typeof(UserConnectdFault))]
+        [FaultContract(typeof(UserConnectedFault))]
         [FaultContract(typeof(UserNotRegisteredFault))]
-        [FaultContract(typeof(IncorectPasswordFault))]
+        [FaultContract(typeof(IncorrectPasswordFault))]
         void ClientConnect(string userName, string hashedPassword); //old client sign-in
 
         [OperationContract]
         [FaultContract(typeof(OpponentDisconnectedFault))]
-        MoveResult ReportMove(int gameId, int location, int player);
+        MoveResult ReportMove(int gameId, int col, int player);
         [OperationContract]
         void StartNewGame(string player1, string player2);
         [OperationContract]
         [FaultContract(typeof(OpponentDisconnectedFault))]
-        bool ChalangeRival(string rival, string chalanger);
+        bool ChallengeRival(string rival, string Challenger);
         [OperationContract]
-        void Disconnect(string userName);
+        void Disconnect(string userName,int gameID);
         [OperationContract]
         Dictionary<string, IFourInARowCallback> GetConnectedClients(string myUser);
 
@@ -39,16 +34,16 @@ namespace WcfFourInARowService
     public interface IFourInARowCallback
     {
         [OperationContract]
-        bool SendGameInvitation(string rival, string chalanger); //anounce player other player chalanged him
+        bool SendGameInvitation(string rival, string Challenger); //anounce player other player Challenged him
         [OperationContract(IsOneWay = true)]
-        void StartGameAgainstRival(string chalanger);
+        void StartGameAgainstRival(string Challenger);
 
         [OperationContract(IsOneWay = true)]
         void OtherPlayerDisconnected(string user);
         [OperationContract(IsOneWay = true)]
         void RivalStartGame(string p1, string p2);
         [OperationContract(IsOneWay = true)]
-        void OtherPlayerMoved(MoveResult moveResult, int location); //update board according rival movment
+        void OtherPlayerMoved(MoveResult moveResult, int col); //update board according rival movment
         [OperationContract(IsOneWay = true)]
         void NewPlayerConnected(string user);
         [OperationContract(IsOneWay = true)]

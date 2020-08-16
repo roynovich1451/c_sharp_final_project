@@ -218,7 +218,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_ClientConnect_UserConnectdFaultFault_Fault">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_ClientConnect_UserConnectedFaultFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -264,7 +264,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_ClientConnect_IncorectPasswordFaultFault_Fault">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_ClientConnect_IncorrectPasswordFaultFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -402,7 +402,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_ChalangeRival_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_ChallengeRival_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -425,7 +425,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_ChalangeRival_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_ChallengeRival_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -448,7 +448,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_ChalangeRival_OpponentDisconnectedFaultFault_Fault">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IFourInARowService_ChallengeRival_OpponentDisconnectedFaultFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -770,14 +770,14 @@
   <wsdl:message name="IFourInARowService_ClientConnect_OutputMessage">
     <wsdl:part name="parameters" element="tns:ClientConnectResponse" />
   </wsdl:message>
-  <wsdl:message name="IFourInARowService_ClientConnect_UserConnectdFaultFault_FaultMessage">
-    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/WcfFourInARowService" name="detail" element="q2:UserConnectdFault" />
+  <wsdl:message name="IFourInARowService_ClientConnect_UserConnectedFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/WcfFourInARowService" name="detail" element="q2:UserConnectedFault" />
   </wsdl:message>
   <wsdl:message name="IFourInARowService_ClientConnect_UserNotRegisteredFaultFault_FaultMessage">
     <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/WcfFourInARowService" name="detail" element="q3:UserNotRegisteredFault" />
   </wsdl:message>
-  <wsdl:message name="IFourInARowService_ClientConnect_IncorectPasswordFaultFault_FaultMessage">
-    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/WcfFourInARowService" name="detail" element="q4:IncorectPasswordFault" />
+  <wsdl:message name="IFourInARowService_ClientConnect_IncorrectPasswordFaultFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/WcfFourInARowService" name="detail" element="q4:IncorrectPasswordFault" />
   </wsdl:message>
   <wsdl:message name="IFourInARowService_ReportMove_InputMessage">
     <wsdl:part name="parameters" element="tns:ReportMove" />
@@ -794,13 +794,13 @@
   <wsdl:message name="IFourInARowService_StartNewGame_OutputMessage">
     <wsdl:part name="parameters" element="tns:StartNewGameResponse" />
   </wsdl:message>
-  <wsdl:message name="IFourInARowService_ChalangeRival_InputMessage">
-    <wsdl:part name="parameters" element="tns:ChalangeRival" />
+  <wsdl:message name="IFourInARowService_ChallengeRival_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChallengeRival" />
   </wsdl:message>
-  <wsdl:message name="IFourInARowService_ChalangeRival_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ChalangeRivalResponse" />
+  <wsdl:message name="IFourInARowService_ChallengeRival_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChallengeRivalResponse" />
   </wsdl:message>
-  <wsdl:message name="IFourInARowService_ChalangeRival_OpponentDisconnectedFaultFault_FaultMessage">
+  <wsdl:message name="IFourInARowService_ChallengeRival_OpponentDisconnectedFaultFault_FaultMessage">
     <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/WcfFourInARowService" name="detail" element="q6:OpponentDisconnectedFault" />
   </wsdl:message>
   <wsdl:message name="IFourInARowService_Disconnect_InputMessage">
@@ -848,9 +848,9 @@
     <wsdl:operation name="ClientConnect">
       <wsdl:input wsaw:Action="http://tempuri.org/IFourInARowService/ClientConnect" message="tns:IFourInARowService_ClientConnect_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/ClientConnectResponse" message="tns:IFourInARowService_ClientConnect_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IFourInARowService/ClientConnectUserConnectdFaultFault" name="UserConnectdFaultFault" message="tns:IFourInARowService_ClientConnect_UserConnectdFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFourInARowService/ClientConnectUserConnectedFaultFault" name="UserConnectedFaultFault" message="tns:IFourInARowService_ClientConnect_UserConnectedFaultFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IFourInARowService/ClientConnectUserNotRegisteredFaultFault" name="UserNotRegisteredFaultFault" message="tns:IFourInARowService_ClientConnect_UserNotRegisteredFaultFault_FaultMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IFourInARowService/ClientConnectIncorectPasswordFaultFault" name="IncorectPasswordFaultFault" message="tns:IFourInARowService_ClientConnect_IncorectPasswordFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFourInARowService/ClientConnectIncorrectPasswordFaultFault" name="IncorrectPasswordFaultFault" message="tns:IFourInARowService_ClientConnect_IncorrectPasswordFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReportMove">
       <wsdl:input wsaw:Action="http://tempuri.org/IFourInARowService/ReportMove" message="tns:IFourInARowService_ReportMove_InputMessage" />
@@ -861,10 +861,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IFourInARowService/StartNewGame" message="tns:IFourInARowService_StartNewGame_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/StartNewGameResponse" message="tns:IFourInARowService_StartNewGame_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ChalangeRival">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFourInARowService/ChalangeRival" message="tns:IFourInARowService_ChalangeRival_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/ChalangeRivalResponse" message="tns:IFourInARowService_ChalangeRival_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IFourInARowService/ChalangeRivalOpponentDisconnectedFaultFault" name="OpponentDisconnectedFaultFault" message="tns:IFourInARowService_ChalangeRival_OpponentDisconnectedFaultFault_FaultMessage" />
+    <wsdl:operation name="ChallengeRival">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFourInARowService/ChallengeRival" message="tns:IFourInARowService_ChallengeRival_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFourInARowService/ChallengeRivalResponse" message="tns:IFourInARowService_ChallengeRival_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFourInARowService/ChallengeRivalOpponentDisconnectedFaultFault" name="OpponentDisconnectedFaultFault" message="tns:IFourInARowService_ChallengeRival_OpponentDisconnectedFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="Disconnect">
       <wsdl:input wsaw:Action="http://tempuri.org/IFourInARowService/Disconnect" message="tns:IFourInARowService_Disconnect_InputMessage" />
@@ -925,17 +925,17 @@
         <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_ClientConnect_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="UserConnectdFaultFault">
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_ClientConnect_UserConnectdFaultFault_Fault" />
-        <soap12:fault use="literal" name="UserConnectdFaultFault" namespace="" />
+      <wsdl:fault name="UserConnectedFaultFault">
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_ClientConnect_UserConnectedFaultFault_Fault" />
+        <soap12:fault use="literal" name="UserConnectedFaultFault" namespace="" />
       </wsdl:fault>
       <wsdl:fault name="UserNotRegisteredFaultFault">
         <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_ClientConnect_UserNotRegisteredFaultFault_Fault" />
         <soap12:fault use="literal" name="UserNotRegisteredFaultFault" namespace="" />
       </wsdl:fault>
-      <wsdl:fault name="IncorectPasswordFaultFault">
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_ClientConnect_IncorectPasswordFaultFault_Fault" />
-        <soap12:fault use="literal" name="IncorectPasswordFaultFault" namespace="" />
+      <wsdl:fault name="IncorrectPasswordFaultFault">
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_ClientConnect_IncorrectPasswordFaultFault_Fault" />
+        <soap12:fault use="literal" name="IncorrectPasswordFaultFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="ReportMove">
@@ -964,18 +964,18 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ChalangeRival">
-      <soap12:operation soapAction="http://tempuri.org/IFourInARowService/ChalangeRival" style="document" />
+    <wsdl:operation name="ChallengeRival">
+      <soap12:operation soapAction="http://tempuri.org/IFourInARowService/ChallengeRival" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_ChalangeRival_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_ChallengeRival_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_ChalangeRival_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_ChallengeRival_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="OpponentDisconnectedFaultFault">
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_ChalangeRival_OpponentDisconnectedFaultFault_Fault" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IFourInARowService_ChallengeRival_OpponentDisconnectedFaultFault_Fault" />
         <soap12:fault use="literal" name="OpponentDisconnectedFaultFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>

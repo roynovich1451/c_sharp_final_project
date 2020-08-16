@@ -3,7 +3,7 @@
 namespace WcfFourInARowService
 {
     [DataContract]
-    public class UserConnectdFault
+    public class EmptyFieldFault
     {
         [DataMember]
         public string Details { get; set; }

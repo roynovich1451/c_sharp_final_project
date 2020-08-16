@@ -62,17 +62,17 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ClientCallback.cs" />
+    <Compile Include="Connected Services\FourInARowServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Disc.cs" />
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\FourInARowServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
@@ -102,17 +102,17 @@
     <None Include="Connected Services\FourInARowServiceReference\FourInARowClient.FourInARowServiceReference.MoveResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\FourInARowServiceReference\FourInARowService1.wsdl" />
-    <None Include="Connected Services\FourInARowServiceReference\item4.xsd">
+    <None Include="Connected Services\FourInARowServiceReference\FourInARowService.wsdl" />
+    <None Include="Connected Services\FourInARowServiceReference\item.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\FourInARowServiceReference\item42.xsd">
+    <None Include="Connected Services\FourInARowServiceReference\item1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\FourInARowServiceReference\item43.xsd">
+    <None Include="Connected Services\FourInARowServiceReference\item2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\FourInARowServiceReference\item44.xsd">
+    <None Include="Connected Services\FourInARowServiceReference\item3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -145,7 +145,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="board_image.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\FourInARowServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FourInARowServiceReference\item.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\FourInARowServiceReference\configuration91.svcinfo" />
@@ -158,12 +164,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="board_image.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\FourInARowServiceReference\item1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

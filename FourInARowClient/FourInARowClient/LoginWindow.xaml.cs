@@ -1,19 +1,9 @@
 ﻿using FourInARowClient.FourInARowServiceReference;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.ServiceModel;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FourInARowClient
 {
@@ -27,6 +17,7 @@ namespace FourInARowClient
             InitializeComponent();
             callback = new ClientCallback();
             clientToServer = new FourInARowServiceClient(new InstanceContext(callback));
+ 
         }
         int numUser;
         ClientCallback callback;
@@ -37,11 +28,11 @@ namespace FourInARowClient
         private void StartGame()
         {
             gameStarted = true;
-            GameWindow game = new GameWindow();
+            /*GameWindow game = new GameWindow();
             game.NumUser = numUser;
             game.Client = clientToServer;
             game.Callback = callback;
-            game.Show();
+            game.Show();*/
             this.Hide();
         }
 
@@ -57,7 +48,7 @@ namespace FourInARowClient
                     lw.Show();
                     this.Hide();
                 }
-                catch (FaultException<UserConnectdFault> fault)
+                catch (FaultException<UserConnectedFault> fault)
                 {
                     MessageBox.Show(fault.Detail.Details, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -65,7 +56,7 @@ namespace FourInARowClient
                 {
                     MessageBox.Show(fault.Detail.Details, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                catch (FaultException<IncorectPasswordFault> fault)
+                catch (FaultException<IncorrectPasswordFault> fault)
                 {
                     MessageBox.Show(fault.Detail.Details, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -75,7 +66,7 @@ namespace FourInARowClient
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message+"\n"+"Type:"+ex.GetType()+"\n"+ex.InnerException, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ex.Message + "\n" + "Type:" + ex.GetType() + "\n" + ex.InnerException, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else

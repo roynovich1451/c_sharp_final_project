@@ -32,7 +32,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="gameId" type="xs:int" />
-        <xs:element minOccurs="0" name="location" type="xs:int" />
+        <xs:element minOccurs="0" name="col" type="xs:int" />
         <xs:element minOccurs="0" name="player" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -57,18 +57,18 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ChalangeRival">
+  <xs:element name="ChallengeRival">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="rival" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="chalanger" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Challenger" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ChalangeRivalResponse">
+  <xs:element name="ChallengeRivalResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="ChalangeRivalResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="ChallengeRivalResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -76,6 +76,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="gameID" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -102,7 +103,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="rival" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="chalanger" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Challenger" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -116,7 +117,7 @@
   <xs:element name="StartGameAgainstRival">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="chalanger" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Challenger" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -139,7 +140,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WcfFourInARowService" minOccurs="0" name="moveResult" type="q3:MoveResult" />
-        <xs:element minOccurs="0" name="location" type="xs:int" />
+        <xs:element minOccurs="0" name="col" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

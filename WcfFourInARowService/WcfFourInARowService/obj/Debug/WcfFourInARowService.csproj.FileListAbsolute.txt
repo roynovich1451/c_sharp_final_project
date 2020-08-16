@@ -17,3 +17,15 @@ C:\Users\royno\Desktop\c_sharp_final_project\WcfFourInARowService\WcfFourInARowS
 C:\Users\royno\Desktop\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\royno\Desktop\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.csproj.CopyComplete
 C:\Users\royno\Desktop\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.csprojAssemblyReference.cache
+D:\OneDrive\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.csprojAssemblyReference.cache
+D:\OneDrive\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.csproj.CoreCompileInputs.cache
+D:\OneDrive\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.dll
+D:\OneDrive\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.pdb
+D:\OneDrive\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\WcfFourInARowService.dll.config
+D:\OneDrive\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\WcfFourInARowService.dll
+D:\OneDrive\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\WcfFourInARowService.pdb
+D:\OneDrive\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\EntityFramework.dll
+D:\OneDrive\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\EntityFramework.SqlServer.dll
+D:\OneDrive\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\EntityFramework.xml
+D:\OneDrive\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\EntityFramework.SqlServer.xml
+D:\OneDrive\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.csproj.CopyComplete

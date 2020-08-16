@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7dd27f90-4399-4b28-a2c1-4027d8ffd87f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0ed68306-8b55-46e0-9c42-2263681006b3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,12 +22,12 @@
     <MetadataSource Address="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="FourInARowService1.wsdl" MetadataType="Wsdl" ID="1539495e-5d01-45bd-b6f2-e79a90fef7c3" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?wsdl" />
-    <MetadataFile FileName="item4.xsd" MetadataType="Schema" ID="1510f906-cf90-45ee-ad44-f625df0f347a" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd3" />
-    <MetadataFile FileName="item1.disco" MetadataType="Disco" ID="5aabeff7-9c75-4260-a371-6db7ddffa1b2" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?disco" />
-    <MetadataFile FileName="item42.xsd" MetadataType="Schema" ID="20cbcee3-5db1-4368-8e46-91097a6c08b4" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd0" />
-    <MetadataFile FileName="item43.xsd" MetadataType="Schema" ID="ac470c58-1e68-43d7-9b46-4cfa83e00c34" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd1" />
-    <MetadataFile FileName="item44.xsd" MetadataType="Schema" ID="acfa18fb-d3f2-4c24-98b2-2ba3fcb97cda" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd2" />
+    <MetadataFile FileName="FourInARowService.wsdl" MetadataType="Wsdl" ID="2671da33-272e-41f0-8ed1-56b0a345db6b" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?wsdl" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="612213a7-bcbc-4399-87b5-dc983ace17fa" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd3" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="a4c3d074-407c-4780-8434-2f07eac8d8af" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?disco" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="02aa54f0-2a27-47fe-b203-cd77e1260f86" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd0" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="712c5d27-8d04-44e8-8613-5747106b2766" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd1" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="8b122f69-855a-4ba1-a0db-28aadef63176" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

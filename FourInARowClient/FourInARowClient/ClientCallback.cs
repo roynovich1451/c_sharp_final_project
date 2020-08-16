@@ -1,9 +1,5 @@
 ﻿using FourInARowClient.FourInARowServiceReference;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace FourInARowClient
@@ -12,22 +8,22 @@ namespace FourInARowClient
     {
         #region Delegates
         internal Func<string, bool> popUpGameInvitation;
-        internal Action<MoveResult, int> updateGame;
+        internal Action<int> updateGame;
         internal Action<string> startGame;
-        internal Action<string,bool> updateRivalList;
+        internal Action<string, bool> updateRivalList;
         internal Action<string> endGame;
         internal Action<int> updateLiveGameId;
         internal string myUser;
         #endregion
 
-        public void OtherPlayerConnected(string myUser)
+        public void NewPlayerConnected(string user)
         {
-            updateRivalList(myUser);
+            updateRivalList(user, true);
         }
 
-        public void OtherPlayerMoved(MoveResult moveResult, int location)
+        public void OtherPlayerMoved(MoveResult moveResult, int col)
         {
-            updateGame(location);
+            updateGame(col);
             if (moveResult == MoveResult.Draw)
             {
                 endGame("It's a draw");
@@ -38,32 +34,27 @@ namespace FourInARowClient
             }
         }
 
-        public  bool SendGameInvitation(string rival, string chalanger)
+        public bool SendGameInvitation(string rival, string challenger)
         {
-            MessageBoxResult res = MessageBox.Show($"{rival} has chalanged you\nDo you want to start game?", "Game invitation", 
+            MessageBoxResult res = MessageBox.Show($"{rival} has challenged you\nDo you want to start game?", "Game invitation",
                 MessageBoxButton.YesNo, MessageBoxImage.Question);
             return res == MessageBoxResult.Yes ? true : false;
 
         }
 
-        public void StartGameAgainstRival(string chalanger)
+        public void StartGameAgainstRival(string challenger)
         {
-            startGame(chalanger);
+            startGame(challenger);
         }
 
         public void OtherPlayerDisconnected(string user)
         {
-            updateRivalList(user);
+            updateRivalList(user,false);
         }
 
         public void RivalStartGame(string p1, string p2)
         {
             throw new NotImplementedException();
-        }
-
-        public void NewPlayerConnected(string user)
-        {
-            updateRivalList(user);
         }
 
         public void NotifyNewGameId(int gameId)

@@ -60,9 +60,9 @@ namespace FourInARowClient.FourInARowServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserConnectdFault", Namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserConnectedFault", Namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService")]
     [System.SerializableAttribute()]
-    public partial class UserConnectdFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class UserConnectedFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -150,9 +150,9 @@ namespace FourInARowClient.FourInARowServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="IncorectPasswordFault", Namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="IncorrectPasswordFault", Namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService")]
     [System.SerializableAttribute()]
-    public partial class IncorectPasswordFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class IncorrectPasswordFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -270,9 +270,9 @@ namespace FourInARowClient.FourInARowServiceReference {
         System.Threading.Tasks.Task RegisterAsync(string userName, string hashedPassword);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/ClientConnect", ReplyAction="http://tempuri.org/IFourInARowService/ClientConnectResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FourInARowClient.FourInARowServiceReference.UserConnectdFault), Action="http://tempuri.org/IFourInARowService/ClientConnectUserConnectdFaultFault", Name="UserConnectdFault", Namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FourInARowClient.FourInARowServiceReference.UserConnectedFault), Action="http://tempuri.org/IFourInARowService/ClientConnectUserConnectedFaultFault", Name="UserConnectedFault", Namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService")]
         [System.ServiceModel.FaultContractAttribute(typeof(FourInARowClient.FourInARowServiceReference.UserNotRegisteredFault), Action="http://tempuri.org/IFourInARowService/ClientConnectUserNotRegisteredFaultFault", Name="UserNotRegisteredFault", Namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FourInARowClient.FourInARowServiceReference.IncorectPasswordFault), Action="http://tempuri.org/IFourInARowService/ClientConnectIncorectPasswordFaultFault", Name="IncorectPasswordFault", Namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FourInARowClient.FourInARowServiceReference.IncorrectPasswordFault), Action="http://tempuri.org/IFourInARowService/ClientConnectIncorrectPasswordFaultFault", Name="IncorrectPasswordFault", Namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService")]
         void ClientConnect(string userName, string hashedPassword);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/ClientConnect", ReplyAction="http://tempuri.org/IFourInARowService/ClientConnectResponse")]
@@ -280,10 +280,10 @@ namespace FourInARowClient.FourInARowServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/ReportMove", ReplyAction="http://tempuri.org/IFourInARowService/ReportMoveResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(FourInARowClient.FourInARowServiceReference.OpponentDisconnectedFault), Action="http://tempuri.org/IFourInARowService/ReportMoveOpponentDisconnectedFaultFault", Name="OpponentDisconnectedFault", Namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService")]
-        FourInARowClient.FourInARowServiceReference.MoveResult ReportMove(int gameId, int location, int player);
+        FourInARowClient.FourInARowServiceReference.MoveResult ReportMove(int gameId, int col, int player);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/ReportMove", ReplyAction="http://tempuri.org/IFourInARowService/ReportMoveResponse")]
-        System.Threading.Tasks.Task<FourInARowClient.FourInARowServiceReference.MoveResult> ReportMoveAsync(int gameId, int location, int player);
+        System.Threading.Tasks.Task<FourInARowClient.FourInARowServiceReference.MoveResult> ReportMoveAsync(int gameId, int col, int player);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/StartNewGame", ReplyAction="http://tempuri.org/IFourInARowService/StartNewGameResponse")]
         void StartNewGame(string player1, string player2);
@@ -291,19 +291,19 @@ namespace FourInARowClient.FourInARowServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/StartNewGame", ReplyAction="http://tempuri.org/IFourInARowService/StartNewGameResponse")]
         System.Threading.Tasks.Task StartNewGameAsync(string player1, string player2);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/ChalangeRival", ReplyAction="http://tempuri.org/IFourInARowService/ChalangeRivalResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FourInARowClient.FourInARowServiceReference.OpponentDisconnectedFault), Action="http://tempuri.org/IFourInARowService/ChalangeRivalOpponentDisconnectedFaultFault" +
-            "", Name="OpponentDisconnectedFault", Namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService")]
-        bool ChalangeRival(string rival, string chalanger);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/ChallengeRival", ReplyAction="http://tempuri.org/IFourInARowService/ChallengeRivalResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FourInARowClient.FourInARowServiceReference.OpponentDisconnectedFault), Action="http://tempuri.org/IFourInARowService/ChallengeRivalOpponentDisconnectedFaultFaul" +
+            "t", Name="OpponentDisconnectedFault", Namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService")]
+        bool ChallengeRival(string rival, string Challenger);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/ChalangeRival", ReplyAction="http://tempuri.org/IFourInARowService/ChalangeRivalResponse")]
-        System.Threading.Tasks.Task<bool> ChalangeRivalAsync(string rival, string chalanger);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/Disconnect", ReplyAction="http://tempuri.org/IFourInARowService/DisconnectResponse")]
-        void Disconnect(string userName);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/ChallengeRival", ReplyAction="http://tempuri.org/IFourInARowService/ChallengeRivalResponse")]
+        System.Threading.Tasks.Task<bool> ChallengeRivalAsync(string rival, string Challenger);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/Disconnect", ReplyAction="http://tempuri.org/IFourInARowService/DisconnectResponse")]
-        System.Threading.Tasks.Task DisconnectAsync(string userName);
+        void Disconnect(string userName, int gameID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/Disconnect", ReplyAction="http://tempuri.org/IFourInARowService/DisconnectResponse")]
+        System.Threading.Tasks.Task DisconnectAsync(string userName, int gameID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/GetConnectedClients", ReplyAction="http://tempuri.org/IFourInARowService/GetConnectedClientsResponse")]
         System.Collections.Generic.Dictionary<string, object> GetConnectedClients(string myUser);
@@ -316,10 +316,10 @@ namespace FourInARowClient.FourInARowServiceReference {
     public interface IFourInARowServiceCallback {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/SendGameInvitation", ReplyAction="http://tempuri.org/IFourInARowService/SendGameInvitationResponse")]
-        bool SendGameInvitation(string rival, string chalanger);
+        bool SendGameInvitation(string rival, string Challenger);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/StartGameAgainstRival")]
-        void StartGameAgainstRival(string chalanger);
+        void StartGameAgainstRival(string Challenger);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/OtherPlayerDisconnected")]
         void OtherPlayerDisconnected(string user);
@@ -328,7 +328,7 @@ namespace FourInARowClient.FourInARowServiceReference {
         void RivalStartGame(string p1, string p2);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/OtherPlayerMoved")]
-        void OtherPlayerMoved(FourInARowClient.FourInARowServiceReference.MoveResult moveResult, int location);
+        void OtherPlayerMoved(FourInARowClient.FourInARowServiceReference.MoveResult moveResult, int col);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/NewPlayerConnected")]
         void NewPlayerConnected(string user);
@@ -381,12 +381,12 @@ namespace FourInARowClient.FourInARowServiceReference {
             return base.Channel.ClientConnectAsync(userName, hashedPassword);
         }
         
-        public FourInARowClient.FourInARowServiceReference.MoveResult ReportMove(int gameId, int location, int player) {
-            return base.Channel.ReportMove(gameId, location, player);
+        public FourInARowClient.FourInARowServiceReference.MoveResult ReportMove(int gameId, int col, int player) {
+            return base.Channel.ReportMove(gameId, col, player);
         }
         
-        public System.Threading.Tasks.Task<FourInARowClient.FourInARowServiceReference.MoveResult> ReportMoveAsync(int gameId, int location, int player) {
-            return base.Channel.ReportMoveAsync(gameId, location, player);
+        public System.Threading.Tasks.Task<FourInARowClient.FourInARowServiceReference.MoveResult> ReportMoveAsync(int gameId, int col, int player) {
+            return base.Channel.ReportMoveAsync(gameId, col, player);
         }
         
         public void StartNewGame(string player1, string player2) {
@@ -397,20 +397,20 @@ namespace FourInARowClient.FourInARowServiceReference {
             return base.Channel.StartNewGameAsync(player1, player2);
         }
         
-        public bool ChalangeRival(string rival, string chalanger) {
-            return base.Channel.ChalangeRival(rival, chalanger);
+        public bool ChallengeRival(string rival, string Challenger) {
+            return base.Channel.ChallengeRival(rival, Challenger);
         }
         
-        public System.Threading.Tasks.Task<bool> ChalangeRivalAsync(string rival, string chalanger) {
-            return base.Channel.ChalangeRivalAsync(rival, chalanger);
+        public System.Threading.Tasks.Task<bool> ChallengeRivalAsync(string rival, string Challenger) {
+            return base.Channel.ChallengeRivalAsync(rival, Challenger);
         }
         
-        public void Disconnect(string userName) {
-            base.Channel.Disconnect(userName);
+        public void Disconnect(string userName, int gameID) {
+            base.Channel.Disconnect(userName, gameID);
         }
         
-        public System.Threading.Tasks.Task DisconnectAsync(string userName) {
-            return base.Channel.DisconnectAsync(userName);
+        public System.Threading.Tasks.Task DisconnectAsync(string userName, int gameID) {
+            return base.Channel.DisconnectAsync(userName, gameID);
         }
         
         public System.Collections.Generic.Dictionary<string, object> GetConnectedClients(string myUser) {

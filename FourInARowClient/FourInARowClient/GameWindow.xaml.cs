@@ -1,7 +1,5 @@
 ﻿using FourInARowClient.FourInARowServiceReference;
 using System;
-using System.Collections.Generic;
-using System.ServiceModel;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +19,7 @@ namespace FourInARowClient
         private ClientCallback callback;
         private string myRival;
         private string myUser;
+        private LobbyWindow lobbyWindow;
         #endregion
 
         #region Private fields       
@@ -42,7 +41,7 @@ namespace FourInARowClient
             this.clientToServer = clientToServer;
             myRival = rival;
             this.myUser = myUser;
-
+            callback.updateGame += DrawDisc;
             InitializeComponent();
         }
 
@@ -50,16 +49,21 @@ namespace FourInARowClient
         {
             if (serverOn)
             {
-                Client.Disconnect(NumUser.ToString());
+                //Client.Disconnect(NumUser.ToString());
             }
             Environment.Exit(Environment.ExitCode);
         }
         private void MyCanvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Point p = e.GetPosition(myCanvas);
-            int col = (int)Math.Floor(p.X / myCanvas.ActualWidth * BOARD_SIZE);
             if (!InWindow(p))
                 return;
+            int col = (int)Math.Floor(p.X / myCanvas.ActualWidth * BOARD_SIZE);
+            DrawDisc(col);
+        }
+
+        private void DrawDisc(int col)
+        { 
             brush = Brushes.Green;
             if (discCounter % 2 == 0)
                 brush = Brushes.Red;
@@ -175,5 +179,7 @@ namespace FourInARowClient
         {
             Environment.Exit(Environment.ExitCode);
         }
+
     }
+
 }

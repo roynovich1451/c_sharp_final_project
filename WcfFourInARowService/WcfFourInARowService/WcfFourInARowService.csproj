@@ -49,6 +49,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
@@ -56,12 +57,13 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionFault.cs" />
     <Compile Include="Game.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="GameManager.cs" />
     <Compile Include="IFourInARowService.cs" />
-    <Compile Include="IncorectPasswordFault.cs" />
+    <Compile Include="IncorrectPasswordFault.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,7 +86,8 @@
     <Compile Include="User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserConnectdFault.cs" />
+    <Compile Include="UserConnectedFault.cs" />
+    <Compile Include="EmptyFieldFault.cs" />
     <Compile Include="UserNameInUse.cs" />
     <Compile Include="UserNameTakenFault.cs" />
     <Compile Include="UserNotRegisteredFault.cs" />

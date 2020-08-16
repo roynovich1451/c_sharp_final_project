@@ -3,10 +3,9 @@
 namespace WcfFourInARowService
 {
     [DataContract]
-    internal class OpponentDisconnectedFault
+    public class UserConnectedFault
     {
         [DataMember]
-        public string Details = "";
-        //TODO
+        public string Details { get; set; }
     }
 }
