@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace WcfFourInARowService
@@ -36,6 +37,12 @@ namespace WcfFourInARowService
         List<string> getGamesHistory();
         [OperationContract]
         List<string> getAllUserNames();
+        [OperationContract]
+        List<string> getLiveGames();
+        [OperationContract]
+        Dictionary<string, string> getUserStats(string user);
+        [OperationContract]
+        Dictionary<string, int> getTopThreeUsers();
     }
 
     public interface IFourInARowCallback

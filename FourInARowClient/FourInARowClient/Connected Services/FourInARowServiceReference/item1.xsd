@@ -152,6 +152,44 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="getLiveGames">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getLiveGamesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getLiveGamesResult" nillable="true" type="q7:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUserStats">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="user" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUserStatsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getUserStatsResult" nillable="true" type="q8:ArrayOfKeyValueOfstringstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTopThreeUsers">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTopThreeUsersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getTopThreeUsersResult" nillable="true" type="q9:ArrayOfKeyValueOfstringint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SendGameInvitation">
     <xs:complexType>
       <xs:sequence>
@@ -192,7 +230,7 @@
   <xs:element name="OtherPlayerMoved">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WcfFourInARowService" minOccurs="0" name="moveResult" type="q7:MoveResult" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/WcfFourInARowService" minOccurs="0" name="moveResult" type="q10:MoveResult" />
         <xs:element minOccurs="0" name="col" type="xs:int" />
       </xs:sequence>
     </xs:complexType>

@@ -96,6 +96,14 @@ namespace FourInARowClient
 
         private void btnStatsCenter_Click(object sender, RoutedEventArgs e)
         {
+            /* TODO: bring back when games available 
+            var list = clientToServer.getGamesHistory().ToList();
+            if (list.Count == 0)
+            {
+                MessageBox.Show("No games played yet.\nNo data available.\nBack to lobby.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            */
             StatsWindow stats = new StatsWindow(clientToServer, callback);
             stats.ShowDialog();
         }

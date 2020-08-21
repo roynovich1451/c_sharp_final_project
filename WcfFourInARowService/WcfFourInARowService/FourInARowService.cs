@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using System.Threading;
 using System.Linq;
+using System.Reflection.Emit;
+using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 
 namespace WcfFourInARowService
 {
@@ -13,7 +16,7 @@ namespace WcfFourInARowService
         private int gameID = 0; //count games
         public Dictionary<string, IFourInARowCallback> connetedClients = new Dictionary<string, IFourInARowCallback>();
         private readonly Dictionary<int, GameManager> games = new Dictionary<int, GameManager>();
-
+        private const int TOP3 = 3;
         public void Disconnect(string player, int gameID)
         {
             connetedClients.Remove(player);
@@ -29,7 +32,7 @@ namespace WcfFourInARowService
                 updateOtherPlayerThread.Start();
             }
         }
-
+        
         public void ClientConnect(string userName, string hashedPassword)
         {
             if (connetedClients.ContainsKey(userName))
@@ -226,7 +229,7 @@ namespace WcfFourInARowService
         public bool ChallengeRival(string rival, string Challenger)
         {
             if (!connetedClients.ContainsKey(rival))
-            {               
+            {
                 throw new FaultException<OpponentDisconnectedFault>(new OpponentDisconnectedFault());
             }
             bool res = connetedClients[rival].SendGameInvitation(rival, Challenger);
@@ -249,55 +252,89 @@ namespace WcfFourInARowService
                 {
                     case "Name":
                         var byName = (from u in ctx.Users
-                                      orderby u.UserName
+                                      orderby u.UserName descending
                                       select u.UserName).ToList();
                         return byName;
                     case "Games":
                         var byGames = (from u in ctx.Users
-                                       orderby u.CareerGames
-                                       select u.UserName).ToList();
-                        return byGames;
+                                       orderby u.CareerGames descending
+                                       select u).ToList();
+                        return convertResultToString(byGames, by);
                     case "Wins":
                         var byWins = (from u in ctx.Users
-                                      orderby u.Wins
-                                      select u.UserName).ToList();
-                        return byWins;
+                                      orderby u.Wins descending
+                                      select u).ToList();
+                        return convertResultToString(byWins, by);
                     case "Looses":
                         var byLooses = (from u in ctx.Users
-                                        orderby u.Loosess
-                                        select u.UserName).ToList();
-                        return byLooses;
+                                        orderby u.Loosess descending
+                                        select u).ToList();
+                        return convertResultToString(byLooses, by);
                     case "Points":
                         var byPoints = (from u in ctx.Users
-                                        orderby u.Points
-                                        select u.UserName).ToList();
-                        return byPoints;
+                                        orderby u.Points descending
+                                        select u).ToList();
+                        return convertResultToString(byPoints, by);
                     default:
                         return null;
                 }
             }
         }
 
+        private List<string> convertResultToString(List<User> list, string by)
+        {
+            List<string> ret = new List<string>();
+            switch (by)
+            {
+                case "Games":
+                    foreach (var user in list)
+                    {
+                        ret.Add($"{user.UserName} {by}: {user.CareerGames}");
+                    }
+                    return ret;
+                case "Wins":
+                    foreach (var user in list)
+                    {
+                        ret.Add($"{user.UserName} {by}: {user.Wins}");
+                    }
+                    return ret;
+                case "Looses":
+                    foreach (var user in list)
+                    {
+                        ret.Add($"{user.UserName} {by}: {user.Loosess}");
+                    }
+                    return ret;
+                case "Points":
+                    foreach (var user in list)
+                    {
+                        ret.Add($"{user.UserName} {by}: {user.Points}");
+                    }
+                    return ret;
+                default:
+                    return null;
+            }
+        }
         public List<string> createRivaryData(string p1, string p2)
         {
             using (var ctx = new fourinrowDBEntities())
             {
+                List<string> rivaryData = new List<string>();
                 var gamesBetween = (from g in ctx.Games
                                     where (g.Player1 == p1 && g.Player2 == p2)
                                             || (g.Player1 == p2 && g.Player2 == p1)
                                     select g).ToList();
-                if (gamesBetween == null) return null;
-                List<string> rivaryData = new List<string>();
+                if (gamesBetween.Count == 0) return rivaryData;
                 rivaryData.Add(winPercentage(gamesBetween, p1).ToString());
                 rivaryData.Add(winPercentage(gamesBetween, p2).ToString());
                 foreach (var game in gamesBetween)
                 {
                     rivaryData.Add(
-                        $"Game number: {game.GameId.ToString()}\n" +
-                        $"Date: {game.Date.ToString()}" +
+                        $"Game ID: {game.GameId.ToString()}\n" +
+                        $"Date: {game.Date.ToString()}\n" +
                         $"Participants: {game.Player1}, {game.Player2}\n" +
                         $"Winner: {game.Winner}\n" +
-                        $"Winner Points: {game.WinnerPoint.ToString()}"
+                        $"Winner Points: {game.WinnerPoint.ToString()}\n" +
+                        $"---------------------------"
                     );
                 }
                 return rivaryData;
@@ -311,25 +348,32 @@ namespace WcfFourInARowService
             {
                 if (game.Winner == player) wins++;
             }
-            return (double)wins / list.Count();
+            return ((double)wins / list.Count())*100;
         }
 
         public List<string> getGamesHistory()
         {
-            if (gameID == 0) return null; //no games yet
+            List<string> allGamesData = new List<string>();
+            gameID = 7; //TODO: remove after game works
+            if (gameID == 0) //no games yet
+            {
+                return allGamesData;
+            }
             using (var ctx = new fourinrowDBEntities())
             {
                 var allGames = (from g in ctx.Games
+                                where g.WinnerPoint != 0
                                 select g).ToList();
-                List<string> allGamesData = new List<string>();
+
                 foreach (var game in allGames)
                 {
                     allGamesData.Add(
-                        $"Game number: {game.GameId.ToString()}\n" +
-                        $"Date: {game.Date.ToString()}" +
+                        $"Game ID: {game.GameId.ToString()}\n" +
+                        $"Date: {game.Date.ToString()}\n" +
                         $"Participants: {game.Player1}, {game.Player2}\n" +
                         $"Winner: {game.Winner}\n" +
-                        $"Winner Points: {game.WinnerPoint.ToString()}"
+                        $"Winner Points: {game.WinnerPoint.ToString()}\n" +
+                        $"---------------------------"
                         );
                 }
                 return allGamesData;
@@ -344,6 +388,62 @@ namespace WcfFourInARowService
                 var allUsers = (from u in ctx.Users
                                 select u.UserName).ToList();
                 return allUsers;
+            }
+        }
+
+        public List<string> getLiveGames(){
+            using (var ctx = new fourinrowDBEntities())
+            {
+                List<string> liveGamesData = new List<string>();
+                var LiveGames = (from g in ctx.Games
+                                 where g.WinnerPoint == 0
+                                 select g).ToList();
+                if (LiveGames.Count == 0) return liveGamesData;
+                foreach (var game in LiveGames)
+                {
+                    liveGamesData.Add(
+                        $"Game ID: {game.GameId.ToString()}\n" +
+                        $"Date: {game.Date.ToString()}" +
+                        $"Participants: {game.Player1}, {game.Player2}\n" +
+                        $"---------------------------"
+                        );
+                }
+                return liveGamesData;
+            }
+        }
+
+        public Dictionary<string, string> getUserStats(string user)
+        {
+            using (var ctx = new fourinrowDBEntities())
+            {
+                Dictionary<string, string> userStatsData = new Dictionary<string, string>();
+                var userStats = (from u in ctx.Users
+                                 where u.UserName == user
+                                 select u).FirstOrDefault();
+                if (userStats == null) return userStatsData;
+                userStatsData.Add("User", userStats.UserName);
+                userStatsData.Add("Games", userStats.CareerGames.ToString());
+                userStatsData.Add("Points", userStats.Points.ToString());
+                userStatsData.Add("Wins", userStats.Wins.ToString());
+                userStatsData.Add("Losses", userStats.Loosess.ToString());
+                return userStatsData;
+            }
+        }
+
+        public Dictionary<string, int> getTopThreeUsers()
+        {
+            using (var ctx = new fourinrowDBEntities())
+            {
+                Dictionary<string, int> top3 = new Dictionary<string, int>();
+                var allSorted = (from u in ctx.Users
+                                 orderby u.Points descending
+                                 select u).ToList();
+                if (allSorted == null) return top3;
+                for (int i=0; i < TOP3 && i < allSorted.Count; i++)
+                {
+                    top3.Add(allSorted[i].UserName, allSorted[i].Points);
+                }
+                return top3;
             }
         }
     }

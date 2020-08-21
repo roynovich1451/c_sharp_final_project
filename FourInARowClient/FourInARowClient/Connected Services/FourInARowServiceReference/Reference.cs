@@ -334,6 +334,24 @@ namespace FourInARowClient.FourInARowServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/getAllUserNames", ReplyAction="http://tempuri.org/IFourInARowService/getAllUserNamesResponse")]
         System.Threading.Tasks.Task<string[]> getAllUserNamesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/getLiveGames", ReplyAction="http://tempuri.org/IFourInARowService/getLiveGamesResponse")]
+        string[] getLiveGames();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/getLiveGames", ReplyAction="http://tempuri.org/IFourInARowService/getLiveGamesResponse")]
+        System.Threading.Tasks.Task<string[]> getLiveGamesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/getUserStats", ReplyAction="http://tempuri.org/IFourInARowService/getUserStatsResponse")]
+        System.Collections.Generic.Dictionary<string, string> getUserStats(string user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/getUserStats", ReplyAction="http://tempuri.org/IFourInARowService/getUserStatsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> getUserStatsAsync(string user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/getTopThreeUsers", ReplyAction="http://tempuri.org/IFourInARowService/getTopThreeUsersResponse")]
+        System.Collections.Generic.Dictionary<string, int> getTopThreeUsers();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/getTopThreeUsers", ReplyAction="http://tempuri.org/IFourInARowService/getTopThreeUsersResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, int>> getTopThreeUsersAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -475,6 +493,30 @@ namespace FourInARowClient.FourInARowServiceReference {
         
         public System.Threading.Tasks.Task<string[]> getAllUserNamesAsync() {
             return base.Channel.getAllUserNamesAsync();
+        }
+        
+        public string[] getLiveGames() {
+            return base.Channel.getLiveGames();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> getLiveGamesAsync() {
+            return base.Channel.getLiveGamesAsync();
+        }
+        
+        public System.Collections.Generic.Dictionary<string, string> getUserStats(string user) {
+            return base.Channel.getUserStats(user);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> getUserStatsAsync(string user) {
+            return base.Channel.getUserStatsAsync(user);
+        }
+        
+        public System.Collections.Generic.Dictionary<string, int> getTopThreeUsers() {
+            return base.Channel.getTopThreeUsers();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, int>> getTopThreeUsersAsync() {
+            return base.Channel.getTopThreeUsersAsync();
         }
     }
 }

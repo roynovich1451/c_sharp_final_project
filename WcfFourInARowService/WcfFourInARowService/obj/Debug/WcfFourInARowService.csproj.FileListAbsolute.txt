@@ -41,3 +41,15 @@ D:\royno\Desktop\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService
 D:\royno\Desktop\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\EntityFramework.xml
 D:\royno\Desktop\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\EntityFramework.SqlServer.xml
 D:\royno\Desktop\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.csproj.CopyComplete
+D:\royno\GitArea\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\WcfFourInARowService.dll.config
+D:\royno\GitArea\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\WcfFourInARowService.dll
+D:\royno\GitArea\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\WcfFourInARowService.pdb
+D:\royno\GitArea\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\EntityFramework.dll
+D:\royno\GitArea\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\EntityFramework.SqlServer.dll
+D:\royno\GitArea\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\EntityFramework.xml
+D:\royno\GitArea\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\bin\Debug\EntityFramework.SqlServer.xml
+D:\royno\GitArea\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.csprojAssemblyReference.cache
+D:\royno\GitArea\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.csproj.CoreCompileInputs.cache
+D:\royno\GitArea\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.csproj.CopyComplete
+D:\royno\GitArea\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.dll
+D:\royno\GitArea\c_sharp_final_project\WcfFourInARowService\WcfFourInARowService\obj\Debug\WcfFourInARowService.pdb

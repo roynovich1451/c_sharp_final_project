@@ -25,7 +25,7 @@
         <ComboBox Name="cmbSort" Grid.Column="1" Margin="10.2,15,9.6,15"
                   SelectedItem="games" />
         <Button Name="btnSort" Content="See result" Grid.Row="1" Grid.Column="1" Margin="30,20" Click="btnSort_Click"/>
-        <GroupBox Name="gbSort" Header="Sort results:" Grid.Row="2" Grid.Column="1" Grid.RowSpan="4" Margin="5.2,5,4.6,5">
+        <GroupBox Name="gbSort" Header="Sort results" Grid.Row="2" Grid.Column="1" Grid.RowSpan="4" Margin="5.2,5,4.6,5">
             <ListBox Name="lbSortResults" />
         </GroupBox>
         <ComboBox Name="cmbP1" Grid.Column="3" Margin="9.989,15,9.6,15"/>
