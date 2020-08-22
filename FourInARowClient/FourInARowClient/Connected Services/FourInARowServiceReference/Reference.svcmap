@@ -24,6 +24,7 @@
   <Metadata>
     <MetadataFile FileName="FourInARowService.wsdl" MetadataType="Wsdl" ID="2671da33-272e-41f0-8ed1-56b0a345db6b" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?wsdl" />
     <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="612213a7-bcbc-4399-87b5-dc983ace17fa" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd3" />
+    <MetadataFile FileName="item4.xsd" MetadataType="Schema" ID="9c5f5dcf-c221-40f5-b51d-f37867aeac6d" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd4" />
     <MetadataFile FileName="item.disco" MetadataType="Disco" ID="a4c3d074-407c-4780-8434-2f07eac8d8af" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?disco" />
     <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="02aa54f0-2a27-47fe-b203-cd77e1260f86" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd0" />
     <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="712c5d27-8d04-44e8-8613-5747106b2766" SourceId="1" SourceUrl="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd1" />

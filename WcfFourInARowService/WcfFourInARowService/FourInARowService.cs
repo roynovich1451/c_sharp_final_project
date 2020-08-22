@@ -22,11 +22,19 @@ namespace WcfFourInARowService
             connetedClients.Remove(player);
             if (games.ContainsKey(gameID))
                 games.Remove(gameID);
-            foreach (var callBack in connetedClients.Values)
+            NoticeAll(player, false);
+        }
+
+        public void NoticeAll(string player, bool connected)
+            //update all connected client, other client just connect/disconnect
+        {
+            var connectButMe = new Dictionary<string, IFourInARowCallback>(connetedClients);
+            connectButMe.Remove(player);
+            foreach (var callBack in connectButMe.Values)
             {
                 Thread updateOtherPlayerThread = new Thread(() =>
                 {
-                    callBack.OtherPlayerDisconnected(player);
+                    callBack.OtherPlayerDisOConnnectd(player, connected);
                 }
               );
                 updateOtherPlayerThread.Start();
@@ -68,7 +76,6 @@ namespace WcfFourInARowService
                 {
                     IFourInARowCallback callback = OperationContext.Current.GetCallbackChannel<IFourInARowCallback>();
                     connetedClients.Add(userName, callback);
-                    //NeedToUpdateRivalList(userName);
                 }
             }
         }
@@ -102,14 +109,7 @@ namespace WcfFourInARowService
 
                 IFourInARowCallback regCallback = OperationContext.Current.GetCallbackChannel<IFourInARowCallback>();
                 connetedClients.Add(userName, regCallback);
-                //NeedToUpdateRivalList(userName);
             }
-        }
-
-        private bool UserExists(string name)
-        {
-            //TODO: need to implemenet search in user list in db
-            return true;
         }
 
         public MoveResult ReportMove(int gameId, int col, int player)
@@ -403,7 +403,7 @@ namespace WcfFourInARowService
                 {
                     liveGamesData.Add(
                         $"Game ID: {game.GameId.ToString()}\n" +
-                        $"Date: {game.Date.ToString()}" +
+                        $"Start Time: {game.Date.ToString()}\n" +
                         $"Participants: {game.Player1}, {game.Player2}\n" +
                         $"---------------------------"
                         );
@@ -430,18 +430,19 @@ namespace WcfFourInARowService
             }
         }
 
-        public Dictionary<string, int> getTopThreeUsers()
+        public Dictionary<int, Tuple<string, int>> getTopThreeUsers()
         {
             using (var ctx = new fourinrowDBEntities())
             {
-                Dictionary<string, int> top3 = new Dictionary<string, int>();
+                Dictionary<int, Tuple<string, int>> top3 = new Dictionary<int, Tuple<string, int>>();
                 var allSorted = (from u in ctx.Users
                                  orderby u.Points descending
                                  select u).ToList();
                 if (allSorted == null) return top3;
                 for (int i=0; i < TOP3 && i < allSorted.Count; i++)
                 {
-                    top3.Add(allSorted[i].UserName, allSorted[i].Points);
+                    var now = Tuple.Create(allSorted[i].UserName, allSorted[i].Points);
+                    top3.Add(i, now);
                 }
                 return top3;
             }

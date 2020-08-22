@@ -68,6 +68,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Disc.cs" />
+    <Compile Include="LiveGamesWindow.xaml.cs">
+      <DependentUpon>LiveGamesWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,9 @@
     <None Include="Connected Services\FourInARowServiceReference\item3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\FourInARowServiceReference\item4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -131,6 +137,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="GameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LiveGamesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -28,6 +28,8 @@ namespace WcfFourInARowService
         [OperationContract]
         void Disconnect(string userName,int gameID);
         [OperationContract]
+        void NoticeAll(string player, bool connected);
+        [OperationContract]
         Dictionary<string, IFourInARowCallback> GetConnectedClients(string myUser);
         [OperationContract]
         List<string> createSortedList(string by);
@@ -42,7 +44,7 @@ namespace WcfFourInARowService
         [OperationContract]
         Dictionary<string, string> getUserStats(string user);
         [OperationContract]
-        Dictionary<string, int> getTopThreeUsers();
+        Dictionary<int, Tuple<string, int>> getTopThreeUsers();
     }
 
     public interface IFourInARowCallback
@@ -53,7 +55,7 @@ namespace WcfFourInARowService
         void StartGameAgainstRival(string Challenger);
 
         [OperationContract(IsOneWay = true)]
-        void OtherPlayerDisconnected(string user);
+        void OtherPlayerDisOConnnectd(string user, bool connect);
         [OperationContract(IsOneWay = true)]
         void RivalStartGame(string p1, string p2);
         [OperationContract(IsOneWay = true)]

@@ -85,6 +85,19 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="NoticeAll">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="player" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="connected" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NoticeAllResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetConnectedClients">
     <xs:complexType>
       <xs:sequence>
@@ -186,7 +199,7 @@
   <xs:element name="getTopThreeUsersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getTopThreeUsersResult" nillable="true" type="q9:ArrayOfKeyValueOfstringint" />
+        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getTopThreeUsersResult" nillable="true" type="q9:ArrayOfKeyValueOfintTupleOfstringintU6ho3Bhd" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -212,10 +225,11 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="OtherPlayerDisconnected">
+  <xs:element name="OtherPlayerDisOConnnectd">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="user" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="connect" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

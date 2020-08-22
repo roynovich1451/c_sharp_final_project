@@ -86,3 +86,5 @@ D:\royno\GitArea\c_sharp_final_project\FourInARowClient\FourInARowClient\obj\Deb
 D:\royno\GitArea\c_sharp_final_project\FourInARowClient\FourInARowClient\obj\Debug\FourInARowClient.csproj.CoreCompileInputs.cache
 D:\royno\GitArea\c_sharp_final_project\FourInARowClient\FourInARowClient\obj\Debug\FourInARowClient.exe
 D:\royno\GitArea\c_sharp_final_project\FourInARowClient\FourInARowClient\obj\Debug\FourInARowClient.pdb
+D:\royno\GitArea\c_sharp_final_project\FourInARowClient\FourInARowClient\obj\Debug\LiveGamesWindow.g.cs
+D:\royno\GitArea\c_sharp_final_project\FourInARowClient\FourInARowClient\obj\Debug\LiveGamesWindow.baml

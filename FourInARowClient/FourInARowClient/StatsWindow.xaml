@@ -14,27 +14,37 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="1.5*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="All Games" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Margin="88,29,87.8,28"/>
-        <ListBox Name="lbAllGames" Grid.Row="1" Grid.Column="0" Grid.RowSpan="5" Margin="10,10,9.8,10"/>
-        <ComboBox Name="cmbSort" Grid.Column="1" Margin="10.2,15,9.6,15"
-                  SelectedItem="games" />
-        <Button Name="btnSort" Content="See result" Grid.Row="1" Grid.Column="1" Margin="30,20" Click="btnSort_Click"/>
-        <GroupBox Name="gbSort" Header="Sort results" Grid.Row="2" Grid.Column="1" Grid.RowSpan="4" Margin="5.2,5,4.6,5">
+        <TextBlock Text="All games played" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" />
+        <ListBox Name="lbAllGames" Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" Margin="10,10,9.8,10"/>
+        <TextBlock Text="Sort users" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" />
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+            <ComboBox Name="cmbSort" Margin="20,2"
+                  SelectedItem="games" Text="--Sort Type--"/>
+            <Button Name="btnSort" Content="See result" Margin="70,2" Click="btnSort_Click"/>
+        </StackPanel>
+        
+        <GroupBox Name="gbSort" Header="Sort results" Grid.Row="2" Grid.Column="1" Grid.RowSpan="5" Margin="5.2,5,4.6,5">
             <ListBox Name="lbSortResults" />
         </GroupBox>
-        <ComboBox Name="cmbP1" Grid.Column="3" Margin="9.989,15,9.6,15"/>
-        <ComboBox Name="cmbP2" Grid.Column="3" Grid.Row="1" Margin="9.989,15,9.6,15"/>
-        <Button Name="btnRivary" Content="Matchup stats" Grid.Row="2" Grid.Column="2" Margin="30,20" Click="btnRivary_Click"/>
-        <Grid Name="gRivalsStats" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3">
+        <TextBlock Text="See rivary" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" />
+        <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
+            <ComboBox Name="cmbP1" Margin="20,2"/>
+            <ComboBox Name="cmbP2" Margin="20,2"/>
+            <Button Name="btnRivary" Content="Matchup games" Margin="80,2" Click="btnRivary_Click"/>
+        </StackPanel>
+        
+        <Grid Name="gRivalsStats" Grid.Row="2" Grid.Column="3" Grid.RowSpan="5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="61*"/>
+                <ColumnDefinition Width="66*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -43,9 +53,9 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Name="labelP1" Content="p1 win %:" Grid.Row="0" VerticalAlignment="Center"/>
-            <Label Name="labelP2" Content="p2 win %:" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
-            <GroupBox Header="Matchup Games" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="2" Margin="5">
+            <Label Name="labelP1" Content="p1 win %:" Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,7"/>
+            <Label Name="labelP2" Content="p2 win %:" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="0,7"/>
+            <GroupBox Header="Matchup Games" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" Margin="5,5,5,4.6">
                 <ListBox Name="lbMatchup" />
             </GroupBox>
         </Grid>

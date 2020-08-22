@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8080/Design_Time_Addresses/WcfFourInARowService/Service1/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
   <xs:complexType name="ArrayOfKeyValueOfstringanyType">
     <xs:annotation>
       <xs:appinfo>
@@ -42,22 +43,22 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfKeyValueOfstringstring" nillable="true" type="tns:ArrayOfKeyValueOfstringstring" />
-  <xs:complexType name="ArrayOfKeyValueOfstringint">
+  <xs:complexType name="ArrayOfKeyValueOfintTupleOfstringintU6ho3Bhd">
     <xs:annotation>
       <xs:appinfo>
         <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringint">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfintTupleOfstringintU6ho3Bhd">
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="Key" nillable="true" type="xs:string" />
-            <xs:element name="Value" type="xs:int" />
+            <xs:element name="Key" type="xs:int" />
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System" name="Value" nillable="true" type="q1:TupleOfstringint" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfKeyValueOfstringint" nillable="true" type="tns:ArrayOfKeyValueOfstringint" />
+  <xs:element name="ArrayOfKeyValueOfintTupleOfstringintU6ho3Bhd" nillable="true" type="tns:ArrayOfKeyValueOfintTupleOfstringintU6ho3Bhd" />
 </xs:schema>

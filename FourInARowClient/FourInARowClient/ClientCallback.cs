@@ -47,11 +47,6 @@ namespace FourInARowClient
             startGame(challenger);
         }
 
-        public void OtherPlayerDisconnected(string user)
-        {
-            updateRivalList(user,false);
-        }
-
         public void RivalStartGame(string p1, string p2)
         {
             throw new NotImplementedException();
@@ -60,6 +55,11 @@ namespace FourInARowClient
         public void NotifyNewGameId(int gameId)
         {
             updateLiveGameId(gameId);
+        }
+
+        public void OtherPlayerDisOConnnectd(string user, bool connect)
+        {
+            updateRivalList(user, connect);
         }
     }
 }

@@ -46,7 +46,6 @@ namespace FourInARowClient
             labelP2.Visibility = Visibility.Hidden;
             sortOptions = new List<string> { "Name", "Games", "Wins", "Looses", "Points" };
             cmbSort.ItemsSource = sortOptions;
-            cmbSort.SelectedIndex = 0;
             users = clientToServer.getAllUserNames().ToList();
             cmbP1.ItemsSource = users;
             cmbP2.ItemsSource = users;
@@ -63,7 +62,7 @@ namespace FourInARowClient
 
         private void btnRivary_Click(object sender, RoutedEventArgs e)
         {
-            if (cmbP1 == null || cmbP2 == null)
+            if (cmbP1.SelectedIndex == -1 || cmbP2.SelectedIndex == -1)
             {
                 MessageBox.Show("Must pick 2 players to see rivary history", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

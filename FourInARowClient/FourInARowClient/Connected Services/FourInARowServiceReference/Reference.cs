@@ -305,6 +305,12 @@ namespace FourInARowClient.FourInARowServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/Disconnect", ReplyAction="http://tempuri.org/IFourInARowService/DisconnectResponse")]
         System.Threading.Tasks.Task DisconnectAsync(string userName, int gameID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/NoticeAll", ReplyAction="http://tempuri.org/IFourInARowService/NoticeAllResponse")]
+        void NoticeAll(string player, bool connected);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/NoticeAll", ReplyAction="http://tempuri.org/IFourInARowService/NoticeAllResponse")]
+        System.Threading.Tasks.Task NoticeAllAsync(string player, bool connected);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/GetConnectedClients", ReplyAction="http://tempuri.org/IFourInARowService/GetConnectedClientsResponse")]
         System.Collections.Generic.Dictionary<string, object> GetConnectedClients(string myUser);
         
@@ -348,10 +354,10 @@ namespace FourInARowClient.FourInARowServiceReference {
         System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> getUserStatsAsync(string user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/getTopThreeUsers", ReplyAction="http://tempuri.org/IFourInARowService/getTopThreeUsersResponse")]
-        System.Collections.Generic.Dictionary<string, int> getTopThreeUsers();
+        System.Collections.Generic.Dictionary<int, System.Tuple<string, int>> getTopThreeUsers();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/getTopThreeUsers", ReplyAction="http://tempuri.org/IFourInARowService/getTopThreeUsersResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, int>> getTopThreeUsersAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, System.Tuple<string, int>>> getTopThreeUsersAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -363,8 +369,8 @@ namespace FourInARowClient.FourInARowServiceReference {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/StartGameAgainstRival")]
         void StartGameAgainstRival(string Challenger);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/OtherPlayerDisconnected")]
-        void OtherPlayerDisconnected(string user);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/OtherPlayerDisOConnnectd")]
+        void OtherPlayerDisOConnnectd(string user, bool connect);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/RivalStartGame")]
         void RivalStartGame(string p1, string p2);
@@ -455,6 +461,14 @@ namespace FourInARowClient.FourInARowServiceReference {
             return base.Channel.DisconnectAsync(userName, gameID);
         }
         
+        public void NoticeAll(string player, bool connected) {
+            base.Channel.NoticeAll(player, connected);
+        }
+        
+        public System.Threading.Tasks.Task NoticeAllAsync(string player, bool connected) {
+            return base.Channel.NoticeAllAsync(player, connected);
+        }
+        
         public System.Collections.Generic.Dictionary<string, object> GetConnectedClients(string myUser) {
             return base.Channel.GetConnectedClients(myUser);
         }
@@ -511,11 +525,11 @@ namespace FourInARowClient.FourInARowServiceReference {
             return base.Channel.getUserStatsAsync(user);
         }
         
-        public System.Collections.Generic.Dictionary<string, int> getTopThreeUsers() {
+        public System.Collections.Generic.Dictionary<int, System.Tuple<string, int>> getTopThreeUsers() {
             return base.Channel.getTopThreeUsers();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, int>> getTopThreeUsersAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, System.Tuple<string, int>>> getTopThreeUsersAsync() {
             return base.Channel.getTopThreeUsersAsync();
         }
     }
