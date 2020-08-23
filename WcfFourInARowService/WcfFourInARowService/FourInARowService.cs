@@ -130,6 +130,7 @@ namespace WcfFourInARowService
 
         public MoveResult ReportMove(int gameId, int col, int player)
         {
+            string rival = player == 1 ? games[gameId].p1 : games[gameId].p2;
             char sign = player == 1 ? 'b' : 'r';
             MoveResult result = games[gameId].VerifyMove(col, sign);
             if (result == MoveResult.Draw || result == MoveResult.YouWon)
@@ -162,6 +163,12 @@ namespace WcfFourInARowService
                     updateP1.Points += p1Score;
                     updateP2.CareerGames += 1;
                     updateP2.Points += p2Score;
+
+                    Thread updateOtherThread = new Thread(() =>
+                    {
+                        connetedClients[rival].OtherPlayerMoved(result, col);
+                    });
+                    updateOtherThread.Start();
                 }
                 if (result == MoveResult.YouWon) //other player won
                 {
@@ -188,12 +195,16 @@ namespace WcfFourInARowService
                         updateP1.Points += p1Score;
                         updateP1.Loosess += 1;
                     }
+                    Thread updateOtherThread = new Thread(() =>
+                    {
+                        connetedClients[rival].OtherPlayerMoved(result, col);
+                    });
+                    updateOtherThread.Start();
                 }
                 //ctx.SaveChanges();
-                //}
+                //}           
             }
-            string other_player = player == 1 ? games[gameId].p1 : games[gameId].p2;
-            if (!connetedClients.ContainsKey(other_player))
+            if (!connetedClients.ContainsKey(rival))
             {
                 throw new FaultException<OpponentDisconnectedFault>(new OpponentDisconnectedFault());
             }
@@ -201,7 +212,7 @@ namespace WcfFourInARowService
             {
                 Thread updateOtherThread = new Thread(() =>
                 {
-                    connetedClients[other_player].OtherPlayerMoved(result, col);
+                    connetedClients[rival].OtherPlayerMoved(result, col);
                 });
                 updateOtherThread.Start();
             }
@@ -230,7 +241,7 @@ namespace WcfFourInARowService
                 games.Add(gameID, gm);
                 Thread updateRivalThread = new Thread(() =>
                 {
-                    connetedClients[rival].StartGameAgainstRival(challanger, gameID);
+                    connetedClients[rival].StartGameAgainstRival(challanger, rival, gameID);
                 });
                 updateRivalThread.Start();
                 NoticeAllGameStarted(challanger, rival, false);

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 
 namespace FourInARowClient
@@ -162,15 +163,16 @@ namespace FourInARowClient
             }
             else
             {
+                challengeAccepted(myUser, rival, gameID);
                 clientToServer.StartNewGame(myUser, rival);
-                challengeAccepted(rival, gameID);
             }            
         }
 
-        private void challengeAccepted(string rival, int gameID)
+        private void challengeAccepted(string challanger, string rival, int gameID)
         {
-            GameWindow liveGame = new GameWindow(myUser, rival, clientToServer, callback, gameID);
-            liveGame.ShowDialog();
+            GameWindow liveGame = new GameWindow(myUser, challanger, rival, clientToServer, callback, gameID);
+            liveGame.Show();
+            this.Hide();
         }
 
         internal bool popInvitation(string Challenger)

@@ -367,7 +367,7 @@ namespace FourInARowClient.FourInARowServiceReference {
         bool SendGameInvitation(string rival, string Challenger);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/StartGameAgainstRival")]
-        void StartGameAgainstRival(string Challenger, int gameID);
+        void StartGameAgainstRival(string Challenger, string rival, int gameID);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/OtherPlayerDisOConnnectd")]
         void OtherPlayerDisOConnnectd(string user, bool connect);

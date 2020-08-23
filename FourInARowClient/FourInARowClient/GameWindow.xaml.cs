@@ -20,6 +20,7 @@ namespace FourInARowClient
         private ClientCallback callback;
         private string myRival;
         private string myUser;
+        private int playerNum;
         private LobbyWindow lobbyWindow;
         private int gameID;
         #endregion
@@ -37,7 +38,7 @@ namespace FourInARowClient
         private int discCounter = 0;
         private readonly int[] board_state = new int[BOARD_SIZE];
         #endregion
-        public GameWindow(string myUser, string rival, FourInARowServiceClient clientToServer, ClientCallback clientCallback, int gameID)
+        public GameWindow(string myUser, string challanger, string rival, FourInARowServiceClient clientToServer, ClientCallback clientCallback, int gameID)
         {
             InitializeComponent();
             callback = clientCallback;
@@ -45,7 +46,9 @@ namespace FourInARowClient
             myRival = rival;
             this.myUser = myUser;
             this.gameID = gameID;
+            this.playerNum = (myUser == challanger ? 0 : 1);
             callback.updateGame += DrawDisc;
+            lbGameTitle.Content = $"{myUser}";
         }
 
         private void MyCanvas_MouseDown(object sender, MouseButtonEventArgs e)
@@ -54,6 +57,19 @@ namespace FourInARowClient
             if (!InWindow(p))
                 return;
             int col = (int)Math.Floor(p.X / myCanvas.ActualWidth * BOARD_SIZE);
+            MoveResult res = clientToServer.ReportMove(gameID, col, playerNum);
+            if (res == MoveResult.InvalidMove)
+            {
+                MessageBox.Show("Invalid move", "Invalid", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }   
+            if(res == MoveResult.NotYourTurn)
+            {
+                MessageBox.Show("Not your turn","Invalid", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (res == MoveResult.Draw) EndGame("Game Ended with Draw");
+            if (res == MoveResult.YouWon) EndGame("You Won the Game");
             DrawDisc(col);
         }
 
@@ -95,7 +111,7 @@ namespace FourInARowClient
                     break;
                 }
                 Thread.Sleep(2);
-                b.Y += 1;
+                b.Y += 3;
                 Dispatcher.Invoke(() =>
                 {
                     Canvas.SetTop(b.Circle, b.Y);
@@ -125,47 +141,6 @@ namespace FourInARowClient
                 result = d.Y > myCanvas.ActualHeight - ((DISC_SIZE + HEIGHT_MARGIN) * board_state[d.Column]) + BOTTOM_MARGIN || d.Y < 0;
             });
             return result;
-        }
-
-        /*        private void button1_Click(object sender, RoutedEventArgs e)
-                {
-                    try
-                    {
-                        Button clickedButton = (Button)sender;
-                        int location = Convert.ToInt32(clickedButton.Name.Substring(6, 1)) - 1;
-                        var moveResult = Client.ReportMove(location, NumUser);
-                        if (moveResult == MoveResult.NotYourTurn)
-                        {
-                            MessageBox.Show("Not your turn");
-                            return;
-                        }               
-                        if (moveResult == MoveResult.Draw)
-                        {
-                            EndGame("Its a Draw");
-                        }
-                        else if (moveResult == MoveResult.YouWon)
-                        {
-                            EndGame("You won!");
-                        }
-
-                    }
-                    catch (FaultException<OpponentDisconnectedFault> ex)
-                    {
-                        DisableBoard();
-                        MessageBox.Show(ex.Detail.Details);
-                        Client.Disconnect(NumUser);
-                    }
-                    catch (TimeoutException)
-                    {
-                        MessageBox.Show("Server disconnected");
-                        DisableBoard();
-                        serverOn = false;
-                    }
-                }
-        */
-        private void UpdateGameID(int id)
-        {
-            gameID = id;
         }
 
         private void EndGame(string message)

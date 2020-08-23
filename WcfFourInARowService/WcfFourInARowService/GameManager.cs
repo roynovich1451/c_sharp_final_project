@@ -19,7 +19,7 @@ namespace WcfFourInARowService
         public GameManager(string p1user, string p2user, IFourInARowCallback p1Callback, IFourInARowCallback p2Callback)
         {
             board_state = new char[SIZE, SIZE];
-            current_player = 'b';
+            current_player = 'r';
             blue_circles = 0;
             red_circles = 0;
             p1 = p1user;
@@ -59,6 +59,8 @@ namespace WcfFourInARowService
             {
                 return MoveResult.Draw;
             }
+            if (current_player == 'b') current_player = 'r';
+            else current_player = 'b';
             return MoveResult.GameOn;
         }
 

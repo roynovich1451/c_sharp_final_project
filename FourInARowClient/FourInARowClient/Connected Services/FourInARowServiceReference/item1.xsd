@@ -222,6 +222,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="Challenger" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="rival" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="gameID" type="xs:int" />
       </xs:sequence>
     </xs:complexType>

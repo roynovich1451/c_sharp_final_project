@@ -9,7 +9,7 @@ namespace FourInARowClient
         #region Delegates
         internal Func<string, bool> popUpGameInvitation;
         internal Action<int> updateGame;
-        internal Action<string, int> startGame;
+        internal Action<string, string, int> startGame;
         internal Action<string, bool> updateRivalList;
         internal Action<string> endGame;
         internal string myUser;
@@ -38,9 +38,9 @@ namespace FourInARowClient
             return popUpGameInvitation(challenger);
         }
 
-        public void StartGameAgainstRival(string challenger, int gameID)
+        public void StartGameAgainstRival(string challenger, string rival, int gameID)
         {
-            startGame(challenger, gameID);
+            startGame(challenger, rival, gameID);
         }
 
         public void RivalStartGame(string p1, string p2)

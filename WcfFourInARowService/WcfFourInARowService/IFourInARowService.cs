@@ -52,7 +52,7 @@ namespace WcfFourInARowService
         [OperationContract]
         bool SendGameInvitation(string rival, string Challenger); //anounce player other player Challenged him
         [OperationContract(IsOneWay = true)]
-        void StartGameAgainstRival(string Challenger, int gameID);
+        void StartGameAgainstRival(string Challenger, string rival, int gameID);
 
         [OperationContract(IsOneWay = true)]
         void OtherPlayerDisOConnnectd(string user, bool connect);
