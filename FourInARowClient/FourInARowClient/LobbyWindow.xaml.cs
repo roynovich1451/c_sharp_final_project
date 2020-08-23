@@ -91,9 +91,15 @@ namespace FourInARowClient
                 tbMyLosses.Text = stats["Losses"];
                 tbMyPoint.Text = stats["Points"];
                 tbMyWins.Text = stats["Wins"];
+                float wins = float.Parse(stats["Wins"]);
+                int games = int.Parse(stats["Games"]);
                 if (int.Parse(tbMyCarrer.Text) != 0)
                 {
-                    tbMyPercantage.Text = ((Double.Parse(tbMyWins.Text) / Double.Parse(tbMyCarrer.Text)) * 100).ToString().Substring(0,4);
+                    string per = (wins / games * 100).ToString();
+                    if (per.Length > 4)
+                        tbMyPercantage.Text = per.Substring(0, 4);
+                    else tbMyPercantage.Text = per;
+
                 }
                 else
                 {
@@ -107,9 +113,14 @@ namespace FourInARowClient
                 tbRivalLosses.Text = stats["Losses"];
                 tbRivalPoint.Text = stats["Points"];
                 tbRivalWins.Text = stats["Wins"];
-                if (int.Parse(tbMyCarrer.Text) != 0)
+                float wins = float.Parse(stats["Wins"]);
+                int games = int.Parse(stats["Games"]);
+                if (int.Parse(tbRivalCarrer.Text) != 0)
                 {
-                    tbRivalPercantage.Text = ((Double.Parse(tbMyWins.Text) / Double.Parse(tbMyCarrer.Text)) * 100).ToString().Substring(0, 4);
+                    string per = (wins / games * 100).ToString();
+                    if (per.Length > 4)
+                        tbRivalPercantage.Text = per.Substring(0, 4);
+                    else tbRivalPercantage.Text = per;
                 }
                 else
                 {
@@ -127,6 +138,8 @@ namespace FourInARowClient
         private void updateRivalList(string user, bool add)
         {
             if (user == myUser) return;
+            if (availableRivals.Contains(user) && add) return;
+            if (!availableRivals.Contains(user) && false) return;
             if (add == true)
             {
                 availableRivals.Add(user);
@@ -170,7 +183,7 @@ namespace FourInARowClient
 
         private void challengeAccepted(string challanger, string rival, int gameID)
         {
-            GameWindow liveGame = new GameWindow(myUser, challanger, rival, clientToServer, callback, gameID);
+            GameWindow liveGame = new GameWindow(myUser, challanger, rival, clientToServer, callback, gameID, this);
             liveGame.Show();
             this.Hide();
         }

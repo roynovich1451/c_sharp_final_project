@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Dynamic;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace WcfFourInARowService
 {
@@ -33,6 +34,7 @@ namespace WcfFourInARowService
         }
         internal MoveResult VerifyMove(int col, char player)
         {
+            return MoveResult.YouWon; //TODO: remove after debug
             if (player != current_player)
             {
                 return MoveResult.NotYourTurn;
@@ -46,11 +48,11 @@ namespace WcfFourInARowService
                 if (board_state[i, col] == '\0')
                     break;
             }
+            board_state[i, col] = current_player;
             if (ItsAWin(i, col))
             {
                 return MoveResult.YouWon;
             }
-            board_state[i, col] = current_player;
             if (current_player == 'b')      //counter for score purposes
                 blue_circles++;
             else
@@ -64,11 +66,13 @@ namespace WcfFourInARowService
             return MoveResult.GameOn;
         }
 
+        public string getPlayer(int num)
+        {
+            return (num == 1 ? p1 : p2);
+        }
+
         private bool ItsAWin(int row, int col)
         {
-            Console.WriteLine("row " + row + " col " + col);
-            if (board_state[row, col] == '\0')
-                return false;
             return CheckRow(row, col) || CheckCol(row, col) || CheckDiagonal(row, col);
         }
 

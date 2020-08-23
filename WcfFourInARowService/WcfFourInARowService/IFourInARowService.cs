@@ -30,6 +30,8 @@ namespace WcfFourInARowService
         [OperationContract]
         void NoticeAll(string player, bool connected);
         [OperationContract]
+        void NoticeAllGameStarted(string challanger, string rival, bool connected);
+        [OperationContract]
         Dictionary<string, IFourInARowCallback> GetConnectedClients(string myUser);
         [OperationContract]
         List<string> createSortedList(string by);

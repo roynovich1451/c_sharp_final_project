@@ -38,7 +38,8 @@ namespace FourInARowClient
         private int discCounter = 0;
         private readonly int[] board_state = new int[BOARD_SIZE];
         #endregion
-        public GameWindow(string myUser, string challanger, string rival, FourInARowServiceClient clientToServer, ClientCallback clientCallback, int gameID)
+        public GameWindow(string myUser, string challanger, string rival, 
+            FourInARowServiceClient clientToServer, ClientCallback clientCallback, int gameID, LobbyWindow lobbyWindow)
         {
             InitializeComponent();
             callback = clientCallback;
@@ -46,9 +47,12 @@ namespace FourInARowClient
             myRival = rival;
             this.myUser = myUser;
             this.gameID = gameID;
+            this.lobbyWindow = lobbyWindow;
             this.playerNum = (myUser == challanger ? 0 : 1);
             callback.updateGame += DrawDisc;
+            callback.endGame += EndGame;
             lbGameTitle.Content = $"{myUser}";
+            lbID.Content = $"{gameID}";
         }
 
         private void MyCanvas_MouseDown(object sender, MouseButtonEventArgs e)
@@ -68,9 +72,9 @@ namespace FourInARowClient
                 MessageBox.Show("Not your turn","Invalid", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            DrawDisc(col);
             if (res == MoveResult.Draw) EndGame("Game Ended with Draw");
             if (res == MoveResult.YouWon) EndGame("You Won the Game");
-            DrawDisc(col);
         }
 
         private void DrawDisc(int col)
@@ -147,8 +151,13 @@ namespace FourInARowClient
         {
             //TODO: need to check this, Close() might be too strong
             MessageBox.Show(message);
+            Thread updateOtherThread = new Thread(() =>
+            {
+                clientToServer.NoticeAllGameStarted(myUser, myRival, true);
+            });
+            updateOtherThread.Start();
+            lobbyWindow.Show();
             this.Close();
         }
     }
-
 }

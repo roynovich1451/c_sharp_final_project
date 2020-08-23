@@ -56,6 +56,10 @@ namespace FourInARowClient
                 {
                     MessageBox.Show(fault.Detail.Details, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+                catch (FaultException<UserNameInUse> fault)
+                {
+                    MessageBox.Show(fault.Detail.Details, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
                 catch (FaultException<IncorrectPasswordFault> fault)
                 {
                     MessageBox.Show(fault.Detail.Details, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

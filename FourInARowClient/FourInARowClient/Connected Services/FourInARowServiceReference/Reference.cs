@@ -311,6 +311,12 @@ namespace FourInARowClient.FourInARowServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/NoticeAll", ReplyAction="http://tempuri.org/IFourInARowService/NoticeAllResponse")]
         System.Threading.Tasks.Task NoticeAllAsync(string player, bool connected);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/NoticeAllGameStarted", ReplyAction="http://tempuri.org/IFourInARowService/NoticeAllGameStartedResponse")]
+        void NoticeAllGameStarted(string challanger, string rival, bool connected);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/NoticeAllGameStarted", ReplyAction="http://tempuri.org/IFourInARowService/NoticeAllGameStartedResponse")]
+        System.Threading.Tasks.Task NoticeAllGameStartedAsync(string challanger, string rival, bool connected);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/GetConnectedClients", ReplyAction="http://tempuri.org/IFourInARowService/GetConnectedClientsResponse")]
         System.Collections.Generic.Dictionary<string, object> GetConnectedClients(string myUser);
         
@@ -464,6 +470,14 @@ namespace FourInARowClient.FourInARowServiceReference {
         
         public System.Threading.Tasks.Task NoticeAllAsync(string player, bool connected) {
             return base.Channel.NoticeAllAsync(player, connected);
+        }
+        
+        public void NoticeAllGameStarted(string challanger, string rival, bool connected) {
+            base.Channel.NoticeAllGameStarted(challanger, rival, connected);
+        }
+        
+        public System.Threading.Tasks.Task NoticeAllGameStartedAsync(string challanger, string rival, bool connected) {
+            return base.Channel.NoticeAllGameStartedAsync(challanger, rival, connected);
         }
         
         public System.Collections.Generic.Dictionary<string, object> GetConnectedClients(string myUser) {

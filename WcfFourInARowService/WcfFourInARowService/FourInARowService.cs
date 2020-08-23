@@ -13,7 +13,7 @@ namespace WcfFourInARowService
           ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class FourInARowService : IFourInARowService
     {
-        private int gameID = 0; //count games
+        private int gameID = 0; 
         public Dictionary<string, IFourInARowCallback> connetedClients = new Dictionary<string, IFourInARowCallback>();
         private readonly Dictionary<int, GameManager> games = new Dictionary<int, GameManager>();
         private const int TOP3 = 3;
@@ -26,7 +26,7 @@ namespace WcfFourInARowService
         }
 
         public void NoticeAll(string player, bool connected)
-            //update all connected client, other client just connect/disconnect
+        //update all connected client, other client just connect/disconnect
         {
             var connectButMe = new Dictionary<string, IFourInARowCallback>(connetedClients);
             connectButMe.Remove(player);
@@ -135,108 +135,101 @@ namespace WcfFourInARowService
             MoveResult result = games[gameId].VerifyMove(col, sign);
             if (result == MoveResult.Draw || result == MoveResult.YouWon)
             {
+                //updateDBAfterGame(result, sign, gameID);
                 games.Remove(gameId);
-                int p1Score = 0;
-                int p2Score = 0;
-                /*using (var ctx = new fourinrowDBEntities())
-                {
-                    var updateGame = (from g in ctx.Games
-                                      where g.GameId == gameId
-                                      select g).First();
-                    var updateP1 = (from u in ctx.Users
-                                     where u.UserName == games[gameId].p1
-                                     select u).First();
-                    var updateP2 = (from u in ctx.Users
-                                    where u.UserName == games[gameId].p2
-                                    select u).First();
-                */
-                Game updateGame = new Game();
-                User updateP1 = new User();
-                User updateP2 = new User();
-                if (result == MoveResult.Draw) //game end with draw
-                {
-                    updateGame.Winner = "Draw";
-                    p1Score = games[gameId].CalculateScore('b', 'd');
-                    p2Score = games[gameId].CalculateScore('r', 'd');
-                    updateGame.WinnerPoint = Math.Max(p1Score, p2Score);
-                    updateP1.CareerGames += 1;
-                    updateP1.Points += p1Score;
-                    updateP2.CareerGames += 1;
-                    updateP2.Points += p2Score;
-
-                    Thread updateOtherThread = new Thread(() =>
-                    {
-                        connetedClients[rival].OtherPlayerMoved(result, col);
-                    });
-                    updateOtherThread.Start();
-                }
-                if (result == MoveResult.YouWon) //other player won
-                {
-                    char charWinner = sign == 'b' ? 'r' : 'b'; //swap char
-                    p1Score = games[gameId].CalculateScore('b', charWinner);
-                    p2Score = games[gameId].CalculateScore('r', charWinner);
-                    if (charWinner == 'b') //P1 win
-                    {
-                        updateGame.WinnerPoint = p1Score;
-                        updateP1.CareerGames += 1;
-                        updateP1.Points += p1Score;
-                        updateP1.Wins += 1;
-                        updateP2.CareerGames += 1;
-                        updateP2.Points += p2Score;
-                        updateP2.Loosess += 1;
-                    }
-                    if (charWinner == 'r') //P2 win
-                    {
-                        updateGame.WinnerPoint = p2Score;
-                        updateP2.CareerGames += 1;
-                        updateP2.Points += p2Score;
-                        updateP2.Wins += 1;
-                        updateP1.CareerGames += 1;
-                        updateP1.Points += p1Score;
-                        updateP1.Loosess += 1;
-                    }
-                    Thread updateOtherThread = new Thread(() =>
-                    {
-                        connetedClients[rival].OtherPlayerMoved(result, col);
-                    });
-                    updateOtherThread.Start();
-                }
-                //ctx.SaveChanges();
-                //}           
             }
+            sendThred(rival, result, col);
+            return result;
+        }
+
+        void sendThred(string rival, MoveResult result, int col)
+        {
             if (!connetedClients.ContainsKey(rival))
             {
                 throw new FaultException<OpponentDisconnectedFault>(new OpponentDisconnectedFault());
             }
-            if (result != MoveResult.NotYourTurn && result != MoveResult.InvalidMove)
+            Thread updateOtherThread = new Thread(() =>
             {
-                Thread updateOtherThread = new Thread(() =>
-                {
-                    connetedClients[rival].OtherPlayerMoved(result, col);
-                });
-                updateOtherThread.Start();
-            }
-            return result;
+                connetedClients[rival].OtherPlayerMoved(result, col);
+            });
+            updateOtherThread.Start();
         }
-
+        private void updateDBAfterGame(MoveResult res, char sign, int gameID)
+        {
+            int p1Score = 0;
+            int p2Score = 0; 
+            var p1 = games[gameID].getPlayer(1);
+            var p2 = games[gameID].getPlayer(2);
+            using (var ctx = new fourinrowDBEntities())
+            {
+                var updateGame = (from g in ctx.Games
+                                  where g.GameId == gameID
+                                  select g).FirstOrDefault();
+                var updateP1 = (from u in ctx.Users
+                                where u.UserName == p1
+                                select u).FirstOrDefault();
+                var updateP2 = (from u in ctx.Users
+                                where u.UserName == p2
+                                select u).FirstOrDefault();
+                switch (res)
+                {
+                    case MoveResult.Draw:
+                        p1Score = games[gameID].CalculateScore('r', 'd');
+                        p2Score = games[gameID].CalculateScore('b', 'd');
+                        updateGame.Winner = "Draw";
+                        updateGame.WinnerPoint = Math.Max(p1Score, p2Score);
+                        updateP1.CareerGames += 1;
+                        updateP1.Points += p1Score;
+                        updateP2.CareerGames += 1;
+                        updateP2.Points += p2Score;
+                        break;
+                    case MoveResult.YouWon:
+                        switch (sign)
+                        {
+                            case 'r':
+                                p1Score = games[gameID].CalculateScore('r', 'r');
+                                p2Score = games[gameID].CalculateScore('b', 'r');
+                                updateGame.Winner = p1;
+                                updateGame.WinnerPoint = p1Score;
+                                updateP1.Wins += 1;
+                                updateP2.Loosess += 1;
+                                break;
+                            case 'b':
+                                p1Score = games[gameID].CalculateScore('r', 'b');
+                                p2Score = games[gameID].CalculateScore('b', 'b');
+                                updateGame.Winner = p2;
+                                updateGame.WinnerPoint = p2Score;
+                                updateP2.Wins += 1;
+                                updateP1.Loosess += 1;
+                                break;
+                        }
+                        updateP1.CareerGames += 1;
+                        updateP1.Points += p1Score;
+                        updateP2.CareerGames += 1;
+                        updateP2.Points += p2Score;
+                        break;
+                }
+                ctx.SaveChanges();
+            }
+        }
         public void StartNewGame(string challanger, string rival)
         {
             using (var ctx = new fourinrowDBEntities())
             {
                 DateTime localTime = DateTime.Now;
-                /*
+
                 Game newGame = new Game
                 {
-                    GameId = ++gameID,
+                    GameId = gameID,
                     Date = localTime,
-                    Player1 = player1,
-                    Player2 = player2,
+                    Player1 = challanger,
+                    Player2 = rival,
                     WinnerPoint = 0,
                     Winner = "Live" //means game still running, will change in the end of game
                 };
                 ctx.Games.Add(newGame);
                 ctx.SaveChanges();
-                */
+
                 GameManager gm = new GameManager(challanger, rival, connetedClients[challanger], connetedClients[rival]);
                 games.Add(gameID, gm);
                 Thread updateRivalThread = new Thread(() =>
@@ -247,7 +240,16 @@ namespace WcfFourInARowService
                 NoticeAllGameStarted(challanger, rival, false);
             }
         }
-
+        private void getMaxGameID()
+        {
+            using (var ctx = new fourinrowDBEntities())
+            {
+                var maxId = (from g in ctx.Games
+                             orderby g.GameId descending
+                             select g.GameId).FirstOrDefault();
+                gameID = maxId + 1;
+            }
+        }
         public Dictionary<string, IFourInARowCallback> GetConnectedClients(string myUser)
         {
             var ret = new Dictionary<string, IFourInARowCallback>(connetedClients);
@@ -264,7 +266,7 @@ namespace WcfFourInARowService
             bool res = connetedClients[rival].SendGameInvitation(rival, Challenger);
             if (res == true)
             {
-                gameID++;
+                getMaxGameID();
                 return gameID;
             }
             return -1;
@@ -374,7 +376,7 @@ namespace WcfFourInARowService
             {
                 if (game.Winner == player) wins++;
             }
-            return ((double)wins / list.Count())*100;
+            return ((double)wins / list.Count()) * 100;
         }
 
         public List<string> getGamesHistory()
@@ -417,12 +419,13 @@ namespace WcfFourInARowService
             }
         }
 
-        public List<string> getLiveGames(){
+        public List<string> getLiveGames()
+        {
             using (var ctx = new fourinrowDBEntities())
             {
                 List<string> liveGamesData = new List<string>();
                 var LiveGames = (from g in ctx.Games
-                                 where g.WinnerPoint == 0
+                                 where g.Winner == "Live"
                                  select g).ToList();
                 if (LiveGames.Count == 0) return liveGamesData;
                 foreach (var game in LiveGames)
@@ -465,7 +468,7 @@ namespace WcfFourInARowService
                                  orderby u.Points descending
                                  select u).ToList();
                 if (allSorted == null) return top3;
-                for (int i=0; i < TOP3 && i < allSorted.Count; i++)
+                for (int i = 0; i < TOP3 && i < allSorted.Count; i++)
                 {
                     var now = Tuple.Create(allSorted[i].UserName, allSorted[i].Points);
                     top3.Add(i, now);

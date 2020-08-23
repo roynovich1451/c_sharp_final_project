@@ -12,7 +12,10 @@
             <RowDefinition Height="5*" />
             <RowDefinition Height="0.3*" />
         </Grid.RowDefinitions>
-        <Label Name="lbGameTitle" FontSize="20" Content="Vs." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel>
+            <Label Name="lbGameTitle" FontSize="20" Content="Vs." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label Name="lbID" FontSize="20" Content="" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </StackPanel>
         <Canvas Name="myCanvas" Grid.Row="1" MouseDown="MyCanvas_MouseDown">
             <Canvas.Background>
                 <ImageBrush ImageSource="board_image.jpg"/>
