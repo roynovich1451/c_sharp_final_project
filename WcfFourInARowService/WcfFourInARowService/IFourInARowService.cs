@@ -21,10 +21,10 @@ namespace WcfFourInARowService
         [FaultContract(typeof(OpponentDisconnectedFault))]
         MoveResult ReportMove(int gameId, int col, int player);
         [OperationContract]
-        void StartNewGame(string player1, string player2);
+        void StartNewGame(string challanger, string rival);
         [OperationContract]
         [FaultContract(typeof(OpponentDisconnectedFault))]
-        bool ChallengeRival(string rival, string Challenger);
+        int ChallengeRival(string rival, string Challenger);
         [OperationContract]
         void Disconnect(string userName,int gameID);
         [OperationContract]
@@ -52,7 +52,7 @@ namespace WcfFourInARowService
         [OperationContract]
         bool SendGameInvitation(string rival, string Challenger); //anounce player other player Challenged him
         [OperationContract(IsOneWay = true)]
-        void StartGameAgainstRival(string Challenger);
+        void StartGameAgainstRival(string Challenger, int gameID);
 
         [OperationContract(IsOneWay = true)]
         void OtherPlayerDisOConnnectd(string user, bool connect);
@@ -62,7 +62,5 @@ namespace WcfFourInARowService
         void OtherPlayerMoved(MoveResult moveResult, int col); //update board according rival movment
         [OperationContract(IsOneWay = true)]
         void NewPlayerConnected(string user);
-        [OperationContract(IsOneWay = true)]
-        void NotifyNewGameId(int gameId);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Dynamic;
 
 namespace WcfFourInARowService
 {
@@ -26,7 +27,10 @@ namespace WcfFourInARowService
             this.p1Callback = p1Callback;
             this.p2Callback = p2Callback;
         }
-
+        public Tuple<string,string> getGameParticipants()
+        {
+            return Tuple.Create(p1, p2);
+        }
         internal MoveResult VerifyMove(int col, char player)
         {
             if (player != current_player)

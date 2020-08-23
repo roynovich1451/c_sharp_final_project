@@ -9,10 +9,9 @@ namespace FourInARowClient
         #region Delegates
         internal Func<string, bool> popUpGameInvitation;
         internal Action<int> updateGame;
-        internal Action<string> startGame;
+        internal Action<string, int> startGame;
         internal Action<string, bool> updateRivalList;
         internal Action<string> endGame;
-        internal Action<int> updateLiveGameId;
         internal string myUser;
         #endregion
 
@@ -36,15 +35,12 @@ namespace FourInARowClient
 
         public bool SendGameInvitation(string rival, string challenger)
         {
-            MessageBoxResult res = MessageBox.Show($"{rival} has challenged you\nDo you want to start game?", "Game invitation",
-                MessageBoxButton.YesNo, MessageBoxImage.Question);
-            return res == MessageBoxResult.Yes ? true : false;
-
+            return popUpGameInvitation(challenger);
         }
 
-        public void StartGameAgainstRival(string challenger)
+        public void StartGameAgainstRival(string challenger, int gameID)
         {
-            startGame(challenger);
+            startGame(challenger, gameID);
         }
 
         public void RivalStartGame(string p1, string p2)
@@ -52,14 +48,11 @@ namespace FourInARowClient
             throw new NotImplementedException();
         }
 
-        public void NotifyNewGameId(int gameId)
-        {
-            updateLiveGameId(gameId);
-        }
 
         public void OtherPlayerDisOConnnectd(string user, bool connect)
         {
             updateRivalList(user, connect);
         }
+
     }
 }

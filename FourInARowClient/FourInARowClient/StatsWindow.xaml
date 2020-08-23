@@ -25,7 +25,7 @@
         <ListBox Name="lbAllGames" Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" Margin="10,10,9.8,10"/>
         <TextBlock Text="Sort users" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" />
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
-            <ComboBox Name="cmbSort" Margin="20,2"
+            <ComboBox Name="cmbSort" Margin="70,2"
                   SelectedItem="games" Text="--Sort Type--"/>
             <Button Name="btnSort" Content="See result" Margin="70,2" Click="btnSort_Click"/>
         </StackPanel>

@@ -40,7 +40,23 @@ namespace WcfFourInARowService
                 updateOtherPlayerThread.Start();
             }
         }
-        
+        public void NoticeAllGameStarted(string challanger, string rival, bool connected)
+        //update all connected client, other client just connect/disconnect
+        {
+            var connectButMe = new Dictionary<string, IFourInARowCallback>(connetedClients);
+            connectButMe.Remove(challanger);
+            connectButMe.Remove(rival);
+            foreach (var callBack in connectButMe.Values)
+            {
+                Thread updateOtherPlayerThread = new Thread(() =>
+                {
+                    callBack.OtherPlayerDisOConnnectd(challanger, connected);
+                    callBack.OtherPlayerDisOConnnectd(rival, connected);
+                }
+              );
+                updateOtherPlayerThread.Start();
+            }
+        }
         public void ClientConnect(string userName, string hashedPassword)
         {
             if (connetedClients.ContainsKey(userName))
@@ -192,11 +208,10 @@ namespace WcfFourInARowService
             return result;
         }
 
-        public void StartNewGame(string player1, string player2)
+        public void StartNewGame(string challanger, string rival)
         {
             using (var ctx = new fourinrowDBEntities())
             {
-                ++gameID;
                 DateTime localTime = DateTime.Now;
                 /*
                 Game newGame = new Game
@@ -211,11 +226,14 @@ namespace WcfFourInARowService
                 ctx.Games.Add(newGame);
                 ctx.SaveChanges();
                 */
-                connetedClients[player2].StartGameAgainstRival(player1);
-                GameManager gm = new GameManager(player1, player2, connetedClients[player1], connetedClients[player2]);
+                GameManager gm = new GameManager(challanger, rival, connetedClients[challanger], connetedClients[rival]);
                 games.Add(gameID, gm);
-                connetedClients[player1].NotifyNewGameId(gameID);
-                connetedClients[player2].NotifyNewGameId(gameID);
+                Thread updateRivalThread = new Thread(() =>
+                {
+                    connetedClients[rival].StartGameAgainstRival(challanger, gameID);
+                });
+                updateRivalThread.Start();
+                NoticeAllGameStarted(challanger, rival, false);
             }
         }
 
@@ -226,22 +244,19 @@ namespace WcfFourInARowService
             return ret;
         }
 
-        public bool ChallengeRival(string rival, string Challenger)
+        public int ChallengeRival(string rival, string Challenger)
         {
             if (!connetedClients.ContainsKey(rival))
             {
                 throw new FaultException<OpponentDisconnectedFault>(new OpponentDisconnectedFault());
             }
             bool res = connetedClients[rival].SendGameInvitation(rival, Challenger);
-            return res;
-        }
-
-        private void NeedToUpdateRivalList(string player)
-        {
-            foreach (var client in connetedClients.Values)
+            if (res == true)
             {
-                client.NewPlayerConnected(player);
+                gameID++;
+                return gameID;
             }
+            return -1;
         }
 
         public List<string> createSortedList(string by)

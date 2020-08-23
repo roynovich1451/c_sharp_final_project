@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FourInARowClient"
         mc:Ignorable="d"
-        Title="Connect Four" Height="625" Width="625" Closing="Window_Closing">
+        Title="Connect Four" Height="625" Width="625">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />

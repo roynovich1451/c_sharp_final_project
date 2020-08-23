@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FourInARowClient"
-        Closed="Window_Closed"
+        Closed="Window_Closing"
         mc:Ignorable="d"
         Title="Lobby" Height="600" Width="800">
     <Grid Name="mainGrid">
@@ -26,8 +26,7 @@
                  Margin="5" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3">
             <Grid Name="gameGrid" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="357*"/>
-                    <ColumnDefinition Width="151*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -35,7 +34,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Name="lbUser" Grid.Row="0" Grid.Column="0" FontSize="20" Content="Hello, " HorizontalAlignment="Center" Margin="218,0,67.7,77.4" Grid.RowSpan="2"/>
+                <Label Name="lbUser" Content="Hello, " VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
                 <Button Name="btnStartGame" Grid.Column="0" Grid.Row="1" Margin="80,10.2,80.2,10.4" Click="btnStartGame_Click" Grid.ColumnSpan="2">
                     <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
                         Play 4 in a row

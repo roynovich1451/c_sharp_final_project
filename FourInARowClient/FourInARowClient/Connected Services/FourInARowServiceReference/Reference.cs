@@ -286,18 +286,18 @@ namespace FourInARowClient.FourInARowServiceReference {
         System.Threading.Tasks.Task<FourInARowClient.FourInARowServiceReference.MoveResult> ReportMoveAsync(int gameId, int col, int player);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/StartNewGame", ReplyAction="http://tempuri.org/IFourInARowService/StartNewGameResponse")]
-        void StartNewGame(string player1, string player2);
+        void StartNewGame(string challanger, string rival);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/StartNewGame", ReplyAction="http://tempuri.org/IFourInARowService/StartNewGameResponse")]
-        System.Threading.Tasks.Task StartNewGameAsync(string player1, string player2);
+        System.Threading.Tasks.Task StartNewGameAsync(string challanger, string rival);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/ChallengeRival", ReplyAction="http://tempuri.org/IFourInARowService/ChallengeRivalResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(FourInARowClient.FourInARowServiceReference.OpponentDisconnectedFault), Action="http://tempuri.org/IFourInARowService/ChallengeRivalOpponentDisconnectedFaultFaul" +
             "t", Name="OpponentDisconnectedFault", Namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService")]
-        bool ChallengeRival(string rival, string Challenger);
+        int ChallengeRival(string rival, string Challenger);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/ChallengeRival", ReplyAction="http://tempuri.org/IFourInARowService/ChallengeRivalResponse")]
-        System.Threading.Tasks.Task<bool> ChallengeRivalAsync(string rival, string Challenger);
+        System.Threading.Tasks.Task<int> ChallengeRivalAsync(string rival, string Challenger);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/Disconnect", ReplyAction="http://tempuri.org/IFourInARowService/DisconnectResponse")]
         void Disconnect(string userName, int gameID);
@@ -367,7 +367,7 @@ namespace FourInARowClient.FourInARowServiceReference {
         bool SendGameInvitation(string rival, string Challenger);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/StartGameAgainstRival")]
-        void StartGameAgainstRival(string Challenger);
+        void StartGameAgainstRival(string Challenger, int gameID);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/OtherPlayerDisOConnnectd")]
         void OtherPlayerDisOConnnectd(string user, bool connect);
@@ -380,9 +380,6 @@ namespace FourInARowClient.FourInARowServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/NewPlayerConnected")]
         void NewPlayerConnected(string user);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFourInARowService/NotifyNewGameId")]
-        void NotifyNewGameId(int gameId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -437,19 +434,19 @@ namespace FourInARowClient.FourInARowServiceReference {
             return base.Channel.ReportMoveAsync(gameId, col, player);
         }
         
-        public void StartNewGame(string player1, string player2) {
-            base.Channel.StartNewGame(player1, player2);
+        public void StartNewGame(string challanger, string rival) {
+            base.Channel.StartNewGame(challanger, rival);
         }
         
-        public System.Threading.Tasks.Task StartNewGameAsync(string player1, string player2) {
-            return base.Channel.StartNewGameAsync(player1, player2);
+        public System.Threading.Tasks.Task StartNewGameAsync(string challanger, string rival) {
+            return base.Channel.StartNewGameAsync(challanger, rival);
         }
         
-        public bool ChallengeRival(string rival, string Challenger) {
+        public int ChallengeRival(string rival, string Challenger) {
             return base.Channel.ChallengeRival(rival, Challenger);
         }
         
-        public System.Threading.Tasks.Task<bool> ChallengeRivalAsync(string rival, string Challenger) {
+        public System.Threading.Tasks.Task<int> ChallengeRivalAsync(string rival, string Challenger) {
             return base.Channel.ChallengeRivalAsync(rival, Challenger);
         }
         

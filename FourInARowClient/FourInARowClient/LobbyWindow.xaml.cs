@@ -20,19 +20,22 @@ namespace FourInARowClient
         public LobbyWindow(string userName, ClientCallback cc, FourInARowServiceClient fc)
         {
             InitializeComponent();
-            lbUser.Content += userName;
             clientToServer = fc;
             callback = cc;
             myUser = userName;
+            lbUser.Content += myUser;
             initRivalList(myUser);
             updateLobbyStats();
+            initCallbacks();
+            clientToServer.NoticeAll(myUser, true);
+        }
+        private void initCallbacks()
+        {
             callback.myUser = myUser;
             callback.startGame += challengeAccepted;
             callback.popUpGameInvitation += popInvitation;
             callback.updateRivalList += updateRivalList;
-            clientToServer.NoticeAll(myUser, true);
         }
-
         private void updateLobbyStats()
         {
             updateStats(myUser, true);
@@ -61,8 +64,22 @@ namespace FourInARowClient
         }
         private void lbRivals_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
+            if(availableRivals.Count == 0)
+            {
+                resetRivalStats();
+                return;
+            }
             String userName = lbRivals.SelectedItem.ToString();
             updateStats(userName, false);
+
+        }
+        private void resetRivalStats()
+        {
+            tbRivalCarrer.Text = "";
+            tbRivalLosses.Text = "";
+            tbRivalPoint.Text = "";
+            tbRivalWins.Text = "";
+            tbRivalPercantage.Text = "";
         }
         private void updateStats(string userName, bool where)
         {
@@ -130,37 +147,39 @@ namespace FourInARowClient
         }
 
         private void btnStartGame_Click(object sender, RoutedEventArgs e)
-        {
+        { 
             if (lbRivals.SelectedItem == null)
             {
                 MessageBox.Show("Must pick a Rival to start new game", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             string rival = lbRivals.SelectedItem.ToString();
-             bool response = clientToServer.ChallengeRival(rival, myUser);
-            if (response == false)
+            int gameID = clientToServer.ChallengeRival(rival, myUser);
+            if (gameID == -1)
             {
                 MessageBox.Show($"{rival} declined your game invitation...\nwhat a chicken!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             else
             {
-                challengeAccepted(rival);
                 clientToServer.StartNewGame(myUser, rival);
+                challengeAccepted(rival, gameID);
             }            
         }
 
-        private void challengeAccepted(string rival)
+        private void challengeAccepted(string rival, int gameID)
         {
-            GameWindow liveGame = new GameWindow(myUser, rival, clientToServer, callback);
-            updateRivalList(rival, false);
+            GameWindow liveGame = new GameWindow(myUser, rival, clientToServer, callback, gameID);
             liveGame.ShowDialog();
         }
 
-        internal bool popInvitation(string challenger)
+        internal bool popInvitation(string Challenger)
         {
-            MessageBoxResult res = MessageBox.Show($"{challenger} has sent you a game request\nDo you accept the challenge?", "Game Invitation", MessageBoxButton.YesNo, MessageBoxImage.Error);
-            if (res == MessageBoxResult.Yes) return true;
+            MessageBoxResult res = MessageBox.Show($"{Challenger} has sent you a game request\nDo you accept the challenge?", "Game Invitation", MessageBoxButton.YesNo, MessageBoxImage.Error);
+            if (res == MessageBoxResult.Yes)
+            {
+                return true;
+            }
             return false;
         }
 
@@ -190,6 +209,10 @@ namespace FourInARowClient
             lg.Show(); //TODO: decide if need to be Show or ShowDialog..
         }
 
-
+        private void Window_Closing(object sender, EventArgs e)
+        {
+            clientToServer.Disconnect(myUser, -1);
+            Environment.Exit(Environment.ExitCode);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using FourInARowClient.FourInARowServiceReference;
 using System;
+using System.ComponentModel;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +21,7 @@ namespace FourInARowClient
         private string myRival;
         private string myUser;
         private LobbyWindow lobbyWindow;
+        private int gameID;
         #endregion
 
         #region Private fields       
@@ -35,24 +37,17 @@ namespace FourInARowClient
         private int discCounter = 0;
         private readonly int[] board_state = new int[BOARD_SIZE];
         #endregion
-        public GameWindow(string myUser, string rival, FourInARowServiceClient clientToServer, ClientCallback clientCallback)
+        public GameWindow(string myUser, string rival, FourInARowServiceClient clientToServer, ClientCallback clientCallback, int gameID)
         {
+            InitializeComponent();
             callback = clientCallback;
             this.clientToServer = clientToServer;
             myRival = rival;
             this.myUser = myUser;
+            this.gameID = gameID;
             callback.updateGame += DrawDisc;
-            InitializeComponent();
         }
 
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            if (serverOn)
-            {
-                //Client.Disconnect(NumUser.ToString());
-            }
-            Environment.Exit(Environment.ExitCode);
-        }
         private void MyCanvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Point p = e.GetPosition(myCanvas);
@@ -168,18 +163,17 @@ namespace FourInARowClient
                     }
                 }
         */
+        private void UpdateGameID(int id)
+        {
+            gameID = id;
+        }
 
         private void EndGame(string message)
         {
+            //TODO: need to check this, Close() might be too strong
             MessageBox.Show(message);
             this.Close();
         }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Environment.Exit(Environment.ExitCode);
-        }
-
     }
 
 }
