@@ -28,9 +28,14 @@ namespace WcfFourInARowService
         public void NoticeAll(string player, bool connected)
         //update all connected client, other client just connect/disconnect
         {
-            var connectButMe = new Dictionary<string, IFourInARowCallback>(connetedClients);
-            connectButMe.Remove(player);
-            foreach (var callBack in connectButMe.Values)
+            var connectAtLobby = new Dictionary<string, IFourInARowCallback>(connetedClients);
+            connectAtLobby.Remove(player);
+            foreach (var game in games.Values)
+            {
+                if (connectAtLobby.ContainsKey(game.p1)) connectAtLobby.Remove(game.p1);
+                if (connectAtLobby.ContainsKey(game.p2)) connectAtLobby.Remove(game.p2);
+            }
+            foreach (var callBack in connectAtLobby.Values)
             {
                 Thread updateOtherPlayerThread = new Thread(() =>
                 {
@@ -43,10 +48,15 @@ namespace WcfFourInARowService
         public void NoticeAllGameStarted(string challanger, string rival, bool connected)
         //update all connected client, other client just connect/disconnect
         {
-            var connectButMe = new Dictionary<string, IFourInARowCallback>(connetedClients);
-            connectButMe.Remove(challanger);
-            connectButMe.Remove(rival);
-            foreach (var callBack in connectButMe.Values)
+            var connectAtLobby = new Dictionary<string, IFourInARowCallback>(connetedClients);
+            connectAtLobby.Remove(challanger);
+            connectAtLobby.Remove(rival);
+            foreach (var game in games.Values)
+            {
+                if (connectAtLobby.ContainsKey(game.p1)) connectAtLobby.Remove(game.p1);
+                if (connectAtLobby.ContainsKey(game.p2)) connectAtLobby.Remove(game.p2);
+            }
+            foreach (var callBack in connectAtLobby.Values)
             {
                 Thread updateOtherPlayerThread = new Thread(() =>
                 {
@@ -128,14 +138,22 @@ namespace WcfFourInARowService
             }
         }
 
-        public MoveResult ReportMove(int gameId, int col, int player)
+        public MoveResult ReportMove(int gameId, int col, int player, bool middleOfGame)
         {
+            if (!games.ContainsKey(gameId)) return MoveResult.GameOn;
             string rival = player == 1 ? games[gameId].p1 : games[gameId].p2;
             char sign = player == 1 ? 'b' : 'r';
-            MoveResult result = games[gameId].VerifyMove(col, sign);
-            if (result == MoveResult.Draw || result == MoveResult.YouWon)
+
+            MoveResult result = games[gameId].VerifyMove(col, sign, middleOfGame);
+            if (middleOfGame)
             {
-                //updateDBAfterGame(result, sign, gameID);
+                rival = rival == games[gameId].p1 ? games[gameId].p2 : games[gameId].p1;
+                result = MoveResult.YouLost;
+            }
+            if (result == MoveResult.NotYourTurn) return result;
+            if (result == MoveResult.Draw || result == MoveResult.YouWon || result == MoveResult.YouLost)
+            {
+                updateDBAfterGame(result, sign, gameID);
                 games.Remove(gameId);
             }
             sendThred(rival, result, col);
@@ -184,6 +202,7 @@ namespace WcfFourInARowService
                         updateP2.Points += p2Score;
                         break;
                     case MoveResult.YouWon:
+                    case MoveResult.YouLost:
                         switch (sign)
                         {
                             case 'r':
@@ -348,8 +367,9 @@ namespace WcfFourInARowService
             {
                 List<string> rivaryData = new List<string>();
                 var gamesBetween = (from g in ctx.Games
-                                    where (g.Player1 == p1 && g.Player2 == p2)
-                                            || (g.Player1 == p2 && g.Player2 == p1)
+                                    where (((g.Player1 == p1 && g.Player2 == p2)
+                                            || (g.Player1 == p2 && g.Player2 == p1))
+                                            && g.Winner != "Live")
                                     select g).ToList();
                 if (gamesBetween.Count == 0) return rivaryData;
                 rivaryData.Add(winPercentage(gamesBetween, p1).ToString());

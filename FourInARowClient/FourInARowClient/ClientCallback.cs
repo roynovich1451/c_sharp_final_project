@@ -22,6 +22,11 @@ namespace FourInARowClient
 
         public void OtherPlayerMoved(MoveResult moveResult, int col)
         {
+            if (moveResult == MoveResult.YouLost)
+            {
+                endGame("Other player retired\nYou Won!!!");
+                return;
+            }
             updateGame(col);
             if (moveResult == MoveResult.Draw)
             {
@@ -31,6 +36,7 @@ namespace FourInARowClient
             {
                 endGame("You lost...");
             }
+
         }
 
         public bool SendGameInvitation(string rival, string challenger)

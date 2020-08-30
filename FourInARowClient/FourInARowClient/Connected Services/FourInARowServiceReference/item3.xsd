@@ -31,6 +31,7 @@
       <xs:enumeration value="NotYourTurn" />
       <xs:enumeration value="GameOn" />
       <xs:enumeration value="InvalidMove" />
+      <xs:enumeration value="YouLost" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="MoveResult" nillable="true" type="tns:MoveResult" />

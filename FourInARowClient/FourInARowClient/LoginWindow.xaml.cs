@@ -12,28 +12,14 @@ namespace FourInARowClient
     /// </summary>
     public partial class LoginWindow : Window
     {
+        ClientCallback callback;
+        FourInARowServiceClient clientToServer;
         public LoginWindow()
         {
             InitializeComponent();
             callback = new ClientCallback();
             clientToServer = new FourInARowServiceClient(new InstanceContext(callback));
  
-        }
-        int numUser;
-        ClientCallback callback;
-        FourInARowServiceClient clientToServer;
-
-        bool gameStarted = false;
-
-        private void StartGame()
-        {
-            gameStarted = true;
-            /*GameWindow game = new GameWindow();
-            game.NumUser = numUser;
-            game.Client = clientToServer;
-            game.Callback = callback;
-            game.Show();*/
-            this.Hide();
         }
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)

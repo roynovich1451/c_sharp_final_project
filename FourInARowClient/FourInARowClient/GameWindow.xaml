@@ -5,18 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FourInARowClient"
         mc:Ignorable="d"
-        Title="Connect Four" Height="625" Width="625">
+        ResizeMode="NoResize"
+        Closing="Window_Closing"
+        Title="Connect Four" Height="700" Width="625">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="0.5*" />
         </Grid.RowDefinitions>
         <StackPanel>
             <Label Name="lbGameTitle" FontSize="20" Content="Vs." HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label Name="lbID" FontSize="20" Content="" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
-        <Canvas Name="myCanvas" Grid.Row="1" MouseDown="MyCanvas_MouseDown">
+        <Canvas Name="myCanvas" MouseDown="MyCanvas_MouseDown" Margin="0,87,0.4,0.2" Grid.RowSpan="2">
             <Canvas.Background>
                 <ImageBrush ImageSource="board_image.jpg"/>
             </Canvas.Background>

@@ -155,11 +155,6 @@ namespace FourInARowClient
                 lbRivals.Items.Refresh();
             }
         }
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            clientToServer.Disconnect(myUser, -1);
-        }
-
         private void btnStartGame_Click(object sender, RoutedEventArgs e)
         { 
             if (lbRivals.SelectedItem == null)
@@ -190,7 +185,7 @@ namespace FourInARowClient
 
         internal bool popInvitation(string Challenger)
         {
-            MessageBoxResult res = MessageBox.Show($"{Challenger} has sent you a game request\nDo you accept the challenge?", "Game Invitation", MessageBoxButton.YesNo, MessageBoxImage.Error);
+            MessageBoxResult res = MessageBox.Show($"{Challenger} has sent you a game request\nDo you accept the challenge?", "Game Invitation", MessageBoxButton.YesNo, MessageBoxImage.Information);
             if (res == MessageBoxResult.Yes)
             {
                 return true;

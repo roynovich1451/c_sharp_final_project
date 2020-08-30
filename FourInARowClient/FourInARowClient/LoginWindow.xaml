@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FourInARowClient"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="Login" Height="600" Width="400">
+        Title="Login" Height="400" Width="400">
 
     <Grid Name="mainGrid">
         <Grid.ColumnDefinitions>
@@ -16,32 +16,31 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Name="lbWelcom" Content="4 in a row" FontSize="30" FontWeight="Bold" FontStyle="Italic" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Label Name="lbuser" Grid.Row="1" Grid.Column="0" Content="User name:" VerticalAlignment="Center"/>
+        <Label Name="lbWelcom" Content="4 in a row" FontSize="30" FontWeight="Bold" FontStyle="Italic" Grid.ColumnSpan="3"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Label Name="lbuser" Grid.Row="1" Grid.Column="0" Content="User name:" VerticalAlignment="Center" HorizontalAlignment="Right"/>
         <TextBox Name="tbUser" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,17"/>
         <Label Name="lbpass" Grid.Row="2" Grid.Column="0" Content="Password:" 
-               VerticalAlignment="Center"/>
+               VerticalAlignment="Center" HorizontalAlignment="Right"/>
         <PasswordBox Name="tbPassword" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,17"/>
-        <Button Name="btnSignIn" Grid.Column="1" Grid.Row="3" Margin="10,20" Click="btnSignIn_Click">
+        <Button Name="btnSignIn" Grid.Column="1" Grid.Row="3" Margin="10,10" Click="btnSignIn_Click">
             <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
                Sign in
             </TextBlock>
         </Button>
-        <StackPanel Name="spSignUp" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3">
-            <Label Name="lbSignUp" Grid.Row="2" Grid.Column="0" Content="Still don't have user?" FontSize="16" 
+        <Label Name="lbSignUp" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Content="Still don't have user?" FontSize="16" 
                VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
-            <Button Name="btnSigUp" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4" Margin="80,10" Padding="18"
+        <Button Name="btnSigUp" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5" Margin="80,10"
                     Click="btnSigUp_Click">
-                <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
+            <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
                Sign Up
-                </TextBlock>
-            </Button>
-        </StackPanel>
+            </TextBlock>
+        </Button>
     </Grid>
 </Window>
 

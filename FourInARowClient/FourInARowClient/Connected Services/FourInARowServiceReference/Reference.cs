@@ -211,6 +211,9 @@ namespace FourInARowClient.FourInARowServiceReference {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         InvalidMove = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        YouLost = 5,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -280,10 +283,10 @@ namespace FourInARowClient.FourInARowServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/ReportMove", ReplyAction="http://tempuri.org/IFourInARowService/ReportMoveResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(FourInARowClient.FourInARowServiceReference.OpponentDisconnectedFault), Action="http://tempuri.org/IFourInARowService/ReportMoveOpponentDisconnectedFaultFault", Name="OpponentDisconnectedFault", Namespace="http://schemas.datacontract.org/2004/07/WcfFourInARowService")]
-        FourInARowClient.FourInARowServiceReference.MoveResult ReportMove(int gameId, int col, int player);
+        FourInARowClient.FourInARowServiceReference.MoveResult ReportMove(int gameId, int col, int player, bool middleOfGame);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/ReportMove", ReplyAction="http://tempuri.org/IFourInARowService/ReportMoveResponse")]
-        System.Threading.Tasks.Task<FourInARowClient.FourInARowServiceReference.MoveResult> ReportMoveAsync(int gameId, int col, int player);
+        System.Threading.Tasks.Task<FourInARowClient.FourInARowServiceReference.MoveResult> ReportMoveAsync(int gameId, int col, int player, bool middleOfGame);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/StartNewGame", ReplyAction="http://tempuri.org/IFourInARowService/StartNewGameResponse")]
         void StartNewGame(string challanger, string rival);
@@ -432,12 +435,12 @@ namespace FourInARowClient.FourInARowServiceReference {
             return base.Channel.ClientConnectAsync(userName, hashedPassword);
         }
         
-        public FourInARowClient.FourInARowServiceReference.MoveResult ReportMove(int gameId, int col, int player) {
-            return base.Channel.ReportMove(gameId, col, player);
+        public FourInARowClient.FourInARowServiceReference.MoveResult ReportMove(int gameId, int col, int player, bool middleOfGame) {
+            return base.Channel.ReportMove(gameId, col, player, middleOfGame);
         }
         
-        public System.Threading.Tasks.Task<FourInARowClient.FourInARowServiceReference.MoveResult> ReportMoveAsync(int gameId, int col, int player) {
-            return base.Channel.ReportMoveAsync(gameId, col, player);
+        public System.Threading.Tasks.Task<FourInARowClient.FourInARowServiceReference.MoveResult> ReportMoveAsync(int gameId, int col, int player, bool middleOfGame) {
+            return base.Channel.ReportMoveAsync(gameId, col, player, middleOfGame);
         }
         
         public void StartNewGame(string challanger, string rival) {

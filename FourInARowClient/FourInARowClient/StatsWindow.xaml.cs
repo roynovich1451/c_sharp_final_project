@@ -83,8 +83,12 @@ namespace FourInARowClient
             }
             else
             {
-                labelP1.Content = $"{p1} wins percantage: {ret[0]}";
-                labelP2.Content = $"{p2} wins percantage: {ret[1]}";
+                var p1wins = ret[0];
+                var p2wins = ret[1];
+                if (p1wins.Length > 4) p1wins = p1wins.Substring(0, 4);
+                if (p2wins.Length > 4) p2wins = p2wins.Substring(0, 4);
+                labelP1.Content = $"{p1} win {p1wins}%";
+                labelP2.Content = $"{p2} win {p2wins}%";
                 labelP1.Visibility = Visibility.Visible;
                 labelP2.Visibility = Visibility.Visible;
                 ret.RemoveAt(1);

@@ -19,7 +19,7 @@ namespace WcfFourInARowService
 
         [OperationContract]
         [FaultContract(typeof(OpponentDisconnectedFault))]
-        MoveResult ReportMove(int gameId, int col, int player);
+        MoveResult ReportMove(int gameId, int col, int player, bool middleOfGame);
         [OperationContract]
         void StartNewGame(string challanger, string rival);
         [OperationContract]

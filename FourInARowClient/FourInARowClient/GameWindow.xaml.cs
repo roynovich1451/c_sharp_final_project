@@ -18,7 +18,8 @@ namespace FourInARowClient
         #region DATA
         private FourInARowServiceClient clientToServer;
         private ClientCallback callback;
-        private string myRival;
+        private string rival;
+        private string challanger;
         private string myUser;
         private int playerNum;
         private LobbyWindow lobbyWindow;
@@ -26,7 +27,7 @@ namespace FourInARowClient
         #endregion
 
         #region Private fields       
-        private bool serverOn = false;
+
 
         private readonly static int DISC_SIZE = 60;
         private readonly static int BOARD_SIZE = 7;
@@ -42,26 +43,48 @@ namespace FourInARowClient
             FourInARowServiceClient clientToServer, ClientCallback clientCallback, int gameID, LobbyWindow lobbyWindow)
         {
             InitializeComponent();
-            callback = clientCallback;
+            applyWindowValues(myUser, challanger, rival, clientToServer, clientCallback, gameID, lobbyWindow);
+            initCallbacks();
+            makeTitle();
+            lbID.Content = $"GameID: {gameID}";
+        }
+        private void applyWindowValues(string myUser, string challanger, string rival,
+            FourInARowServiceClient clientToServer, ClientCallback clientCallback, int gameID, LobbyWindow lobbyWindow)
+        {
+            this.callback = clientCallback;
             this.clientToServer = clientToServer;
-            myRival = rival;
+            this.rival = rival;
+            this.challanger = challanger;
             this.myUser = myUser;
             this.gameID = gameID;
             this.lobbyWindow = lobbyWindow;
             this.playerNum = (myUser == challanger ? 0 : 1);
-            callback.updateGame += DrawDisc;
-            callback.endGame += EndGame;
-            lbGameTitle.Content = $"{myUser}";
-            lbID.Content = $"{gameID}";
         }
-
+        private void makeTitle()
+        {
+            if (myUser == challanger)
+            {
+                lbGameTitle.Content = $"{myUser} Vs {rival}";
+            } else
+            {
+                lbGameTitle.Content = $"{myUser} Vs {challanger}";
+            }
+            
+            if (myUser == challanger) lbGameTitle.Foreground = Brushes.Red;
+            else lbGameTitle.Foreground = Brushes.Green;
+        }
+        private void initCallbacks()
+        {
+            callback.updateGame = DrawDisc;
+            callback.endGame = EndGame;
+        }
         private void MyCanvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Point p = e.GetPosition(myCanvas);
             if (!InWindow(p))
                 return;
             int col = (int)Math.Floor(p.X / myCanvas.ActualWidth * BOARD_SIZE);
-            MoveResult res = clientToServer.ReportMove(gameID, col, playerNum);
+            MoveResult res = clientToServer.ReportMove(gameID, col, playerNum, false);
             if (res == MoveResult.InvalidMove)
             {
                 MessageBox.Show("Invalid move", "Invalid", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -115,7 +138,7 @@ namespace FourInARowClient
                     break;
                 }
                 Thread.Sleep(2);
-                b.Y += 3;
+                b.Y += 10;
                 Dispatcher.Invoke(() =>
                 {
                     Canvas.SetTop(b.Circle, b.Y);
@@ -149,15 +172,24 @@ namespace FourInARowClient
 
         private void EndGame(string message)
         {
-            //TODO: need to check this, Close() might be too strong
-            MessageBox.Show(message);
+            MessageBox.Show(message, "Game ended", MessageBoxButton.OK, MessageBoxImage.Information);
             Thread updateOtherThread = new Thread(() =>
             {
-                clientToServer.NoticeAllGameStarted(myUser, myRival, true);
+                clientToServer.NoticeAllGameStarted(challanger, rival, true);
             });
             updateOtherThread.Start();
             lobbyWindow.Show();
             this.Close();
+        }
+
+        private void Window_Closing(object sender, EventArgs e)
+        {
+            Thread updateOtherThread = new Thread(() =>
+            {
+                clientToServer.ReportMove(gameID, 1, myUser==challanger? 1:0, true);
+            });
+            updateOtherThread.Start();
+            lobbyWindow.Show();
         }
     }
 }

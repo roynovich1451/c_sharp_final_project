@@ -32,9 +32,9 @@ namespace WcfFourInARowService
         {
             return Tuple.Create(p1, p2);
         }
-        internal MoveResult VerifyMove(int col, char player)
+        internal MoveResult VerifyMove(int col, char player, bool ignore)
         {
-            return MoveResult.YouWon; //TODO: remove after debug
+            if (ignore) return MoveResult.GameOn;
             if (player != current_player)
             {
                 return MoveResult.NotYourTurn;
@@ -48,15 +48,15 @@ namespace WcfFourInARowService
                 if (board_state[i, col] == '\0')
                     break;
             }
+            if (current_player == 'b')      //counter for score purposes
+                blue_circles++;
+            else
+                red_circles++;
             board_state[i, col] = current_player;
             if (ItsAWin(i, col))
             {
                 return MoveResult.YouWon;
             }
-            if (current_player == 'b')      //counter for score purposes
-                blue_circles++;
-            else
-                red_circles++;
             if (blue_circles + red_circles == FULL_BOARD)
             {
                 return MoveResult.Draw;
@@ -172,8 +172,11 @@ namespace WcfFourInARowService
                 if (row + i < SIZE && col + i < SIZE)
                 {
                     if (board_state[row + i, col + i] == board_state[row, col])
-                        sum++; if (sum == 4)
-                        return true;
+                    {
+                        sum++;
+                        if (sum == 4)
+                            return true;
+                    }
                     else
                         break;
                 }
@@ -259,7 +262,7 @@ namespace WcfFourInARowService
                 int col = rnd.Next(7);
                 while (board_state[0, col] != '\0')
                     col = rnd.Next(7);
-                MoveResult res = VerifyMove(col, current_player);
+                MoveResult res = VerifyMove(col, current_player, false);
                 if (res == MoveResult.InvalidMove)
                     continue;
                 if (res == MoveResult.YouWon || res == MoveResult.Draw)
