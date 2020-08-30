@@ -36,7 +36,6 @@ namespace FourInARowClient
             {
                 endGame("You lost...");
             }
-
         }
 
         public bool SendGameInvitation(string rival, string challenger)

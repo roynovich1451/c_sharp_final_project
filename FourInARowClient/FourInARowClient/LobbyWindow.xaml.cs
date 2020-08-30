@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace FourInARowClient
 {
@@ -17,7 +19,6 @@ namespace FourInARowClient
         private FourInARowServiceClient clientToServer;
         private List<string> availableRivals;
 
-
         public LobbyWindow(string userName, ClientCallback cc, FourInARowServiceClient fc)
         {
             InitializeComponent();
@@ -28,21 +29,22 @@ namespace FourInARowClient
             initRivalList(myUser);
             updateLobbyStats();
             initCallbacks();
-            clientToServer.NoticeAll(myUser, true);
         }
+
         private void initCallbacks()
         {
             callback.myUser = myUser;
             callback.startGame += challengeAccepted;
             callback.popUpGameInvitation += popInvitation;
             callback.updateRivalList += updateRivalList;
+            clientToServer.NoticeAll(myUser, true);
         }
-        private void updateLobbyStats()
+        public void updateLobbyStats()
         {
             updateStats(myUser, true);
             fillTop3();
         }
-        private void fillTop3()
+        public void fillTop3()
         {
             var dict = clientToServer.getTopThreeUsers();
             int cnt = dict.Count;
@@ -65,14 +67,14 @@ namespace FourInARowClient
         }
         private void lbRivals_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if(availableRivals.Count == 0)
+            if (lbRivals.SelectedItem != null)
+            {
+                String userName = lbRivals.SelectedItem.ToString();
+                updateStats(userName, false);
+            } else
             {
                 resetRivalStats();
-                return;
             }
-            String userName = lbRivals.SelectedItem.ToString();
-            updateStats(userName, false);
-
         }
         private void resetRivalStats()
         {
@@ -82,7 +84,7 @@ namespace FourInARowClient
             tbRivalWins.Text = "";
             tbRivalPercantage.Text = "";
         }
-        private void updateStats(string userName, bool where)
+        public void updateStats(string userName, bool where)
         {
             var stats = clientToServer.getUserStats(userName);
             if (where == true) //My stats
@@ -195,14 +197,12 @@ namespace FourInARowClient
 
         private void btnStatsCenter_Click(object sender, RoutedEventArgs e)
         {
-            /* TODO: bring back when games available 
             var list = clientToServer.getGamesHistory().ToList();
             if (list.Count == 0)
             {
                 MessageBox.Show("No games played yet.\nNo data available.\nBack to lobby.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-            */
             StatsWindow stats = new StatsWindow(clientToServer, callback);
             stats.ShowDialog();
         }
@@ -216,7 +216,7 @@ namespace FourInARowClient
                 return;
             }
             LiveGamesWindow lg = new LiveGamesWindow(list);
-            lg.Show(); //TODO: decide if need to be Show or ShowDialog..
+            lg.Show(); 
         }
 
         private void Window_Closing(object sender, EventArgs e)
@@ -224,5 +224,6 @@ namespace FourInARowClient
             clientToServer.Disconnect(myUser, -1);
             Environment.Exit(Environment.ExitCode);
         }
+        
     }
 }

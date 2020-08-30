@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FourInARowClient"
         mc:Ignorable="d"
         Title="Stats center" Height="500" Width="800">
-    <Grid Name="mainGrid">
+    <Grid Name="mainGrid" Background="white">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>

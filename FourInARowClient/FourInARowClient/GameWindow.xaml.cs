@@ -29,11 +29,11 @@ namespace FourInARowClient
         #region Private fields       
 
 
-        private readonly static int DISC_SIZE = 60;
+        private readonly static double DISC_SIZE = 73;
         private readonly static int BOARD_SIZE = 7;
-        private readonly static int HEIGHT_MARGIN = 20;
-        private readonly static int BOTTOM_MARGIN = 10;
-        private readonly static double WIDTH_MARGIN = 0.15;
+        private readonly static double HEIGHT_MARGIN = 8;
+        private readonly static double BOTTOM_MARGIN = -1;
+        private readonly static double WIDTH_MARGIN = 0.08;
 
         private SolidColorBrush brush;
         private int discCounter = 0;

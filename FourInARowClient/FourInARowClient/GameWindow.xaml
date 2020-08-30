@@ -8,7 +8,7 @@
         ResizeMode="NoResize"
         Closing="Window_Closing"
         Title="Connect Four" Height="700" Width="625">
-    <Grid>
+    <Grid Background="white">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
             <RowDefinition Height="10*" />
@@ -18,7 +18,7 @@
             <Label Name="lbGameTitle" FontSize="20" Content="Vs." HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label Name="lbID" FontSize="20" Content="" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
-        <Canvas Name="myCanvas" MouseDown="MyCanvas_MouseDown" Margin="0,87,0.4,0.2" Grid.RowSpan="2">
+        <Canvas Name="myCanvas" MouseDown="MyCanvas_MouseDown" Margin="0,77,0.4,0.2" Grid.RowSpan="2">
             <Canvas.Background>
                 <ImageBrush ImageSource="board_image.jpg"/>
             </Canvas.Background>
