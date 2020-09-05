@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FourInARowClient"
         mc:Ignorable="d"
+        Closing="Window_Closing"
         Title="Lobby" Height="600" Width="800">
     <Grid Name="mainGrid" Background="white">
         <Grid.ColumnDefinitions>
@@ -23,7 +24,7 @@
         <!--OPTIONS-->
         <GroupBox Name="gbOptions" Header="Game options" FontWeight="Bold" Grid.Row="0"  BorderBrush="Black" BorderThickness="2"
                  Margin="5" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3">
-            <Grid Name="gameGrid" Background="White" >
+            <Grid Name="gameGrid" Background="White" MouseEnter="gameGrid_MouseEnter">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
@@ -55,7 +56,7 @@
         <!--UserStats-->
         <GroupBox Name="gbUserStats" Header="My stats"  BorderBrush="Black" BorderThickness="2"
                   Grid.Row="3" Grid.RowSpan="2" Margin="5" FontWeight="Bold">
-            <Grid Name="gridMyStats" Background="White">
+            <Grid Name="gridMyStats" Background="White" MouseEnter="gameGrid_MouseEnter">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -82,7 +83,7 @@
         <!--top 3 display-->
         <GroupBox Name="gbTop3" Header="Top 3" BorderBrush="Black" BorderThickness="2"
                  Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Margin="5" FontWeight="Bold">
-            <Grid Name="gridTop3" Background="White">
+            <Grid Name="gridTop3" Background="White"  MouseEnter="gameGrid_MouseEnter">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -110,7 +111,7 @@
         <!--selected Rival stats-->
         <GroupBox Name="gbSelectedRivalStats" Header="Selected rival's stats" BorderBrush="Black" BorderThickness="2"
                  Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Margin="5" FontWeight="Bold">
-            <Grid Name="gridSelectedRival" Background="white">
+            <Grid Name="gridSelectedRival" Background="white"  MouseEnter="gameGrid_MouseEnter">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -137,7 +138,7 @@
         <!--Rivals-->
         <GroupBox Name="gbConnected" Header="Available rivals" BorderBrush="Black" BorderThickness="2"
                       Grid.Column="2" Grid.RowSpan="3" Margin="5" FontWeight="Bold">
-            <ListBox Name="lbRivals" SelectionChanged="lbRivals_SelectionChanged"/>
+            <ListBox Name="lbRivals" SelectionChanged="lbRivals_SelectionChanged" MouseEnter="gameGrid_MouseEnter"/>
         </GroupBox>
     </Grid>
 </Window>

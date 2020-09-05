@@ -28,6 +28,7 @@ namespace WcfFourInARowService
         public void NoticeAll(string player, bool connected)
         //update all connected client, other client just connect/disconnect
         {
+
             var connectAtLobby = new Dictionary<string, IFourInARowCallback>(connetedClients);
             connectAtLobby.Remove(player);
             foreach (var game in games.Values)
@@ -269,10 +270,15 @@ namespace WcfFourInARowService
                 gameID = maxId + 1;
             }
         }
-        public Dictionary<string, IFourInARowCallback> GetConnectedClients(string myUser)
+        public List<string> GetConnectedClients(string myUser)
         {
-            var ret = new Dictionary<string, IFourInARowCallback>(connetedClients);
+            var ret = new List<string>(connetedClients.Keys.ToList());
             ret.Remove(myUser);
+            foreach (var game in games.Values)
+            {
+                if (ret.Contains(game.p1)) ret.Remove(game.p1);
+                if (ret.Contains(game.p2)) ret.Remove(game.p2);
+            }
             return ret;
         }
 

@@ -57,6 +57,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CallbackFailureFault.cs" />
     <Compile Include="ConnectionFault.cs" />
     <Compile Include="Game.cs">
       <DependentUpon>Model1.tt</DependentUpon>

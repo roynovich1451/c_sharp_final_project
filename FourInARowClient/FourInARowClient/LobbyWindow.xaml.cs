@@ -18,6 +18,7 @@ namespace FourInARowClient
         private ClientCallback callback;
         private FourInARowServiceClient clientToServer;
         private List<string> availableRivals;
+        private bool hadGame = true;
 
         public LobbyWindow(string userName, ClientCallback cc, FourInARowServiceClient fc)
         {
@@ -41,6 +42,8 @@ namespace FourInARowClient
         }
         public void updateLobbyStats()
         {
+            if (hadGame == false) return;
+            hadGame = false;
             updateStats(myUser, true);
             fillTop3();
         }
@@ -134,7 +137,7 @@ namespace FourInARowClient
         private void initRivalList(string user)
         {
             availableRivals = new List<string>();
-            availableRivals = clientToServer.GetConnectedClients(myUser).Keys.ToList();
+            availableRivals = clientToServer.GetConnectedClients(myUser).ToList();
             lbRivals.ItemsSource = availableRivals;
         }
         private void updateRivalList(string user, bool add)
@@ -182,6 +185,7 @@ namespace FourInARowClient
         {
             GameWindow liveGame = new GameWindow(myUser, challanger, rival, clientToServer, callback, gameID, this);
             liveGame.Show();
+            hadGame = true;
             this.Hide();
         }
 
@@ -224,6 +228,10 @@ namespace FourInARowClient
             clientToServer.Disconnect(myUser, -1);
             Environment.Exit(Environment.ExitCode);
         }
-        
+
+        private void gameGrid_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            updateLobbyStats();
+        }
     }
 }

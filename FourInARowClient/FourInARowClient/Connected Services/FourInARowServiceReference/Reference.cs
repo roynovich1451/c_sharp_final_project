@@ -321,10 +321,10 @@ namespace FourInARowClient.FourInARowServiceReference {
         System.Threading.Tasks.Task NoticeAllGameStartedAsync(string challanger, string rival, bool connected);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/GetConnectedClients", ReplyAction="http://tempuri.org/IFourInARowService/GetConnectedClientsResponse")]
-        System.Collections.Generic.Dictionary<string, object> GetConnectedClients(string myUser);
+        string[] GetConnectedClients(string myUser);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/GetConnectedClients", ReplyAction="http://tempuri.org/IFourInARowService/GetConnectedClientsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetConnectedClientsAsync(string myUser);
+        System.Threading.Tasks.Task<string[]> GetConnectedClientsAsync(string myUser);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFourInARowService/createSortedList", ReplyAction="http://tempuri.org/IFourInARowService/createSortedListResponse")]
         string[] createSortedList(string by);
@@ -483,11 +483,11 @@ namespace FourInARowClient.FourInARowServiceReference {
             return base.Channel.NoticeAllGameStartedAsync(challanger, rival, connected);
         }
         
-        public System.Collections.Generic.Dictionary<string, object> GetConnectedClients(string myUser) {
+        public string[] GetConnectedClients(string myUser) {
             return base.Channel.GetConnectedClients(myUser);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetConnectedClientsAsync(string myUser) {
+        public System.Threading.Tasks.Task<string[]> GetConnectedClientsAsync(string myUser) {
             return base.Channel.GetConnectedClientsAsync(myUser);
         }
         

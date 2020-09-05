@@ -19,7 +19,7 @@ namespace WcfFourInARowService
 
         [OperationContract]
         [FaultContract(typeof(OpponentDisconnectedFault))]
-        MoveResult ReportMove(int gameId, int col, int player);
+        MoveResult ReportMove(int gameId, int col, int player, bool middleOfGame);
         [OperationContract]
         void StartNewGame(string challanger, string rival);
         [OperationContract]
@@ -32,7 +32,7 @@ namespace WcfFourInARowService
         [OperationContract]
         void NoticeAllGameStarted(string challanger, string rival, bool connected);
         [OperationContract]
-        Dictionary<string, IFourInARowCallback> GetConnectedClients(string myUser);
+        List<string> GetConnectedClients(string myUser);
         [OperationContract]
         List<string> createSortedList(string by);
         [OperationContract]
