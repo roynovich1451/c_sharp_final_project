@@ -17,6 +17,11 @@ namespace WcfFourInARowService
         public Dictionary<string, IFourInARowCallback> connetedClients = new Dictionary<string, IFourInARowCallback>();
         private readonly Dictionary<int, GameManager> games = new Dictionary<int, GameManager>();
         private const int TOP3 = 3;
+        /// <summary>
+        /// remove client from connected clients
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="gameID"></param>
         public void Disconnect(string player, int gameID)
         {
             connetedClients.Remove(player);
@@ -24,7 +29,11 @@ namespace WcfFourInARowService
                 games.Remove(gameID);
             NoticeAll(player, false);
         }
-
+        /// <summary>
+        /// notify all new user entered
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="connected"></param>
         public void NoticeAll(string player, bool connected)
         //update all connected client, other client just connect/disconnect
         {
@@ -46,6 +55,12 @@ namespace WcfFourInARowService
                 updateOtherPlayerThread.Start();
             }
         }
+        /// <summary>
+        /// notify all 2 users start game between them and wont be available
+        /// </summary>
+        /// <param name="challanger"></param>
+        /// <param name="rival"></param>
+        /// <param name="connected"></param>
         public void NoticeAllGameStarted(string challanger, string rival, bool connected)
         //update all connected client, other client just connect/disconnect
         {
@@ -68,6 +83,11 @@ namespace WcfFourInARowService
                 updateOtherPlayerThread.Start();
             }
         }
+        /// <summary>
+        /// client connect in sign-in
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="hashedPassword"></param>
         public void ClientConnect(string userName, string hashedPassword)
         {
             if (connetedClients.ContainsKey(userName))
@@ -106,7 +126,11 @@ namespace WcfFourInARowService
                 }
             }
         }
-
+        /// <summary>
+        /// client connect in sign-up
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="hashedPassword"></param>
         public void Register(string userName, string hashedPassword)
         {
             using (var ctx = new fourinrowDBEntities())
@@ -138,7 +162,14 @@ namespace WcfFourInARowService
                 connetedClients.Add(userName, regCallback);
             }
         }
-
+        /// <summary>
+        /// notify rival about user move
+        /// </summary>
+        /// <param name="gameId"></param>
+        /// <param name="col"></param>
+        /// <param name="player"></param>
+        /// <param name="middleOfGame"></param>
+        /// <returns></returns>
         public MoveResult ReportMove(int gameId, int col, int player, bool middleOfGame)
         {
             if (!games.ContainsKey(gameId)) return MoveResult.GameOn;
@@ -160,7 +191,12 @@ namespace WcfFourInARowService
             sendThred(rival, result, col);
             return result;
         }
-
+        /// <summary>
+        /// helper for using thread
+        /// </summary>
+        /// <param name="rival"></param>
+        /// <param name="result"></param>
+        /// <param name="col"></param>
         void sendThred(string rival, MoveResult result, int col)
         {
             if (!connetedClients.ContainsKey(rival))
@@ -173,6 +209,12 @@ namespace WcfFourInARowService
             });
             updateOtherThread.Start();
         }
+        /// <summary>
+        /// update database when game ended
+        /// </summary>
+        /// <param name="res"></param>
+        /// <param name="sign"></param>
+        /// <param name="gameID"></param>
         private void updateDBAfterGame(MoveResult res, char sign, int gameID)
         {
             int p1Score = 0;
@@ -232,6 +274,11 @@ namespace WcfFourInARowService
                 ctx.SaveChanges();
             }
         }
+        /// <summary>
+        /// add new game to games list
+        /// </summary>
+        /// <param name="challanger"></param>
+        /// <param name="rival"></param>
         public void StartNewGame(string challanger, string rival)
         {
             using (var ctx = new fourinrowDBEntities())
@@ -260,6 +307,9 @@ namespace WcfFourInARowService
                 NoticeAllGameStarted(challanger, rival, false);
             }
         }
+        /// <summary>
+        /// retrive available game id
+        /// </summary>
         private void getMaxGameID()
         {
             using (var ctx = new fourinrowDBEntities())
@@ -270,6 +320,11 @@ namespace WcfFourInARowService
                 gameID = maxId + 1;
             }
         }
+        /// <summary>
+        /// ask for available rivals
+        /// </summary>
+        /// <param name="myUser"></param>
+        /// <returns></returns>
         public List<string> GetConnectedClients(string myUser)
         {
             var ret = new List<string>(connetedClients.Keys.ToList());
@@ -281,7 +336,12 @@ namespace WcfFourInARowService
             }
             return ret;
         }
-
+        /// <summary>
+        /// send rival ganme challege
+        /// </summary>
+        /// <param name="rival"></param>
+        /// <param name="Challenger"></param>
+        /// <returns></returns>
         public int ChallengeRival(string rival, string Challenger)
         {
             if (!connetedClients.ContainsKey(rival))
@@ -296,7 +356,11 @@ namespace WcfFourInARowService
             }
             return -1;
         }
-
+        /// <summary>
+        /// helper for retrive sort list by case for stats center
+        /// </summary>
+        /// <param name="by"></param>
+        /// <returns></returns>
         public List<string> createSortedList(string by)
         {
             using (var ctx = new fourinrowDBEntities())
@@ -333,7 +397,12 @@ namespace WcfFourInARowService
                 }
             }
         }
-
+        /// <summary>
+        /// helper for retrive data from database
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="by"></param>
+        /// <returns></returns>
         private List<string> convertResultToString(List<User> list, string by)
         {
             List<string> ret = new List<string>();
@@ -367,6 +436,12 @@ namespace WcfFourInARowService
                     return null;
             }
         }
+        /// <summary>
+        /// retrive data about games between 2 users
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
         public List<string> createRivaryData(string p1, string p2)
         {
             using (var ctx = new fourinrowDBEntities())
@@ -394,7 +469,12 @@ namespace WcfFourInARowService
                 return rivaryData;
             }
         }
-
+        /// <summary>
+        /// calculate win percantage of user
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="player"></param>
+        /// <returns></returns>
         private double winPercentage(List<Game> list, string player)
         {
             int wins = 0;
@@ -404,7 +484,10 @@ namespace WcfFourInARowService
             }
             return ((double)wins / list.Count()) * 100;
         }
-
+        /// <summary>
+        /// retrive all games ever played and their info
+        /// </summary>
+        /// <returns></returns>
         public List<string> getGamesHistory()
         {
             List<string> allGamesData = new List<string>();
@@ -434,7 +517,10 @@ namespace WcfFourInARowService
             }
 
         }
-
+        /// <summary>
+        /// retrive all sign-up user names
+        /// </summary>
+        /// <returns></returns>
         public List<string> getAllUserNames()
         {
             using (var ctx = new fourinrowDBEntities())
@@ -444,7 +530,10 @@ namespace WcfFourInARowService
                 return allUsers;
             }
         }
-
+        /// <summary>
+        /// retrive all live games
+        /// </summary>
+        /// <returns></returns>
         public List<string> getLiveGames()
         {
             using (var ctx = new fourinrowDBEntities())
@@ -466,7 +555,11 @@ namespace WcfFourInARowService
                 return liveGamesData;
             }
         }
-
+        /// <summary>
+        /// retrive specific user stats
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public Dictionary<string, string> getUserStats(string user)
         {
             using (var ctx = new fourinrowDBEntities())
@@ -484,7 +577,10 @@ namespace WcfFourInARowService
                 return userStatsData;
             }
         }
-
+        /// <summary>
+        /// retrive top 3 player
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<int, Tuple<string, int>> getTopThreeUsers()
         {
             using (var ctx = new fourinrowDBEntities())

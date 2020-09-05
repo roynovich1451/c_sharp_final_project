@@ -34,12 +34,12 @@ namespace FourInARowClient
             initComboBoxes(); 
         }
 
+        #region helpers
         private void initAllGames()
         {
             var list = clientToServer.getGamesHistory().ToList();
-            lbAllGames.ItemsSource = list; 
+            lbAllGames.ItemsSource = list;
         }
-
         private void initComboBoxes()
         {
             labelP1.Visibility = Visibility.Hidden;
@@ -50,7 +50,9 @@ namespace FourInARowClient
             cmbP1.ItemsSource = users;
             cmbP2.ItemsSource = users;
         }
+        #endregion
 
+        #region buttons
         private void btnSort_Click(object sender, RoutedEventArgs e)
         {
             string type = cmbSort.SelectedItem.ToString();
@@ -59,7 +61,6 @@ namespace FourInARowClient
             lbSortResults.ItemsSource = clientToServer.createSortedList(type);
             return;
         }
-
         private void btnRivary_Click(object sender, RoutedEventArgs e)
         {
             if (cmbP1.SelectedIndex == -1 || cmbP2.SelectedIndex == -1)
@@ -75,7 +76,7 @@ namespace FourInARowClient
                 return;
             }
             var ret = clientToServer.createRivaryData(p1, p2).ToList();
-            if(ret.Count == 0)
+            if (ret.Count == 0)
             {
                 lbMatchup.ItemsSource = null;
                 MessageBox.Show($"No games played between {p1} and {p2}", "Rivary info", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -96,5 +97,6 @@ namespace FourInARowClient
                 lbMatchup.ItemsSource = ret;
             }
         }
+        #endregion
     }
 }

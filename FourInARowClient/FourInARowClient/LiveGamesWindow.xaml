@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FourInARowClient"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="Live Games" Height="450" Width="250">
     <Grid>
         <ListBox Name="lbLiveGames" Margin="5"/>

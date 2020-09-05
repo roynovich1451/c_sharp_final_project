@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:FourInARowClient"
         mc:Ignorable="d"
         Closing="Window_Closing"
+        ResizeMode="NoResize"
         Title="Lobby" Height="600" Width="800">
     <Grid Name="mainGrid" Background="white">
         <Grid.ColumnDefinitions>

@@ -32,6 +32,10 @@ namespace FourInARowClient
             initCallbacks();
         }
 
+        #region callbacks
+        /// <summary>
+        /// initial client callbacks
+        /// </summary>
         private void initCallbacks()
         {
             callback.myUser = myUser;
@@ -40,6 +44,39 @@ namespace FourInARowClient
             callback.updateRivalList += updateRivalList;
             clientToServer.NoticeAll(myUser, true);
         }
+        /// <summary>
+        /// open new game after confirmation
+        /// </summary>
+        /// <param name="challanger"></param>
+        /// <param name="rival"></param>
+        /// <param name="gameID"></param>
+        private void challengeAccepted(string challanger, string rival, int gameID)
+        {
+            GameWindow liveGame = new GameWindow(myUser, challanger, rival, clientToServer, callback, gameID, this);
+            liveGame.Show();
+            hadGame = true;
+            this.Hide();
+        }
+        /// <summary>
+        /// show invitation message
+        /// </summary>
+        /// <param name="Challenger"></param>
+        /// <returns></returns>
+        internal bool popInvitation(string Challenger)
+        {
+            MessageBoxResult res = MessageBox.Show($"{Challenger} has sent you a game request\nDo you accept the challenge?", "Game Invitation", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (res == MessageBoxResult.Yes)
+            {
+                return true;
+            }
+            return false;
+        }
+        #endregion
+
+        #region helpers
+        /// <summary>
+        /// update the stats in lobby
+        /// </summary>
         public void updateLobbyStats()
         {
             if (hadGame == false) return;
@@ -47,12 +84,15 @@ namespace FourInARowClient
             updateStats(myUser, true);
             fillTop3();
         }
+        /// <summary>
+        /// show top 3 users point-wise
+        /// </summary>
         public void fillTop3()
         {
             var dict = clientToServer.getTopThreeUsers();
             int cnt = dict.Count;
-            
-            if(cnt >= 1)
+
+            if (cnt >= 1)
             {
                 tbTop1Name.Text = dict[0].Item1;
                 tbTop1Points.Text = dict[0].Item2.ToString();
@@ -68,17 +108,9 @@ namespace FourInARowClient
                 tbTop3Points.Text = dict[2].Item2.ToString();
             }
         }
-        private void lbRivals_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            if (lbRivals.SelectedItem != null)
-            {
-                String userName = lbRivals.SelectedItem.ToString();
-                updateStats(userName, false);
-            } else
-            {
-                resetRivalStats();
-            }
-        }
+        /// <summary>
+        /// reset rival's stats if no rivals available
+        /// </summary>
         private void resetRivalStats()
         {
             tbRivalCarrer.Text = "";
@@ -87,6 +119,11 @@ namespace FourInARowClient
             tbRivalWins.Text = "";
             tbRivalPercantage.Text = "";
         }
+        /// <summary>
+        /// update grid stats for user or rival
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="where"></param>
         public void updateStats(string userName, bool where)
         {
             var stats = clientToServer.getUserStats(userName);
@@ -110,7 +147,7 @@ namespace FourInARowClient
                 {
                     tbMyPercantage.Text = "0";
                 }
-                
+
             }
             else //Selected rival stats
             {
@@ -132,14 +169,13 @@ namespace FourInARowClient
                     tbRivalPercantage.Text = "0";
                 }
             }
-            
+
         }
-        private void initRivalList(string user)
-        {
-            availableRivals = new List<string>();
-            availableRivals = clientToServer.GetConnectedClients(myUser).ToList();
-            lbRivals.ItemsSource = availableRivals;
-        }
+        /// <summary>
+        /// update available rivals list
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="add"></param>
         private void updateRivalList(string user, bool add)
         {
             if (user == myUser) return;
@@ -160,8 +196,33 @@ namespace FourInARowClient
                 lbRivals.Items.Refresh();
             }
         }
+        /// <summary>
+        /// take available rivals from service in boot time
+        /// </summary>
+        /// <param name="user"></param>
+        private void initRivalList(string user)
+        {
+            availableRivals = new List<string>();
+            availableRivals = clientToServer.GetConnectedClients(myUser).ToList();
+            lbRivals.ItemsSource = availableRivals;
+        }
+        #endregion
+
+        #region buttons
+        private void lbRivals_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (lbRivals.SelectedItem != null)
+            {
+                String userName = lbRivals.SelectedItem.ToString();
+                updateStats(userName, false);
+            }
+            else
+            {
+                resetRivalStats();
+            }
+        }
         private void btnStartGame_Click(object sender, RoutedEventArgs e)
-        { 
+        {
             if (lbRivals.SelectedItem == null)
             {
                 MessageBox.Show("Must pick a Rival to start new game", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -178,27 +239,8 @@ namespace FourInARowClient
             {
                 challengeAccepted(myUser, rival, gameID);
                 clientToServer.StartNewGame(myUser, rival);
-            }            
-        }
-
-        private void challengeAccepted(string challanger, string rival, int gameID)
-        {
-            GameWindow liveGame = new GameWindow(myUser, challanger, rival, clientToServer, callback, gameID, this);
-            liveGame.Show();
-            hadGame = true;
-            this.Hide();
-        }
-
-        internal bool popInvitation(string Challenger)
-        {
-            MessageBoxResult res = MessageBox.Show($"{Challenger} has sent you a game request\nDo you accept the challenge?", "Game Invitation", MessageBoxButton.YesNo, MessageBoxImage.Information);
-            if (res == MessageBoxResult.Yes)
-            {
-                return true;
             }
-            return false;
         }
-
         private void btnStatsCenter_Click(object sender, RoutedEventArgs e)
         {
             var list = clientToServer.getGamesHistory().ToList();
@@ -220,9 +262,11 @@ namespace FourInARowClient
                 return;
             }
             LiveGamesWindow lg = new LiveGamesWindow(list);
-            lg.Show(); 
+            lg.Show();
         }
+        #endregion
 
+        #region windowFunc
         private void Window_Closing(object sender, EventArgs e)
         {
             clientToServer.Disconnect(myUser, -1);
@@ -233,5 +277,6 @@ namespace FourInARowClient
         {
             updateLobbyStats();
         }
+        #endregion
     }
 }

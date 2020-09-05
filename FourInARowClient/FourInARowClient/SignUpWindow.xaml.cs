@@ -49,7 +49,7 @@ namespace FourInARowClient
             return false;
         }
         #endregion
-
+        #region buttons
         private void btnSigUp_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(tbUser.Text) ||
@@ -89,5 +89,7 @@ namespace FourInARowClient
                 MessageBox.Show(ex.Message + "\n" + "Type:" + ex.GetType() + "\n" + ex.InnerException, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        #endregion
+
     }
 }

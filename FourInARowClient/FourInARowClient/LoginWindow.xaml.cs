@@ -21,7 +21,7 @@ namespace FourInARowClient
             clientToServer = new FourInARowServiceClient(new InstanceContext(callback));
  
         }
-
+        #region buttons
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(tbUser.Text) &&
@@ -64,14 +64,19 @@ namespace FourInARowClient
                 MessageBox.Show("User name or password missing", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         private void btnSigUp_Click(object sender, RoutedEventArgs e)
         {
             SignUpWindow suw = new SignUpWindow(callback, clientToServer);
             suw.Show();
             this.Hide();
         }
-
+        #endregion
+        #region helpers
+        /// <summary>
+        /// hashes user's password
+        /// </summary>
+        /// <param name="pass"></param>
+        /// <returns></returns>
         private string ConvertPass(string pass)
         {
             using (SHA256 hashObj = SHA256.Create())
@@ -85,5 +90,7 @@ namespace FourInARowClient
                 return builder.ToString();
             }
         }
+        #endregion
+
     }
 }

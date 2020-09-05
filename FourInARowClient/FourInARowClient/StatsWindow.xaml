@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FourInARowClient"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="Stats center" Height="500" Width="800">
     <Grid Name="mainGrid" Background="white">
         <Grid.ColumnDefinitions>
